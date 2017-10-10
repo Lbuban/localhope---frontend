@@ -1,79 +1,79 @@
 <!-- Registration form for both doGooder and Charity, based on their 8228769selection during registration -->
-h1>Registration</h1>
+<h1>Registration</h1>
 
 <!-- <app-status-message [successMessage]="successMessage" [errorMessage]="errorMessage"></app-status-message> -->
 
 <form novalidate (ngSubmit)="registerUser(registrationForm)"  #registrationForm="ngForm" class="form-horizontal">
-  <input [ngModel]="" ngModel #user_id="ngModel" type="hidden" name="userID">
+  <input [ngModel]="registration?.userID" ngModel #user_id="ngModel" type="hidden" name="userID">
   <div class="form-group">
     <label for="userName" class="col-sm-2 control-label">Username</label>
     <div class="col-sm-10">
       <input [ngModel]="" ngModel #userName="ngModel" type="text" class="form-control" id="userName" name="userName" placeholder="Username" required minlength="2" maxlength="30">
-      <span *ngIf="" class="text-danger">
+      <!-- <span *ngIf="" class="text-danger">
           {{ formErrors.username }}
-      </span>
+      </span> -->
     </div>
   </div>
   <div class="form-group">
     <label for="password" class="col-sm-2 control-label">Password</label>
     <div class="col-sm-10">
-      <input [ngModel]="" ngModel #password="ngModel" type="text" class="form-control" id="password" name="last_name"  placeholder="password" required minlength="6" maxlength="12">
-      <span *ngIf="formErrors.password" class="text-danger">
-        {{ formErrors.password }}
+      <input [ngModel]="registration?.password" ngModel #password="ngModel" type="text" class="form-control" id="password" name="last_name"  placeholder="password" required minlength="6" maxlength="12">
+      <span *ngIf="" class="text-danger">
+        <!-- {{ formErrors.password }} -->
       </span>
     </div>
   </div>
   <div class="form-group">
     <label for="firstName" class="col-sm-2 control-label">First Name</label>
     <div class="col-sm-10">
-      <input [ngModel]="" ngModel #firstName="ngModel" type="text" class="form-control" id="firstName" name="firstName" required>
-      <span *ngIf="formErrors.firstName" class="text-danger">
-          {{ formErrors.firstName }}
+      <input [ngModel]="registration?.firstName" ngModel #firstName="ngModel" type="text" class="form-control" id="firstName" name="firstName" required>
+      <span *ngIf="" class="text-danger">
+          <!-- {{ formErrors.firstName }} -->
       </span>
     </div>
   </div>
   <div class="form-group">
     <label for="lastName" class="col-sm-2 control-label">Last Name</label>
     <div class="col-sm-10">
-      <input [ngModel]="" ngModel #lastName="ngModel" type="text" class="form-control" id="lastName" name="lastName" required>
-      <span *ngIf="formErrors.lastName" class="text-danger">
-          {{ formErrors.lastName }}
+      <input [ngModel]="registration?.lastName" ngModel #lastName="ngModel" type="text" class="form-control" id="lastName" name="lastName" required>
+      <span *ngIf="" class="text-danger">
+          <!-- {{ formErrors.lastName }} -->
       </span>
     </div>
   </div>
   <div class="form-group">
     <label for="streetAddress" class="col-sm-2 control-label">Street Address</label>
     <div class="col-sm-10">
-      <input [ngModel]="" ngModel #streetAddress="ngModel" type="text" class="form-control" id="streetAddress" name="streetAddress" required>
-      <span *ngIf="formErrors.streetAddress" class="text-danger">
-          {{ formErrors.streetAddress }}
+      <input [ngModel]="registration?.streetAddress" ngModel #streetAddress="ngModel" type="text" class="form-control" id="streetAddress" name="streetAddress" required>
+      <span *ngIf="" class="text-danger">
+          <!-- {{ formErrors.streetAddress }} -->
       </span>
     </div>
   </div>
   <div class="form-group">
     <label for="city" class="col-sm-2 control-label">City</label>
     <div class="col-sm-10">
-      <input [ngModel]="" ngModel #city="ngModel" type="text" class="form-control" id="city" name="city" required>
-      <span *ngIf="formErrors.city" class="text-danger">
-          {{ formErrors.city }}
+      <input [ngModel]="registration?.city" ngModel #city="ngModel" type="text" class="form-control" id="city" name="city" required>
+      <span *ngIf="" class="text-danger">
+          <!-- {{ formErrors.city }} -->
       </span>
     </div>
   </div>
   <div class="form-group">
     <label for="state" class="col-sm-2 control-label">State</label>
     <div class="col-sm-10">
-      <input [ngModel]="" ngModel #state="ngModel" type="text" class="form-control" id="state" name="state" required>
-      <span *ngIf="formErrors.state" class="text-danger">
-          {{ formErrors.state }}
+      <input [ngModel]="registration?.state" ngModel #state="ngModel" type="text" class="form-control" id="state" name="state" required>
+      <span *ngIf="" class="text-danger">
+          <!-- {{ formErrors.state }} -->
       </span>
     </div>
   </div>
   <div class="form-group">
     <label for="zip" class="col-sm-2 control-label">Zip Code</label>
     <div class="col-sm-10">
-      <input [ngModel]="" ngModel #zip="ngModel" type="text" class="form-control" id="zip" name="zip" required>
-      <span *ngIf="formErrors.zip" class="text-danger">
-          {{ formErrors.zip }}
+      <input [ngModel]="registration?.zip" ngModel #zip="ngModel" type="text" class="form-control" id="zip" name="zip" placeholder="12345" required>
+      <span *ngIf="" class="text-danger">
+          <!-- {{ formErrors.zip }} -->
       </span>
     </div>
   </div>
@@ -81,84 +81,84 @@ h1>Registration</h1>
     <label for="phone" class="col-sm-2 control-label">Phone Number</label>
     <div class="col-sm-10">
       <input [ngModel]="" ngModel #phone="ngModel" type="text" class="form-control" id="phone" name="phone" placeholder="111-222-3333" required >
-      <span *ngIf="formErrors.phone" class="text-danger">
-          {{ formErrors.phone }}
+      <span *ngIf="registration?.phone" class="text-danger">
+          <!-- {{ formErrors.phone }} -->
         </span>
     </div>
   </div>
   <div class="form-group">
     <label for="email" class="col-sm-2 control-label">Email Address</label>
     <div class="col-sm-10">
-      <input [ngModel]="" ngModel #email="ngModel" type="text" class="form-control" id="email" name="email" placeholder="aaaabbbb@cccc.com" required>
-      <span *ngIf="formErrors.email" class="text-danger">
-          {{ formErrors.email }}
+      <input [ngModel]="registration?.email" ngModel #email="ngModel" type="text" class="form-control" id="email" name="email" placeholder="aaaabbbb@cccc.com" required>
+      <span *ngIf="" class="text-danger">
+          <!-- {{ formErrors.email }} -->
         </span>
     </div>
   </div>
-  <div *ngIf="">  <!--  Charity fields only  -->
+  <!-- <div *ngIf="">   Charity fields only  -->
     <div class="form-group">
       <label for="ein" class="col-sm-2 control-label">EIN</label>
       <div class="col-sm-10">
-        <input [ngModel]="" ngModel #sat="ngModel" type="text" class="form-control" id="ein" name="ein" placeholder=""  required >
-        <span *ngIf="formErrors.ein" class="text-danger">
-            {{ formErrors.ein }}
+        <input [ngModel]="registration?.ein" ngModel #sat="ngModel" type="text" class="form-control" id="ein" name="ein" placeholder=""  required >
+        <span *ngIf="" class="text-danger">
+            <!-- {{ formErrors.ein }} -->
           </span>
       </div>
     </div>
     <div class="form-group">
       <label for="charityName" class="col-sm-2 control-label">Charity Name</label>
       <div class="col-sm-10">
-        <input [ngModel]="" ngModel #charityName="ngModel" type="text" class="form-control" id="charityName" name="charityName" placeholder="your charity name"  required maxlength="200">
-        <span *ngIf="formErrors.charityName" class="text-danger">
-            {{ formErrors.charityName }}
+        <input [ngModel]="registration?.charityName" ngModel #charityName="ngModel" type="text" class="form-control" id="charityName" name="charityName" placeholder="your charity name"  required maxlength="200">
+        <span *ngIf="" class="text-danger">
+            <!-- {{ formErrors.charityName }} -->
           </span>
       </div>
     </div>
     <div class="form-group">
       <label for="charityUserRole" class="col-sm-2 control-label">Charity User Role</label>
       <div class="col-sm-10">
-        <input [ngModel]="" ngModel #charityUserRole="ngModel" type="text" class="form-control" id="charityUserRole" name="charityUserRole" placeholder="your role"  required >
-        <span *ngIf="formErrors.charityUserRole" class="text-danger">
-            {{ formErrors.charityUserRole }}
+        <input [ngModel]="registration?.charityUserRole" ngModel #charityUserRole="ngModel" type="text" class="form-control" id="charityUserRole" name="charityUserRole" placeholder="your role"  required >
+        <span *ngIf="" class="text-danger">
+            <!-- {{ formErrors.charityUserRole }} -->
           </span>
       </div>
     </div>
     <div class="form-group">
       <label for="needs" class="col-sm-2 control-label">Charity Need</label>
       <div class="col-sm-10">
-        <input [ngModel]="" ngModel #needs="ngModel" type="text" class="form-control" id="needs" name="needs" placeholder="indicate your need"  required >
-        <span *ngIf="formErrors.needs" class="text-danger">
-            {{ formErrors.needs }}
+        <input [ngModel]="registration?.needs" ngModel #needs="ngModel" type="text" class="form-control" id="needs" name="needs" placeholder="indicate your need"  required >
+        <span *ngIf="" class="text-danger">
+            <!-- {{ formErrors.needs }} -->
           </span>
       </div>
     </div>
-  </div> 
-  <div *ngIf=""><!--  User fields only  -->
+  <!-- </div>  -->
+  <!-- <div *ngIf=""> User fields only  -->
     <div class="form-group">
         <label for="donationPreference" class="col-sm-2 control-label">Donation Preference</label>
         <div class="col-sm-10">
-          <input [ngModel]="" ngModel #donationPreference="ngModel" type="text" class="form-control" id="donationPreference" name="donationPreference" placeholder="your donation preference"  required >
-          <span *ngIf="formErrors.donationPreference" class="text-danger">
-              {{ formErrors.donationPreference }}
+          <input [ngModel]="registration?.donationPreference" ngModel #donationPreference="ngModel" type="text" class="form-control" id="donationPreference" name="donationPreference" placeholder="your donation preference"  required >
+          <span *ngIf="" class="text-danger">
+              <!-- {{ formErrors.donationPreference }} -->
           </span>
       </div>
     </div>
     <div class="form-group">
         <label for="charityPreference" class="col-sm-2 control-label">Charity Preference</label>
         <div class="col-sm-10">
-          <input [ngModel]="" ngModel #charityPreference="ngModel" type="text" class="form-control" id="charityPreference" name="charityPreference" placeholder="your charity preference"  required >
-          <span *ngIf="formErrors.charityPreference" class="text-danger">
-              {{ formErrors.charityPreference }}
+          <input [ngModel]="registration?.charityPreference" ngModel #charityPreference="ngModel" type="text" class="form-control" id="charityPreference" name="charityPreference" placeholder="your charity preference"  required >
+          <span *ngIf="" class="text-danger">
+              <!-- {{ formErrors.charityPreference }} -->
           </span>
       </div>
     </div>
-  </div>
+  <!-- </div> -->
     
  
 
-   <div class="form-group">
+   <!-- <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
       <button [disabled]="!studentForm.form.valid" type="submit" class="btn btn-primary">Submit</button>
     </div>
-  </div>
+  </div> -->
 </form>
