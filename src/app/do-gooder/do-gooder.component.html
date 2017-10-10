@@ -1,3 +1,35 @@
-<p>
-  do-gooder works!
-</p>
+<h1>
+  Charity Needs Page
+</h1>
+
+
+<table class="table table-hover table-bordered" id="dataTable" style="width:100%">
+  <thead>
+    <tr>
+      <th>Charity Name</th>
+      <!-- <th>Category</th> -->
+      <!-- <th>Rating</th> -->
+      <th>Need Category</th>
+      <th>Need by Date</th>
+      <th>Description</th>
+      <th>Original Amount</th>
+      <th>Give</th>
+      <th>Follow/Unfollow</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let need of needs">
+      <td>{{need.charityName}}</td>
+      <!-- <td>{{need.category}}</td> -->
+      <!-- <td>{{need.rating}}</td> -->
+      <td>{{need.type}}</td>
+      <td>{{need.dateNeeded}}</td>
+      <td>{{need.description}}</td>
+      <td>{{need.originalAmount}}</td>
+      <td class="text-center">
+        <a class="btn btn-primary" >Give</a>&nbsp;
+        <button class="btn btn-danger">Follow</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
