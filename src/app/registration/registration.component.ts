@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -9,10 +9,24 @@ import { NgForm } from '@angular/forms';
 export class RegistrationComponent implements OnInit {
 
   registrationForm: NgForm;
+  
+  role;
+  userCheck;
+    @ViewChild('registrationForm') currentForm: NgForm;
 
   constructor() { }
 
   ngOnInit() {
   }
-
+onChange(){
+  
+  console.log(this.role)
+  event.preventDefault()
+  if (this.role=="User") 
+    {
+     this.userCheck=true}
+  else if (this.role=="Charity")  
+     {this.userCheck=false};
+  }
 }
+
