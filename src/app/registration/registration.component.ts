@@ -10,7 +10,7 @@ export class RegistrationComponent implements OnInit {
 
   registrationForm: NgForm;
   
-  role;
+  isCharity;
   userCheck;
     @ViewChild('registrationForm') currentForm: NgForm;
 
@@ -20,12 +20,12 @@ export class RegistrationComponent implements OnInit {
   }
 onChange(){
   
-  console.log(this.role)
+  
   event.preventDefault()
-  if (this.role=="User") 
+  if (this.isCharity=="User") 
     {
      this.userCheck=true}
-  else if (this.role=="Charity")  
+  else if (this.isCharity=="Charity")  
      {this.userCheck=false};
   }
 }

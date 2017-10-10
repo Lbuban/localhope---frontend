@@ -4,7 +4,7 @@
 <!-- <app-status-message [successMessage]="successMessage" [errorMessage]="errorMessage"></app-status-message> -->
 
 <form novalidate (ngSubmit)="registerUser(registrationForm)"  #registrationForm="ngForm" class="form-horizontal">
-  <select [(ngModel)]="role" (ngModelChange)="onChange($event)" name="role">
+  <select [(ngModel)]="isCharity" (ngModelChange)="onChange($event)" name="role">
 
     <option value="User">User</option>
      <option value="Charity">Charity</option>
@@ -14,7 +14,7 @@
   <div class="form-group">
     <label for="userName" class="col-sm-2 control-label">Username</label>
     <div class="col-sm-10">
-      <input [ngModel]="" ngModel #userName="ngModel" type="text" class="form-control" id="userName" name="userName" placeholder="Username" required minlength="2" maxlength="30">
+      <input [ngModel]="" ngModel #userName="ngModel" type="text" class="form-control" id="username" name="username" placeholder="Username" required minlength="2" maxlength="30">
       <!-- <span *ngIf="" class="text-danger">
           {{ formErrors.username }}
       </span> -->
@@ -77,7 +77,7 @@
   <div class="form-group">
     <label for="zip" class="col-sm-2 control-label">Zip Code</label>
     <div class="col-sm-10">
-      <input [ngModel]="registration?.zip" ngModel #zip="ngModel" type="text" class="form-control" id="zip" name="zip" placeholder="12345" required>
+      <input [ngModel]="registration?.zip" ngModel #zipCode="ngModel" type="text" class="form-control" id="zipCode" name="zipCode" placeholder="12345" required>
       <span *ngIf="" class="text-danger">
           <!-- {{ formErrors.zip }} -->
       </span>
@@ -102,7 +102,7 @@
     </div>
   </div>
   <!-- div for charity users -->
-   <div *ngIf="this.userCheck===false">   Charity fields only  
+   <div *ngIf="this.userCheck===false"> 
     <div class="form-group">
       <label for="ein" class="col-sm-2 control-label">EIN</label>
       <div class="col-sm-10">
