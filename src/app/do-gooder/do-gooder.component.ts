@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-// import { DataService } from '../data.service'; //this is pulling info from the data service
+import { DataService } from '../data.service'; //this is pulling info from the data service
 // import { MdDialog, MdDialogRef } from '@angular/material';
 
 @Component({
@@ -15,18 +15,18 @@ export class DoGooderComponent implements OnInit {
   mode = 'Observable';
 
   constructor( 
-    // private dataService: DataService
+    private dataService: DataService
   ) {} 
 
   ngOnInit() 
   { 
-    // this.getNeeds();
+    this.getNeeds();
   }
 
-  // getNeeds() { //function to pull the needs list.
-  //   this.dataService.getRecords("needs")
-  //     .subscribe(
-  //       needs => this.needs = needs,
-  //       error =>  this.errorMessage = <any>error);
-  // }
+  getNeeds() { //function to pull the needs list.
+    this.dataService.getRecords("needs")
+      .subscribe(
+        needs => this.needs = needs,
+        error =>  this.errorMessage = <any>error);
+  }
 }

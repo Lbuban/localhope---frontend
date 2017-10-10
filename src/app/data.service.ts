@@ -19,6 +19,14 @@ export class DataService {
         .map(this.extractData)
         .catch(this.handleError);
 }
+
+addRecord(endpoint: string, record:object): Observable<any> {
+  let apiUrl = `${this.baseUrl}${endpoint}`;
+  console.log(apiUrl)
+  return this.http.post(apiUrl, record)
+      .map(this.extractData);
+}
+
   //take the response and turn it into JSON
 private extractData(res: Response) {
   let results = res.json();
