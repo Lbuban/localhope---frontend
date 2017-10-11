@@ -23,20 +23,17 @@ export class CharityComponent implements OnInit {
   model: object = { //"model" is potato.
     type: "",
     amount: "",
-    description: ""
+    description: "",
+    dateNeeded: ""
   };
-
-  onSubmit() { //function to submit the data once the button is clicked.
-    // console.log(this.sampleForm) //.value gets us the value of the form field. Data is potato.
-    console.log(this.model);
-  }
 
   ngOnInit() {
     
   }
 
   saveNeed(need: NgForm){ //function to save a need once one has been added.
-      this.dataService.addRecord("needs", need.value)
+    console.log(this.model) 
+    this.dataService.addRecord("needs", need.value)
           .subscribe(
             student => this.successMessage = "Need added successfully",
             error =>  this.errorMessage = <any>error);
@@ -79,7 +76,8 @@ export class CharityComponent implements OnInit {
     formErrors = {
       'type': '',
       'originalAmount': '',
-      'description': ''
+      'description': '',
+      'dateNeeded': ''
     };
   
     validationMessages = {
@@ -93,5 +91,8 @@ export class CharityComponent implements OnInit {
         'required':      'Description is required.',
         'maxlength':     'Description cannot exceed 150 characters'
       },
+      'dateNeeded': {
+        'required':       'Date is required.',
+      }
     };
   }
