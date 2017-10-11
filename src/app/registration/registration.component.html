@@ -4,7 +4,12 @@
 <!-- <app-status-message [successMessage]="successMessage" [errorMessage]="errorMessage"></app-status-message> -->
 
 <form novalidate (ngSubmit)="registerUser(registrationForm)"  #registrationForm="ngForm" class="form-horizontal">
+<<<<<<< HEAD
   Please select an option: <select [(ngModel)]="role" (ngModelChange)="onChange($event)" name="role">
+=======
+  <select [(ngModel)]="isCharity" (ngModelChange)="onChange($event)" name="role">
+
+>>>>>>> 8bb8136c2cb3a4ddb4facb1b61c73b5fa322e33f
     <option value="User">User</option>
      <option value="Charity">Charity</option>
 </select>
@@ -15,7 +20,7 @@
   <div class="form-group">
     <label for="userName" class="col-sm-2 control-label">Username</label>
     <div class="col-sm-10">
-      <input [ngModel]="" ngModel #userName="ngModel" type="text" class="form-control" id="userName" name="userName" placeholder="Username" required minlength="2" maxlength="30">
+      <input [ngModel]="" ngModel #userName="ngModel" type="text" class="form-control" id="username" name="username" placeholder="Username" required minlength="2" maxlength="30">
       <!-- <span *ngIf="" class="text-danger">
           {{ formErrors.username }}
       </span> -->
@@ -58,6 +63,7 @@
         </span>
       </div>
     </div>
+<<<<<<< HEAD
     <div class="form-group">
       <label for="city" class="col-sm-2 control-label">City</label>
       <div class="col-sm-10">
@@ -66,6 +72,16 @@
             <!-- {{ formErrors.city }} -->
         </span>
       </div>
+=======
+  </div>
+  <div class="form-group">
+    <label for="zip" class="col-sm-2 control-label">Zip Code</label>
+    <div class="col-sm-10">
+      <input [ngModel]="registration?.zip" ngModel #zipCode="ngModel" type="text" class="form-control" id="zipCode" name="zipCode" placeholder="12345" required>
+      <span *ngIf="" class="text-danger">
+          <!-- {{ formErrors.zip }} -->
+      </span>
+>>>>>>> 8bb8136c2cb3a4ddb4facb1b61c73b5fa322e33f
     </div>
     <div class="form-group">
       <label for="state" class="col-sm-2 control-label">State</label>
@@ -105,7 +121,7 @@
     </div>
   </div>
   <!-- div for charity users -->
-   <div *ngIf="this.userCheck===false">   Charity fields only  
+   <div *ngIf="this.userCheck===false"> 
     <div class="form-group">
       <label for="ein" class="col-sm-2 control-label">EIN</label>
       <div class="col-sm-10">
@@ -160,6 +176,7 @@
       </div>
     </div>
    </div> 
+  <button type="submit">Submit</button>
 </form>
   <br>
    <br>
