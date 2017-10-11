@@ -16,7 +16,7 @@
   <div class="form-group">
     <label for="username" class="col-sm-2 control-label">Username</label>
     <div class="col-sm-10">
-      <input [ngModel]="" ngModel #username="ngModel" type="text" class="form-control" id="username" name="username" placeholder="Username" required minlength="2" maxlength="30">
+      <input [ngModel]="" ngModel #username="ngModel" type="text" class="form-control" id="username" name="username" placeholder="enter your Username" required minlength="2" maxlength="30">
       <span *ngIf="formErrors.username" class="text-danger">
           {{ formErrors.username }}
       </span>
@@ -25,7 +25,7 @@
   <div class="form-group">
     <label for="password" class="col-sm-2 control-label">Password</label>
     <div class="col-sm-10">
-      <input [ngModel]="registration?.password" ngModel #password="ngModel" type="text" class="form-control" id="password" name="password"  placeholder="password" required minlength="6" maxlength="12">
+      <input [ngModel]="registration?.password" ngModel #password="ngModel" type="text" class="form-control" id="password" name="enter your password here"  placeholder="enter your password" required minlength="6" maxlength="12">
       <span *ngIf="formErrors.password" class="text-danger">
         {{ formErrors.password }}
       </span>
@@ -79,7 +79,7 @@
     <div class="form-group">
       <label for="zipCode" class="col-sm-2 control-label">Zip Code</label>
       <div class="col-sm-10">
-        <input [ngModel]="registration?.zip" ngModel #zip="ngModel" type="text" class="form-control" id="zipCode" name="zipCode" placeholder="12345" required maxlength="10">
+        <input [ngModel]="registration?.zip" ngModel #zip="ngModel" type="text" class="form-control" id="zipCode" name="zipCode" placeholder="enter your zip code in this format: 12345" required maxlength="10">
         <span *ngIf="formErrors.zipCode" class="text-danger">
             {{ formErrors.zipCode }}
         </span>
@@ -88,7 +88,7 @@
     <div class="form-group">
       <label for="phone" class="col-sm-2 control-label">Phone Number</label>
       <div class="col-sm-10">
-        <input [ngModel]="" ngModel #phone="ngModel" type="text" class="form-control" id="phone" name="phone" placeholder="111-222-3333" required maxlength="15">
+        <input [ngModel]="" ngModel #phone="ngModel" type="text" class="form-control" id="phone" name="phone" placeholder="enter your phone number in this format: 111-222-3333" required maxlength="15">
         <span *ngIf="formErrors.phone" class="text-danger">
             {{ formErrors.phone }}
           </span>
@@ -97,7 +97,7 @@
     <div class="form-group">
       <label for="email" class="col-sm-2 control-label">Email Address</label>
       <div class="col-sm-10">
-        <input [ngModel]="registration?.email" ngModel #email="ngModel" type="text" class="form-control" id="email" name="email" placeholder="aaaabbbb@cccc.com" required maxlength="100">
+        <input [ngModel]="registration?.email" ngModel #email="ngModel" type="text" class="form-control" id="email" name="email" placeholder="enter your email in this format: aaaabbbb@cccc.com" required maxlength="100">
         <span *ngIf="formErrors.email" class="text-danger">
             {{ formErrors.email }}
           </span>
@@ -119,7 +119,7 @@
     <div class="form-group">
       <label for="charityName" class="col-sm-2 control-label">Charity Name</label>
       <div class="col-sm-10">
-        <input [ngModel]="registration?.charityName" ngModel #charityName="ngModel" type="text" class="form-control" id="charityName" name="charityName" placeholder="your charity name"  required maxlength="200">
+        <input [ngModel]="registration?.charityName" ngModel #charityName="ngModel" type="text" class="form-control" id="charityName" name="charityName" placeholder="enter your charity name here"  required maxlength="200">
         <span *ngIf="formErrors.charityName" class="text-danger">
             {{ formErrors.charityName }}
           </span>
@@ -128,9 +128,9 @@
     <div class="form-group">
       <label for="charityUserRole" class="col-sm-2 control-label">Charity User Role</label>
       <div class="col-sm-10">
-        <input [ngModel]="registration?.charityUserRole" ngModel #charityUserRole="ngModel" type="text" class="form-control" id="charityUserRole" name="charityUserRole" placeholder="your role"  required maxlength="20">
-        <span *ngIf="formErrors.charityUserRole" class="text-danger">
-            {{ formErrors.charityUserRole }}
+        <input [ngModel]="registration?.charityUserRole" ngModel #charityUserRole="ngModel" type="text" class="form-control" id="charityUserRole" name="charityUserRole" placeholder="enter your role"  required maxlength="20">
+        <span *ngIf="" class="text-danger">
+            <!-- {{ formErrors.charityUserRole }} -->
           </span>
       </div>
     </div>
@@ -154,16 +154,15 @@
     <div class="form-group">
         <label for="charityPreference" class="col-sm-2 control-label">Charity Preference</label>
         <div class="col-sm-10">
-          <input [ngModel]="registration?.charityPreference" ngModel #charityPreference="ngModel" type="text" class="form-control" id="charityPreference" name="charityPreference" placeholder="your charity preference"  required >
-          <span *ngIf="" class="text-danger">
-              <!-- {{ formErrors.charityPreference }} -->
+          <input [ngModel]="registration?.charityPreference" ngModel #charityPreference="ngModel" type="text" class="form-control" id="charityPreference" name="charityPreference" placeholder="enter your charity preference here"  required >
+          <span *ngIf="formErrors.charityPreference" class="text-danger">
+              {{ formErrors.charityPreference }}
           </span>
       </div>
     </div>
    </div>
  
-  <button *ngIf="this.userCheck===false || this.userCheck===true" type="submit">Submit</button>
-  
+  <button [disabled]="!registrationForm.form.valid" class="btn btn-primary" *ngIf="this.userCheck===false || this.userCheck===true" type="submit">Submit</button>
 </form>
   <br>
    <br>
