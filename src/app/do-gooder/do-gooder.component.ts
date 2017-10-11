@@ -24,9 +24,16 @@ export class DoGooderComponent implements OnInit {
   }
 
   getNeeds() { //function to pull the needs list.
-    this.dataService.getRecords("needs")
+    this.dataService.getRecords("dogooder")
       .subscribe(
         needs => this.needs = needs,
         error =>  this.errorMessage = <any>error);
   }
+  //endpoint will be dogooderid
+  // followCharity(endpoint: string, record:object): Observable<any> {
+  //   let apiUrl = `${this.baseUrl/user/}${endpoint}`;
+  //   console.log(apiUrl)
+  //   return this.http.post(apiUrl, record)
+  //       .map(this.extractData);
+  // }
 }
