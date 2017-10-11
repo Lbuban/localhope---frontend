@@ -4,12 +4,8 @@
 <!-- <app-status-message [successMessage]="successMessage" [errorMessage]="errorMessage"></app-status-message> -->
 
 <form novalidate (ngSubmit)="registerUser(registrationForm)"  #registrationForm="ngForm" class="form-horizontal">
-<<<<<<< HEAD
-  Please select an option: <select [(ngModel)]="role" (ngModelChange)="onChange($event)" name="role">
-=======
   <select [(ngModel)]="isCharity" (ngModelChange)="onChange($event)" name="role">
 
->>>>>>> 8bb8136c2cb3a4ddb4facb1b61c73b5fa322e33f
     <option value="User">User</option>
      <option value="Charity">Charity</option>
 </select>
