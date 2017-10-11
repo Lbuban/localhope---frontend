@@ -30,11 +30,13 @@ export class RegistrationComponent implements OnInit {
   }
 
   registerUser(user: NgForm){ //function to save a need once one has been added.
+   console.log(JSON.stringify(user.value))
       this.dataService.addRecord("registration", user.value)
           .subscribe(
-            student => this.successMessage = "Need added successfully",
+            user => this.successMessage = "Need added successfully",
             error =>  this.errorMessage = <any>error);
             this.user = '';
+            
     }
 
     ngAfterViewChecked() {
@@ -53,7 +55,7 @@ export class RegistrationComponent implements OnInit {
     }
 
     onChange(){
-  event.preventDefault()
+ 
   if (this.isCharity=="User") 
     {
      this.userCheck=true}
@@ -80,25 +82,6 @@ export class RegistrationComponent implements OnInit {
   
     //start out the errors as an emtpy string
 
-    // MJ: this code as here; commenting out to write my own errors/validation msgs below:
-    // formErrors = {
-    //   'type': '',
-    //   'originalAmount': '',
-    //   'description': ''
-    // };
-  
-    // validationMessages = {
-    //   'type': {
-    //     'required':      'Type is required.',
-    //   },
-    //   'originalAmount': {
-    //     'required':      'Amount is required.',
-    //   },
-    //   'description': {
-    //     'required':      'Description is required.',
-    //     'maxlength':     'Description cannot exceed 150 characters'
-    //   },
-    // };
   formErrors = {
     'username': '',
     'password': '',
@@ -107,7 +90,7 @@ export class RegistrationComponent implements OnInit {
     'streetAddress': '',
     'city': '',
     'state': '',
-    'zip': '',
+    'zipCode': '',
     'phone': '',
     'email': '',
     'ein': '',
@@ -148,7 +131,7 @@ export class RegistrationComponent implements OnInit {
       'required': 'A State is required',
       'maxlength': 'State cannot be more than 2 characters long'
     },
-    'zip': {
+    'zipCode': {
       'required': 'A Zip Code is required',
       'maxlength': 'Zip Code cannot be more than 10 characters long'
     },
@@ -174,24 +157,7 @@ export class RegistrationComponent implements OnInit {
     },
   };
 };
-// adding code example:
-    // formErrors = {
-    //   'first_name': '',
-    //   'last_name': '',
-    //   'sat': '',
-    //   'start_date': '',
-    //   'gpa': ''
-  
-    // };
-  
-    // validationMessages = {
-    //   'first_name': {
-    //     'required': 'First name is required.',
-    //     'minlength': 'First name must be at least 2 characters long.',
-    //     'maxlength': 'First name cannot be more than 30 characters long.'
-    //   },
 
-  // }
 
 
 

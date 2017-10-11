@@ -9,9 +9,9 @@ import { CharityComponent }  from  '../charity/charity.component';
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home',  component: HomeComponent },
-  { path: 'DoGooder',  component: DoGooderComponent },
+  { path: 'dogooder',  component: DoGooderComponent },
   { path: 'registration', component: RegistrationComponent},
-  { path: 'Charity', component: CharityComponent}
+  { path: 'charity', component: CharityComponent}
  
 ];
 

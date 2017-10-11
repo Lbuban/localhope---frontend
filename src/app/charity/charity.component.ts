@@ -26,10 +26,10 @@ export class CharityComponent implements OnInit {
     description: ""
   };
 
-  // onSubmit() { //function to submit the data once the button is clicked.
-  //   // console.log(this.sampleForm) //.value gets us the value of the form field. Data is potato.
-  //   console.log(this.model);
-  // }
+  onSubmit() { //function to submit the data once the button is clicked.
+    // console.log(this.sampleForm) //.value gets us the value of the form field. Data is potato.
+    console.log(this.model);
+  }
 
   ngOnInit() {
     
@@ -84,10 +84,10 @@ export class CharityComponent implements OnInit {
   
     validationMessages = {
       'type': {
-        'required':      'Type is required.',
+        'required':      'Type is required.'
       },
       'originalAmount': {
-        'required':      'Amount is required.',
+        'required':      'Amount is required.'
       },
       'description': {
         'required':      'Description is required.',
