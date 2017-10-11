@@ -22,33 +22,58 @@
       </span> -->
     </div>
   </div>
-  
-    <div class="form-group">
-      <label for="password" class="col-sm-2 control-label">Password</label>
-      <div class="col-sm-10">
-        <input [ngModel]="registration?.password" ngModel #password="ngModel" type="text" class="form-control" id="password" name="last_name"  placeholder="password" required minlength="6" maxlength="12">
-        <span *ngIf="" class="text-danger">
-          <!-- {{ formErrors.password }} -->
-        </span>
-      </div>
+  <div class="form-group">
+    <label for="password" class="col-sm-2 control-label">Password</label>
+    <div class="col-sm-10">
+      <input [ngModel]="registration?.password" ngModel #password="ngModel" type="text" class="form-control" id="password" name="last_name"  placeholder="password" required minlength="6" maxlength="12">
+      <span *ngIf="" class="text-danger">
+        <!-- {{ formErrors.password }} -->
+      </span>
     </div>
-    <div class="form-group">
-      <label for="firstName" class="col-sm-2 control-label">First Name</label>
-      <div class="col-sm-10">
-        <input [ngModel]="registration?.firstName" ngModel #firstName="ngModel" type="text" class="form-control" id="firstName" name="firstName" required>
-        <span *ngIf="" class="text-danger">
-            <!-- {{ formErrors.firstName }} -->
-        </span>
-      </div>
+  </div>
+  <div class="form-group">
+    <label for="firstName" class="col-sm-2 control-label">First Name</label>
+    <div class="col-sm-10">
+      <input [ngModel]="registration?.firstName" ngModel #firstName="ngModel" type="text" class="form-control" id="firstName" name="firstName" required minlength="2" maxlength="200">
+      <span *ngIf="" class="text-danger">
+          <!-- {{ formErrors.firstName }} -->
+      </span>
     </div>
-    <div class="form-group">
-      <label for="lastName" class="col-sm-2 control-label">Last Name</label>
-      <div class="col-sm-10">
-        <input [ngModel]="registration?.lastName" ngModel #lastName="ngModel" type="text" class="form-control" id="lastName" name="lastName" required>
-        <span *ngIf="" class="text-danger">
-            <!-- {{ formErrors.lastName }} -->
-        </span>
-      </div>
+  </div>
+  <div class="form-group">
+    <label for="lastName" class="col-sm-2 control-label">Last Name</label>
+    <div class="col-sm-10">
+      <input [ngModel]="registration?.lastName" ngModel #lastName="ngModel" type="text" class="form-control" id="lastName" name="lastName" required minlength="2" maxlength="200">
+      <span *ngIf="" class="text-danger">
+          <!-- {{ formErrors.lastName }} -->
+      </span>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="streetAddress" class="col-sm-2 control-label">Street Address</label>
+    <div class="col-sm-10">
+      <input [ngModel]="registration?.streetAddress" ngModel #streetAddress="ngModel" type="text" class="form-control" id="streetAddress" name="streetAddress" required maxlength="200">
+      <span *ngIf="" class="text-danger">
+          <!-- {{ formErrors.streetAddress }} -->
+      </span>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="city" class="col-sm-2 control-label">City</label>
+    <div class="col-sm-10">
+      <input [ngModel]="registration?.city" ngModel #city="ngModel" type="text" class="form-control" id="city" name="city" required maxlength="50">
+      <span *ngIf="" class="text-danger">
+          <!-- {{ formErrors.city }} -->
+      </span>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="state" class="col-sm-2 control-label">State</label>
+    <div class="col-sm-10">
+      <input [ngModel]="registration?.state" ngModel #state="ngModel" type="text" class="form-control" id="state" name="state" required maxlength="2">
+      <span *ngIf="" class="text-danger">
+          <!-- {{ formErrors.state }} -->
+      </span>
     </div>
     <div class="form-group">
       <label for="streetAddress" class="col-sm-2 control-label">Street Address</label>
@@ -59,15 +84,7 @@
         </span>
       </div>
     </div>
-    <div class="form-group">
-      <label for="state" class="col-sm-2 control-label">State</label>
-      <div class="col-sm-10">
-        <input [ngModel]="registration?.state" ngModel #state="ngModel" type="text" class="form-control" id="state" name="state" required>
-        <span *ngIf="" class="text-danger">
-            <!-- {{ formErrors.state }} -->
-        </span>
-      </div>
-    </div>
+  </div>
     <div class="form-group">
       <label for="zip" class="col-sm-2 control-label">Zip Code</label>
       <div class="col-sm-10">
@@ -102,7 +119,7 @@
     <div class="form-group">
       <label for="ein" class="col-sm-2 control-label">EIN</label>
       <div class="col-sm-10">
-        <input [ngModel]="registration?.ein" ngModel #sat="ngModel" type="text" class="form-control" id="ein" name="ein" placeholder=""  required >
+        <input [ngModel]="registration?.ein" ngModel #sat="ngModel" type="text" class="form-control" id="ein" name="ein" placeholder=""  required maxlength="10">
         <span *ngIf="" class="text-danger">
             <!-- {{ formErrors.ein }} -->
           </span>
@@ -120,7 +137,7 @@
     <div class="form-group">
       <label for="charityUserRole" class="col-sm-2 control-label">Charity User Role</label>
       <div class="col-sm-10">
-        <input [ngModel]="registration?.charityUserRole" ngModel #charityUserRole="ngModel" type="text" class="form-control" id="charityUserRole" name="charityUserRole" placeholder="your role"  required >
+        <input [ngModel]="registration?.charityUserRole" ngModel #charityUserRole="ngModel" type="text" class="form-control" id="charityUserRole" name="charityUserRole" placeholder="your role"  required maxlength="20">
         <span *ngIf="" class="text-danger">
             <!-- {{ formErrors.charityUserRole }} -->
           </span>

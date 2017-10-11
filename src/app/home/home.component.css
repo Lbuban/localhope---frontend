@@ -1,0 +1,77 @@
+h1 {
+    font-family: 'Neucha', cursive;
+    font-size: 55px;
+    color: #E08283;
+    text-align: center;
+}
+
+h3 {
+    font-family: 'Neucha', cursive;
+    text-align: center;
+}
+
+.regButton {
+    text-align: center;
+}
+
+.regButton button {
+    border-radius: 5px;
+    width: 300px;
+
+}
+.rowOneCarousel {
+    float: right;
+    padding: 0;
+}
+/* .item.left img */
+
+.carousel img{
+    height: 300px;
+    width: 400px;
+}
+
+#donateTime {
+    background-color: #913D88;
+    height: 300px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+#donateTime h1 {
+color: white;
+font-size: 80px;
+
+}
+
+#donateItems {
+    background-color: #59ABE3;
+    height: 300px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+#donateItems h1 {
+color: white;
+font-size: 80px;
+
+}
+
+#donateMoney {
+    background-color: #90C695;
+    height: 300px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+#donateMoney h1 {
+color: white;
+font-size: 80px;
+
+}
+

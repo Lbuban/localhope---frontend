@@ -26,10 +26,10 @@ export class CharityComponent implements OnInit {
     description: ""
   };
 
-  onSubmit() { //function to submit the data once the button is clicked.
-    // console.log(this.sampleForm) //.value gets us the value of the form field. Data is potato.
-    console.log(this.model);
-  }
+  // onSubmit() { //function to submit the data once the button is clicked.
+  //   // console.log(this.sampleForm) //.value gets us the value of the form field. Data is potato.
+  //   console.log(this.model);
+  // }
 
   ngOnInit() {
     
