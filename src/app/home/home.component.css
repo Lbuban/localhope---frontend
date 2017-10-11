@@ -1,7 +1,8 @@
+
 h1 {
     font-family: 'Neucha', cursive;
     font-size: 55px;
-    color: #E08283;
+    color :#CCB54C;
     text-align: center;
 }
 
@@ -17,6 +18,9 @@ h3 {
 .regButton button {
     border-radius: 5px;
     width: 300px;
+    background-color: #182D48;
+    border-color: #CCB54C;
+    border-width: 5px;
 
 }
 .rowOneCarousel {
@@ -31,7 +35,7 @@ h3 {
 }
 
 #donateTime {
-    background-color: #913D88;
+    background-color: #596B56;
     height: 300px;
     margin: 0;
     display: flex;
@@ -40,13 +44,13 @@ h3 {
 
 }
 #donateTime h1 {
-color: white;
+color: #CCB54C;
 font-size: 80px;
 
 }
 
 #donateItems {
-    background-color: #59ABE3;
+    background-color: #182D48;
     height: 300px;
     margin: 0;
     display: flex;
@@ -55,13 +59,13 @@ font-size: 80px;
 
 }
 #donateItems h1 {
-color: white;
+color: #CCB54C;
 font-size: 80px;
 
 }
 
 #donateMoney {
-    background-color: #90C695;
+    background-color: #4B0539;
     height: 300px;
     margin: 0;
     display: flex;
@@ -70,7 +74,7 @@ font-size: 80px;
 
 }
 #donateMoney h1 {
-color: white;
+color: #CCB54C;
 font-size: 80px;
 
 }
