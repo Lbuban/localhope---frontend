@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { DataService } from '../data.service'
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -16,9 +17,12 @@ export class RegistrationComponent implements OnInit {
   isCharity;
   userCheck;
   user;
+  
+  
+
   @ViewChild('registrationForm') currentForm: NgForm;
 
- constructor(private dataService: DataService) { } 
+ constructor(private dataService: DataService, private router: Router) { } 
 
   // onSubmit() { //function to submit the data once the button is clicked.
   //   // console.log(this.sampleForm) //.value gets us the value of the form field. Data is potato.
@@ -29,13 +33,27 @@ export class RegistrationComponent implements OnInit {
     
   }
 
-  registerUser(user: NgForm){ //function to save a need once one has been added.
-   console.log(JSON.stringify(user.value))
-      this.dataService.addRecord("registration", user.value)
-          .subscribe(
-            user => this.successMessage = "Need added successfully",
-            error =>  this.errorMessage = <any>error);
-            this.user = '';
+  registerUser(user: NgForm){ //function to save a user once one has been added.
+    // console.log(JSON.stringify(user.value))
+    this.dataService.addRecord("registration", user.value)
+      .subscribe(
+        user => {
+          this.successMessage = "Need added successfully";
+          console.log(user.isCharity)
+            if (user.isCharity=="User") {
+              this.router.navigateByUrl('/dogooder'); 
+            }
+            else if (user.isCharity=="Charity") {
+              this.router.navigateByUrl('/charity'); 
+            }
+        },
+        error => this.errorMessage = <any>error
+       
+      );
+
+    this.user = '';
+    ;
+
             
     }
 
