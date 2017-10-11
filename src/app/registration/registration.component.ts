@@ -79,25 +79,119 @@ export class RegistrationComponent implements OnInit {
     }
   
     //start out the errors as an emtpy string
-    formErrors = {
-      'type': '',
-      'originalAmount': '',
-      'description': ''
-    };
+
+    // MJ: this code as here; commenting out to write my own errors/validation msgs below:
+    // formErrors = {
+    //   'type': '',
+    //   'originalAmount': '',
+    //   'description': ''
+    // };
   
-    validationMessages = {
-      'type': {
-        'required':      'Type is required.',
-      },
-      'originalAmount': {
-        'required':      'Amount is required.',
-      },
-      'description': {
-        'required':      'Description is required.',
-        'maxlength':     'Description cannot exceed 150 characters'
-      },
-    };
-  }
+    // validationMessages = {
+    //   'type': {
+    //     'required':      'Type is required.',
+    //   },
+    //   'originalAmount': {
+    //     'required':      'Amount is required.',
+    //   },
+    //   'description': {
+    //     'required':      'Description is required.',
+    //     'maxlength':     'Description cannot exceed 150 characters'
+    //   },
+    // };
+  formErrors = {
+    'username': '',
+    'password': '',
+    'firstName': '',
+    'lastName': '',
+    'streetAddress': '',
+    'city': '',
+    'state': '',
+    'zip': '',
+    'phone': '',
+    'email': '',
+    'ein': '',
+    'charityName': '',
+    'charityUserRole': '',
+  };
+
+  validationMessages = {
+    'username': {
+      'required': 'A username is required',
+      'minlength': 'Username must be a minimum of 2 characters long',
+      'maxlength': 'Username cannot be more than 30 characters long'
+    },
+    'password': {
+      'required': 'A password is required',
+      'minlength': 'Password must be a minimum of 6 characters long',
+      'maxlength': 'Password cannot be more than 12 characters long'
+    },
+    'firstName': {
+      'required': 'A First Name is required',
+      'minlength': 'First Name must be a minimum of 2 characters long',
+      'maxlength': 'First Name cannot be more than 200 characters long'
+    },
+    'lastName': {
+      'required': 'A Last Name is required',
+      'minlength': 'Last Name must be a minimum of 2 characters long',
+      'maxlength': 'Last Name cannot be more than 200 characters long'
+    },
+    'streetAddress': {
+      'required': 'A Street Address is required',
+      'maxlength': 'Street Address cannot be more than 200 characters long'
+    },
+    'city': {
+      'required': 'A City is required',
+      'maxlength': 'City cannot be more than 50 characters long'
+    },
+    'state': {
+      'required': 'A State is required',
+      'maxlength': 'State cannot be more than 2 characters long'
+    },
+    'zip': {
+      'required': 'A Zip Code is required',
+      'maxlength': 'Zip Code cannot be more than 10 characters long'
+    },
+    'phone': {
+      'required': 'A phone number is required',
+      'maxlength': 'Phone number cannot be more than 15 characters long'
+    },
+    'email': {
+      'required': 'A email is required',
+      'maxlength': 'Email cannot be more than 100 characters long'
+    },
+    'ein': {
+      'required': 'A EIN is required',
+      'maxlength': 'EIN cannot be more than 10 characters long'
+    },
+    'charityName': {
+      'required': 'A charityName is required',
+      'maxlength': 'charityName cannot be more than 200 characters long'
+    },
+    'charityUserRole': {
+      'required': 'A Charity User Role is required',
+      'maxlength': 'Charity User Role cannot be more than 20 characters long'
+    },
+  };
+};
+// adding code example:
+    // formErrors = {
+    //   'first_name': '',
+    //   'last_name': '',
+    //   'sat': '',
+    //   'start_date': '',
+    //   'gpa': ''
+  
+    // };
+  
+    // validationMessages = {
+    //   'first_name': {
+    //     'required': 'First name is required.',
+    //     'minlength': 'First name must be at least 2 characters long.',
+    //     'maxlength': 'First name cannot be more than 30 characters long.'
+    //   },
+
+  // }
 
 
 

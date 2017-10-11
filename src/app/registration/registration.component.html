@@ -4,7 +4,7 @@
 <!-- <app-status-message [successMessage]="successMessage" [errorMessage]="errorMessage"></app-status-message> -->
 
 <form novalidate (ngSubmit)="registerUser(registrationForm)"  #registrationForm="ngForm" class="form-horizontal">
- Please select an option <select [(ngModel)]="isCharity" (ngModelChange)="onChange($event)" name="role">
+ Please select an option <select [(ngModel)]="isCharity" (ngModelChange)="onChange($event)" name="isCharity">
 
     <option value="User">User</option>
     <option value="Charity">Charity</option>
@@ -17,17 +17,17 @@
     <label for="userName" class="col-sm-2 control-label">Username</label>
     <div class="col-sm-10">
       <input [ngModel]="" ngModel #userName="ngModel" type="text" class="form-control" id="username" name="username" placeholder="Username" required minlength="2" maxlength="30">
-      <!-- <span *ngIf="" class="text-danger">
+      <span *ngIf="formErrors.username" class="text-danger">
           {{ formErrors.username }}
-      </span> -->
+      </span>
     </div>
   </div>
   <div class="form-group">
     <label for="password" class="col-sm-2 control-label">Password</label>
     <div class="col-sm-10">
-      <input [ngModel]="registration?.password" ngModel #password="ngModel" type="text" class="form-control" id="password" name="last_name"  placeholder="password" required minlength="6" maxlength="12">
-      <span *ngIf="" class="text-danger">
-        <!-- {{ formErrors.password }} -->
+      <input [ngModel]="registration?.password" ngModel #password="ngModel" type="text" class="form-control" id="password" name="password"  placeholder="password" required minlength="6" maxlength="12">
+      <span *ngIf="formErrors.password" class="text-danger">
+        {{ formErrors.password }}
       </span>
     </div>
   </div>
@@ -35,8 +35,8 @@
     <label for="firstName" class="col-sm-2 control-label">First Name</label>
     <div class="col-sm-10">
       <input [ngModel]="registration?.firstName" ngModel #firstName="ngModel" type="text" class="form-control" id="firstName" name="firstName" required minlength="2" maxlength="200">
-      <span *ngIf="" class="text-danger">
-          <!-- {{ formErrors.firstName }} -->
+      <span *ngIf="formErrors.firstName" class="text-danger">
+          {{ formErrors.firstName }}
       </span>
     </div>
   </div>
@@ -44,8 +44,8 @@
     <label for="lastName" class="col-sm-2 control-label">Last Name</label>
     <div class="col-sm-10">
       <input [ngModel]="registration?.lastName" ngModel #lastName="ngModel" type="text" class="form-control" id="lastName" name="lastName" required minlength="2" maxlength="200">
-      <span *ngIf="" class="text-danger">
-          <!-- {{ formErrors.lastName }} -->
+      <span *ngIf="formErrors.lastName" class="text-danger">
+          {{ formErrors.lastName }}
       </span>
     </div>
   </div>
@@ -53,8 +53,8 @@
     <label for="streetAddress" class="col-sm-2 control-label">Street Address</label>
     <div class="col-sm-10">
       <input [ngModel]="registration?.streetAddress" ngModel #streetAddress="ngModel" type="text" class="form-control" id="streetAddress" name="streetAddress" required maxlength="200">
-      <span *ngIf="" class="text-danger">
-          <!-- {{ formErrors.streetAddress }} -->
+      <span *ngIf="formErrors.streetAddress" class="text-danger">
+          {{ formErrors.streetAddress }}
       </span>
     </div>
   </div>
@@ -62,8 +62,8 @@
     <label for="city" class="col-sm-2 control-label">City</label>
     <div class="col-sm-10">
       <input [ngModel]="registration?.city" ngModel #city="ngModel" type="text" class="form-control" id="city" name="city" required maxlength="50">
-      <span *ngIf="" class="text-danger">
-          <!-- {{ formErrors.city }} -->
+      <span *ngIf="formErrors.city" class="text-danger">
+          {{ formErrors.city }}
       </span>
     </div>
   </div>
@@ -71,35 +71,35 @@
     <label for="state" class="col-sm-2 control-label">State</label>
     <div class="col-sm-10">
       <input [ngModel]="registration?.state" ngModel #state="ngModel" type="text" class="form-control" id="state" name="state" required maxlength="2">
-      <span *ngIf="" class="text-danger">
-          <!-- {{ formErrors.state }} -->
+      <span *ngIf="formErrors.state" class="text-danger">
+          {{ formErrors.state }}
       </span>
     </div>
   </div>
     <div class="form-group">
       <label for="zip" class="col-sm-2 control-label">Zip Code</label>
       <div class="col-sm-10">
-        <input [ngModel]="registration?.zip" ngModel #zip="ngModel" type="text" class="form-control" id="zip" name="zip" placeholder="12345" required>
-        <span *ngIf="" class="text-danger">
-            <!-- {{ formErrors.zip }} -->
+        <input [ngModel]="registration?.zip" ngModel #zip="ngModel" type="text" class="form-control" id="zipCode" name="zipCode" placeholder="12345" required maxlength="10">
+        <span *ngIf="formErrors.zip" class="text-danger">
+            {{ formErrors.zip }}
         </span>
       </div>
     </div>
     <div class="form-group">
       <label for="phone" class="col-sm-2 control-label">Phone Number</label>
       <div class="col-sm-10">
-        <input [ngModel]="" ngModel #phone="ngModel" type="text" class="form-control" id="phone" name="phone" placeholder="111-222-3333" required >
-        <span *ngIf="registration?.phone" class="text-danger">
-            <!-- {{ formErrors.phone }} -->
+        <input [ngModel]="" ngModel #phone="ngModel" type="text" class="form-control" id="phone" name="phone" placeholder="111-222-3333" required maxlength="15">
+        <span *ngIf="formErrors.phone" class="text-danger">
+            {{ formErrors.phone }}
           </span>
       </div>
     </div>
     <div class="form-group">
       <label for="email" class="col-sm-2 control-label">Email Address</label>
       <div class="col-sm-10">
-        <input [ngModel]="registration?.email" ngModel #email="ngModel" type="text" class="form-control" id="email" name="email" placeholder="aaaabbbb@cccc.com" required>
-        <span *ngIf="" class="text-danger">
-            <!-- {{ formErrors.email }} -->
+        <input [ngModel]="registration?.email" ngModel #email="ngModel" type="text" class="form-control" id="email" name="email" placeholder="aaaabbbb@cccc.com" required maxlength="100">
+        <span *ngIf="formErrors.email" class="text-danger">
+            {{ formErrors.email }}
           </span>
       </div>
     </div>
@@ -111,8 +111,8 @@
       <label for="ein" class="col-sm-2 control-label">EIN</label>
       <div class="col-sm-10">
         <input [ngModel]="registration?.ein" ngModel #sat="ngModel" type="text" class="form-control" id="ein" name="ein" placeholder=""  required maxlength="10">
-        <span *ngIf="" class="text-danger">
-            <!-- {{ formErrors.ein }} -->
+        <span *ngIf="formErrors" class="text-danger">
+            {{ formErrors.ein }}
           </span>
       </div>
     </div>
@@ -120,8 +120,8 @@
       <label for="charityName" class="col-sm-2 control-label">Charity Name</label>
       <div class="col-sm-10">
         <input [ngModel]="registration?.charityName" ngModel #charityName="ngModel" type="text" class="form-control" id="charityName" name="charityName" placeholder="your charity name"  required maxlength="200">
-        <span *ngIf="" class="text-danger">
-            <!-- {{ formErrors.charityName }} -->
+        <span *ngIf="formErrors.charityName" class="text-danger">
+            {{ formErrors.charityName }}
           </span>
       </div>
     </div>
@@ -129,8 +129,8 @@
       <label for="charityUserRole" class="col-sm-2 control-label">Charity User Role</label>
       <div class="col-sm-10">
         <input [ngModel]="registration?.charityUserRole" ngModel #charityUserRole="ngModel" type="text" class="form-control" id="charityUserRole" name="charityUserRole" placeholder="your role"  required maxlength="20">
-        <span *ngIf="" class="text-danger">
-            <!-- {{ formErrors.charityUserRole }} -->
+        <span *ngIf="formErrors.charityUserRole" class="text-danger">
+            {{ formErrors.charityUserRole }}
           </span>
       </div>
     </div>
