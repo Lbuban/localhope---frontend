@@ -25,7 +25,7 @@ export class DoGooderComponent implements OnInit {
   ngOnInit() 
   { 
     this.getNeeds();
-    // this.getCharities();
+    this.getCharities("411867244");
   }
 
   getNeeds() { //function to pull the needs list.
@@ -33,12 +33,16 @@ export class DoGooderComponent implements OnInit {
       .subscribe(
         needs => this.needs = needs,
         error =>  this.errorMessage = <any>error);
+       
   }
 
   getCharities(ein: string) { //function to pull the charity list.
     this.charityService.getCharityList(ein)
       .subscribe(
-        charities => this.charities = charities,
+        charities => {
+          this.charities = charities;
+          console.log(charities)
+          },
         error =>  this.errorMessage = <any>error);
   }
 

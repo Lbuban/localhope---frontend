@@ -13,7 +13,7 @@ export class CharityService {
   constructor (private http: Http) {}
   
 getCharityList(ein: string): Observable<any[]> {
-  let apiUrl = this.baseUrl+ ein + "?app_id=e35eaadd&app_key=030589f4c21e566f0a0e3aeb51a210e1";
+  let apiUrl = this.baseUrl+ ein + "/Ratings?app_id=e35eaadd&app_key=030589f4c21e566f0a0e3aeb51a210e1";
   return this.http.get(apiUrl)
       .map(this.extractData)
       .catch(this.handleError);
