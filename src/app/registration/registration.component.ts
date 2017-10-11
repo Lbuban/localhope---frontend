@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { DataService } from '../data.service'
+import { DataService } from '../data.service';
+
 
 
 @Component({
@@ -16,6 +17,8 @@ export class RegistrationComponent implements OnInit {
   isCharity;
   userCheck;
   user;
+  charities: any[];
+
   @ViewChild('registrationForm') currentForm: NgForm;
 
  constructor(private dataService: DataService) { } 
@@ -38,6 +41,8 @@ export class RegistrationComponent implements OnInit {
             this.user = '';
             
     }
+
+    
 
     ngAfterViewChecked() {
       this.formChanged();

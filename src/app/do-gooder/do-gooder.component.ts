@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service'; //this is pulling info from the data service
 // import { MdDialog, MdDialogRef } from '@angular/material';
+import { CharityService } from '../charity.service'
 
 @Component({
   selector: 'app-do-gooder',
@@ -13,14 +14,18 @@ export class DoGooderComponent implements OnInit {
   successMessage: string;
   needs: any[];
   mode = 'Observable';
+  charities;
 
   constructor( 
-    private dataService: DataService
+    private dataService: DataService,
+    private charityService: CharityService
+
   ) {} 
 
   ngOnInit() 
   { 
     this.getNeeds();
+    // this.getCharities();
   }
 
   getNeeds() { //function to pull the needs list.
@@ -29,6 +34,14 @@ export class DoGooderComponent implements OnInit {
         needs => this.needs = needs,
         error =>  this.errorMessage = <any>error);
   }
+
+  getCharities(ein: string) { //function to pull the charity list.
+    this.charityService.getCharityList(ein)
+      .subscribe(
+        charities => this.charities = charities,
+        error =>  this.errorMessage = <any>error);
+  }
+
   //endpoint will be dogooderid
   // followCharity(endpoint: string, record:object): Observable<any> {
   //   let apiUrl = `${this.baseUrl/user/}${endpoint}`;
