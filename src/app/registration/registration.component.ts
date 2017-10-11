@@ -30,11 +30,13 @@ export class RegistrationComponent implements OnInit {
   }
 
   registerUser(user: NgForm){ //function to save a need once one has been added.
+   console.log(JSON.stringify(user.value))
       this.dataService.addRecord("registration", user.value)
           .subscribe(
-            student => this.successMessage = "Need added successfully",
+            user => this.successMessage = "Need added successfully",
             error =>  this.errorMessage = <any>error);
             this.user = '';
+            
     }
 
     ngAfterViewChecked() {
@@ -53,7 +55,7 @@ export class RegistrationComponent implements OnInit {
     }
 
     onChange(){
-  event.preventDefault()
+ 
   if (this.isCharity=="User") 
     {
      this.userCheck=true}
