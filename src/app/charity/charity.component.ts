@@ -14,6 +14,8 @@ export class CharityComponent implements OnInit {
   successMessage: string;
   errorMessage: string;
   need: string;
+  userId = localStorage.getItem('userid');
+
 
   constructor(private dataService: DataService) { }
 
@@ -22,19 +24,23 @@ export class CharityComponent implements OnInit {
 
   model: object = { //"model" is potato.
     type: "",
-    amount: "",
+    originalAmount: "",
     description: "",
     dateNeeded: ""
   };
 
   ngOnInit() {
-    
+    this.postuser()
+
   }
 
+ postuser (){
+   console.log(this.userId)
+ }
   
   saveNeed(need: NgForm){ //function to save a need once one has been added.
     console.log(this.model) 
-    this.dataService.addRecord("needs", need.value)
+    this.dataService.addCharityNeed("charity", this.userId, need.value)
           .subscribe(
             student => this.successMessage = "Need added successfully",
             error =>  this.errorMessage = <any>error);

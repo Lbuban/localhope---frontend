@@ -28,11 +28,13 @@ export class NavigationComponent implements OnInit {
       .subscribe(
         user => {
           this.successMessage = "login successful";
-          console.log(user.isCharity)
+          console.log(user.id)
             if (user.isCharity=="User") {
+              localStorage.setItem('userid', user.id);
               this.router.navigateByUrl('/dogooder'); 
             }
             else if (user.isCharity=="Charity") {
+              localStorage.setItem('userid', user.id);
               this.router.navigateByUrl('/charity'); 
             }
         },
