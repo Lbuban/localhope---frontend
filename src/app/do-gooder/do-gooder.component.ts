@@ -46,6 +46,8 @@ export class DoGooderComponent implements OnInit {
         error =>  this.errorMessage = <any>error);
   }
 
+
+
   //endpoint will be dogooderid
   // followCharity(endpoint: string, record:object): Observable<any> {
   //   let apiUrl = `${this.baseUrl/user/}${endpoint}`;
