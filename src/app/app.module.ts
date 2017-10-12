@@ -14,6 +14,7 @@ import { RouterModule }   from '@angular/router';
 import { RegistrationComponent } from './registration/registration.component';
 import { CharityComponent } from './charity/charity.component';
 import { DoGooderComponent } from './do-gooder/do-gooder.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
 
 
@@ -26,6 +27,7 @@ import { DoGooderComponent } from './do-gooder/do-gooder.component';
     RegistrationComponent,
     CharityComponent,
     DoGooderComponent,
+    ContactUsComponent,
 
    
     
