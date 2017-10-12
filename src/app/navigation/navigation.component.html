@@ -20,10 +20,10 @@
       <form novalidate (ngSubmit)="loginUser(loginForm)"  #loginForm="ngForm" class="form-horizontal" name="loginForm" class="navbar-form navbar-right">
           <!-- <form novalidate (ngSubmit)="loginUser(loginForm)"  #loginForm="ngForm" class="form-horizontal"> -->
         <div class="form-group">
-          <input name="username" type="text" class="form-control" required minlength="2" maxlength="30" placeholder="Username">
+          <input [ngModel]="" ngModel #username="ngModel" type="text" class="form-control" id="username" name="username" placeholder="enter your Username" required minlength="2" maxlength="30">
         </div>
         <div class="form-group">
-        <input name="password" type="text" class="form-control" required minlength="6" maxlength="12" placeholder="Password">
+          <input [ngModel]="registration?.password" ngModel #password="ngModel" type="password" class="form-control" id="password" name="password"  placeholder="password" required minlength="6" maxlength="12">
       </div>
         <button type="submit" class="btn btn-default">Log-in</button>
       </form>
