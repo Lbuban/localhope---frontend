@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { DataService } from '../data.service'
-import {Router} from '@angular/router';
+import { DataService } from '../data.service';
+
 
 
 @Component({
@@ -22,8 +22,7 @@ sendUser = new EventEmitter<any>();
   isCharity;
   userCheck;
   user;
-  
-  
+  charities: any[];
 
   @ViewChild('registrationForm') currentForm: NgForm;
 
@@ -64,6 +63,8 @@ sendUser = new EventEmitter<any>();
 
             
     }
+
+    
 
     ngAfterViewChecked() {
       this.formChanged();

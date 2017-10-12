@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './routing/routing.module';
 import { DataService } from './data.service';
+import { CharityService } from './charity.service';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
@@ -15,6 +16,7 @@ import { CharityComponent } from './charity/charity.component';
 import { DoGooderComponent } from './do-gooder/do-gooder.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +25,8 @@ import { DoGooderComponent } from './do-gooder/do-gooder.component';
     HomeComponent,
     RegistrationComponent,
     CharityComponent,
-    DoGooderComponent
+    DoGooderComponent,
+
    
     
   ],
@@ -33,7 +36,10 @@ import { DoGooderComponent } from './do-gooder/do-gooder.component';
     AppRoutingModule,
     HttpModule
   ],
-  providers: [DataService],
+  providers: [
+    DataService,
+    CharityService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
