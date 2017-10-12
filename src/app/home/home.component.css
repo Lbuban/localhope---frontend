@@ -11,6 +11,13 @@ h3 {
     text-align: center;
 }
 
+.wrapper {
+    
+    width: 90%;
+    margin: auto, 0;
+    padding:0;
+
+}
 .regButton {
     text-align: center;
 }
@@ -23,10 +30,10 @@ h3 {
     border-width: 5px;
 
 }
-.rowOneCarousel {
+ .rowOneCarousel {
     float: right;
     padding: 0;
-}
+} 
 /* .item.left img */
 
 .carousel img{
