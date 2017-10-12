@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { DataService } from '../data.service'
 import {Router} from '@angular/router';
@@ -10,6 +10,9 @@ import {Router} from '@angular/router';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
+
+@Output ()
+sendUser = new EventEmitter<any>();
 
   registrationForm: NgForm;
   successMessage: string;
@@ -33,17 +36,20 @@ export class RegistrationComponent implements OnInit {
     
   }
 
+
   registerUser(user: NgForm){ //function to save a user once one has been added.
     // console.log(JSON.stringify(user.value))
     this.dataService.addRecord("registration", user.value)
       .subscribe(
         user => {
-          this.successMessage = "Need added successfully";
-          console.log(user.isCharity)
+          this.successMessage = "login successful";
+          console.log(user.id)
             if (user.isCharity=="User") {
+              localStorage.setItem('userid', user.id);
               this.router.navigateByUrl('/dogooder'); 
             }
             else if (user.isCharity=="Charity") {
+              localStorage.setItem('userid', user.id);
               this.router.navigateByUrl('/charity'); 
             }
         },

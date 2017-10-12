@@ -20,12 +20,26 @@ export class DataService {
         .catch(this.handleError);
 }
 
+getCharityNeed(endpoint: string, userID): Observable<any[]> {
+    let apiUrl = `${this.baseUrl}${endpoint}/${userID}`;
+    return this.http.get(apiUrl)
+        .map(this.extractData)
+        .catch(this.handleError);
+}
+
 addRecord(endpoint: string, record:object): Observable<any> {
   let apiUrl = `${this.baseUrl}${endpoint}`;
   console.log(apiUrl)
   return this.http.post(apiUrl, record)
       .map(this.extractData);
 }
+
+addCharityNeed(endpoint: string, userID, record:object): Observable<any> {
+    let apiUrl = `${this.baseUrl}${endpoint}/${userID}`;
+    console.log(apiUrl)
+    return this.http.post(apiUrl, record)
+        .map(this.extractData);
+  }
 
   //take the response and turn it into JSON
 private extractData(res: Response) {

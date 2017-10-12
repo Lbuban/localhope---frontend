@@ -3,13 +3,14 @@
 </h1>
 
 <form class="form-horizontal" (ngSubmit)="saveNeed(sampleForm)" #sampleForm="ngForm">
+  <!-- <input [ngModel]="registration?.id" ngModel #id="ngModel" type="hidden"> -->
   <div class="form-group">
     <label for="type" class="mr-sm-2 col-sm-2 control-label">Donation Type</label>
     <div class="col-sm-10">
         <select [(ngModel)]="model.type" name="type" class="custom-select mb-2 mr-sm-2 mb-sm-0" id="type" required>
-            <option selected value="1">Money</option>
-            <option value="2">Time</option>
-            <option value="3">Items</option>
+            <option selected value="Money">Money</option>
+            <option value="Time">Time</option>
+            <option value="Items">Items</option>
         </select>
         <span *ngIf="formErrors.type" class="text-danger">
             {{ formErrors.type }}
@@ -20,7 +21,7 @@
   <div class="form-group">
     <label for="originalAmount" class="col-sm-2 control-label">Amount</label>
     <div class="col-sm-10">
-        <input [(ngModel)]="model.amount" type="text" class="form-control" id="originalAmount" name="originalAmount" placeholder="e.g. $50, 1 crib, 2 hours" required>
+        <input [(ngModel)]="model.originalAmount" type="integer" class="form-control" id="originalAmount" name="originalAmount" placeholder="e.g. $50, 1 crib, 2 hours" required>
         <span *ngIf="formErrors.originalAmount" class="text-danger">
             {{ formErrors.originalAmount }}
         </span>
@@ -68,8 +69,9 @@
 <table class="table table-hover table-bordered" id="dataTable" style="width:100%">
     <thead>
       <tr>
+        <th>Charity ID</th>
         <th>Charity Name</th>
-        <th>Need Category</th>
+        <th>Donation Type</th>
         <th>Need by Date</th>
         <th>Description</th>
         <th>Original Amount</th>
@@ -78,7 +80,8 @@
     </thead>
     <tbody>
       <tr *ngFor="let need of needs">
-        <td>{{need.charityName}}</td>
+        <td>{{need.users[0].id}}</td>
+        <td>{{need.users[0].charityName}}</td>
         <td>{{need.type}}</td>
         <td>{{need.dateNeeded}}</td>
         <td>{{need.description}}</td>

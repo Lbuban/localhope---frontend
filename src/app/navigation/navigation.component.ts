@@ -15,26 +15,37 @@ export class NavigationComponent implements OnInit {
   isCharity;
   userCheck;
   user;
-
+  welcome = localStorage.getItem('username');
+ 
+ 
+  
   @ViewChild('loginForm') currentForm: NgForm;
 
   constructor(private dataService: DataService, private router: Router) { }
 
   ngOnInit() {
   }
+
+  
   loginUser(user: NgForm){ //function to login a new or existing user.
     // console.log(JSON.stringify(user.value))
     this.dataService.addRecord("sessions", user.value)
       .subscribe(
         user => {
           this.successMessage = "login successful";
-          console.log(user.isCharity)
+          this.welcome = user.firstName
             if (user.isCharity=="User") {
+              localStorage.setItem('userid', user.id);
+              localStorage.setItem('username', user.firstName);
               this.router.navigateByUrl('/dogooder'); 
+             
             }
             else if (user.isCharity=="Charity") {
-              this.router.navigateByUrl('/charity'); 
+              localStorage.setItem('userid', user.id);
+              localStorage.setItem('username', user.firstName);
+              this.router.navigateByUrl('/charity');
             }
+            
         },
         error => this.errorMessage = <any>error
        
@@ -42,7 +53,7 @@ export class NavigationComponent implements OnInit {
 
     this.user = '';
     ;
-
+      
             
     }
 
@@ -85,6 +96,14 @@ export class NavigationComponent implements OnInit {
         }
       }
     }
+  }
+
+  logOut(){
+    console.log("done")
+    localStorage.removeItem("username")
+    this.router.navigateByUrl('/home');
+    this.welcome=null;
+    this.user=null;
   }
   formErrors = {
     'username': '',
