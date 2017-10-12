@@ -31,6 +31,7 @@ export class CharityComponent implements OnInit {
     
   }
 
+  
   saveNeed(need: NgForm){ //function to save a need once one has been added.
     console.log(this.model) 
     this.dataService.addRecord("needs", need.value)

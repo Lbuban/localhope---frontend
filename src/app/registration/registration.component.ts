@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { DataService } from '../data.service'
 import {Router} from '@angular/router';
@@ -10,6 +10,11 @@ import {Router} from '@angular/router';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
+
+@Output ()
+sendUser = new EventEmitter<any>();
+
+@Input
 
   registrationForm: NgForm;
   successMessage: string;
@@ -42,10 +47,13 @@ export class RegistrationComponent implements OnInit {
           console.log(user.isCharity)
             if (user.isCharity=="User") {
               this.router.navigateByUrl('/dogooder'); 
+              this.sendUser.emit();
             }
             else if (user.isCharity=="Charity") {
-              this.router.navigateByUrl('/charity'); 
+              this.router.navigateByUrl('/charity');
+              this.sendUser.emit();
             }
+            
         },
         error => this.errorMessage = <any>error
        
