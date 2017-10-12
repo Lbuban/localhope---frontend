@@ -43,7 +43,8 @@ export class CharityComponent implements OnInit {
     console.log(this.model) 
     this.dataService.addCharityNeed("charity", this.userId, need.value)
           .subscribe(
-            student => this.successMessage = "Need added successfully",
+            student => {this.successMessage = "Need added successfully";
+            this.getNeeds();},
             error =>  this.errorMessage = <any>error);
             this.need = '';
     }
