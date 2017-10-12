@@ -16,6 +16,7 @@ import { CharityComponent } from './charity/charity.component';
 import { DoGooderComponent } from './do-gooder/do-gooder.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +25,8 @@ import { DoGooderComponent } from './do-gooder/do-gooder.component';
     HomeComponent,
     RegistrationComponent,
     CharityComponent,
-    DoGooderComponent
+    DoGooderComponent,
+
    
     
   ],
