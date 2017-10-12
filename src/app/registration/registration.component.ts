@@ -42,19 +42,16 @@ sendUser = new EventEmitter<any>();
     this.dataService.addRecord("registration", user.value)
       .subscribe(
         user => {
-          this.successMessage = "Need added successfully";
-          console.log(user.isCharity)
+          this.successMessage = "login successful";
+          console.log(user.id)
             if (user.isCharity=="User") {
-              localStorage.setItem('userid', 'this.user.id');
+              localStorage.setItem('userid', user.id);
               this.router.navigateByUrl('/dogooder'); 
-              this.sendUser.emit();
             }
             else if (user.isCharity=="Charity") {
-              localStorage.setItem('userid', 'this.user.id');
-              this.router.navigateByUrl('/charity');
-              this.sendUser.emit();
+              localStorage.setItem('userid', user.id);
+              this.router.navigateByUrl('/charity'); 
             }
-            
         },
         error => this.errorMessage = <any>error
        

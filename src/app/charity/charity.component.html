@@ -21,7 +21,7 @@
   <div class="form-group">
     <label for="originalAmount" class="col-sm-2 control-label">Amount</label>
     <div class="col-sm-10">
-        <input [(ngModel)]="model.originalAmount" type="text" class="form-control" id="originalAmount" name="originalAmount" placeholder="e.g. $50, 1 crib, 2 hours" required>
+        <input [(ngModel)]="model.originalAmount" type="integer" class="form-control" id="originalAmount" name="originalAmount" placeholder="e.g. $50, 1 crib, 2 hours" required>
         <span *ngIf="formErrors.originalAmount" class="text-danger">
             {{ formErrors.originalAmount }}
         </span>
@@ -69,8 +69,9 @@
 <table class="table table-hover table-bordered" id="dataTable" style="width:100%">
     <thead>
       <tr>
+        <th>Charity ID</th>
         <th>Charity Name</th>
-        <th>Need Category</th>
+        <th>Donation Type</th>
         <th>Need by Date</th>
         <th>Description</th>
         <th>Original Amount</th>
@@ -79,7 +80,8 @@
     </thead>
     <tbody>
       <tr *ngFor="let need of needs">
-        <td>{{need.charityName}}</td>
+        <td>{{need.users[0].id}}</td>
+        <td>{{need.users[0].charityName}}</td>
         <td>{{need.type}}</td>
         <td>{{need.dateNeeded}}</td>
         <td>{{need.description}}</td>

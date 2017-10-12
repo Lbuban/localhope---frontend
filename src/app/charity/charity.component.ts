@@ -15,6 +15,7 @@ export class CharityComponent implements OnInit {
   errorMessage: string;
   need: string;
   userId = localStorage.getItem('userid');
+  needs;
 
 
   constructor(private dataService: DataService) { }
@@ -31,7 +32,7 @@ export class CharityComponent implements OnInit {
 
   ngOnInit() {
     this.postuser()
-
+    this.getNeeds()
   }
 
  postuser (){
@@ -42,9 +43,18 @@ export class CharityComponent implements OnInit {
     console.log(this.model) 
     this.dataService.addCharityNeed("charity", this.userId, need.value)
           .subscribe(
-            student => this.successMessage = "Need added successfully",
+            student => {this.successMessage = "Need added successfully";
+            this.getNeeds();},
             error =>  this.errorMessage = <any>error);
             this.need = '';
+    }
+
+    getNeeds() { //function to pull the needs list.
+      this.dataService.getCharityNeed("charity", this.userId)
+        .subscribe(
+          needs => this.needs = needs,
+          error =>  this.errorMessage = <any>error);
+         
     }
 
     ngAfterViewChecked() {
