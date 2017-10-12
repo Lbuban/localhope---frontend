@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { DataService } from '../data.service';
+import { DataService } from '../data.service'
 import {Router} from '@angular/router';
 
 
@@ -11,13 +11,17 @@ import {Router} from '@angular/router';
 })
 export class RegistrationComponent implements OnInit {
 
+@Output ()
+sendUser = new EventEmitter<any>();
+
   registrationForm: NgForm;
   successMessage: string;
   errorMessage: string;
   isCharity;
   userCheck;
   user;
-  charities: any[];
+  
+  
 
   @ViewChild('registrationForm') currentForm: NgForm;
 
@@ -32,6 +36,7 @@ export class RegistrationComponent implements OnInit {
     
   }
 
+
   registerUser(user: NgForm){ //function to save a user once one has been added.
     // console.log(JSON.stringify(user.value))
     this.dataService.addRecord("registration", user.value)
@@ -40,11 +45,16 @@ export class RegistrationComponent implements OnInit {
           this.successMessage = "Need added successfully";
           console.log(user.isCharity)
             if (user.isCharity=="User") {
+              localStorage.setItem('userid', 'this.user.id');
               this.router.navigateByUrl('/dogooder'); 
+              this.sendUser.emit();
             }
             else if (user.isCharity=="Charity") {
-              this.router.navigateByUrl('/charity'); 
+              localStorage.setItem('userid', 'this.user.id');
+              this.router.navigateByUrl('/charity');
+              this.sendUser.emit();
             }
+            
         },
         error => this.errorMessage = <any>error
        
@@ -55,8 +65,6 @@ export class RegistrationComponent implements OnInit {
 
             
     }
-
-    
 
     ngAfterViewChecked() {
       this.formChanged();
