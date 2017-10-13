@@ -4,6 +4,7 @@ import { AppRoutingModule } from './routing/routing.module';
 import { DataService } from './data.service';
 import { CharityService } from './charity.service';
 import { HttpModule } from '@angular/http';
+import { DataTablesModule } from 'angular-datatables';
 
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './navigation/navigation.component';
@@ -34,7 +35,8 @@ import { DoGooderComponent } from './do-gooder/do-gooder.component';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpModule
+    HttpModule,
+    DataTablesModule
   ],
   providers: [
     DataService,
