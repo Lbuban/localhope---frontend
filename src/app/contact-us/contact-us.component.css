@@ -93,11 +93,17 @@ color: white;
 margin-bottom: 20px; */
 }
 #copyright {
-/* display:  inline-flex;
-align-items: center;
-justify-content: center; */
-/* margin: 20px; */
+    background-color: #182D48;
+    color: white;
+    display: table-cell;
+    vertical-align: bottom;
+    height: 423px;
+    padding-bottom: 25px;
+    padding-left: 20px;
+    padding-right: 10px;
+    padding-top: -10px;
 }
 .title  {
     color: #CCB54C;
 }
+

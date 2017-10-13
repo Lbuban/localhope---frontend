@@ -5,3 +5,18 @@ h1 {
 form {
     text-align: center;
 }
+#title  {
+    color: #CCB54C;
+    background-color: #182D48;
+    padding-top: 5px;
+}
+#color1 {
+    background-color: #596B56;
+    padding: 20px;
+}
+.control-label  {
+    color: #CCB54C; 
+}
+.form-control   {
+    background-color: lightgrey;
+}
