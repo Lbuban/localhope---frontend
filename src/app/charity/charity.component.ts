@@ -1,7 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms'; 
+import { NgForm } from '@angular/forms';
 import { DataService } from '../data.service';
 import { DataTablesModule } from 'angular-datatables';
+import { DialogComponent, DialogService } from "ng2-bootstrap-modal";
+import { BootstrapModalModule } from 'ng2-bootstrap-modal';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-charity',
@@ -15,8 +18,9 @@ export class CharityComponent implements OnInit {
   successMessage: string;
   errorMessage: string;
   need: string;
-  userId = localStorage.getItem('userid');
+  userId = parseInt(localStorage.getItem('userid'));
   needs;
+  editNeed: any;
 
 
   constructor(private dataService: DataService) { }
@@ -36,81 +40,87 @@ export class CharityComponent implements OnInit {
     this.getNeeds()
   }
 
- postuser (){
-   console.log(this.userId)
- }
-  
-  saveNeed(need: NgForm){ //function to save a need once one has been added.
-    console.log(this.model) 
+  postuser() {
+    console.log(this.userId)
+  }
+
+  saveNeed(need: NgForm) { //function to save a need once one has been added.
+    console.log(this.model)
     this.dataService.addCharityNeed("charity", this.userId, need.value)
-          .subscribe(
-            student => {this.successMessage = "Need added successfully";
-            this.getNeeds();},
-            error =>  this.errorMessage = <any>error);
-            this.need = '';
-    }
+      .subscribe(
+      student => {
+      this.successMessage = "Need added successfully";
+        this.getNeeds();
+      },
+      error => this.errorMessage = <any>error);
+    this.need = '';
+  }
 
-    getNeeds() { //function to pull the needs list.
-      this.dataService.getCharityNeed("charity", this.userId)
-        .subscribe(
-          needs => this.needs = needs,
-          error =>  this.errorMessage = <any>error);
-         
-    }
+  getNeeds() { //function to pull the needs list.
+    this.dataService.getCharityNeeds(this.userId)
+      .subscribe(
+      needs => this.needs = needs,
+      error => this.errorMessage = <any>error);
 
-    ngAfterViewChecked() {
-      this.formChanged();
-    }
-  
-    formChanged() {
-      //if the form didn't change then do nothing
-      if (this.currentForm === this.sampleForm) { return; }
-      //set the form to the current form for comparison
-      this.sampleForm = this.currentForm;
-      //subscribe to form changes and send the changes to the onValueChanged method
-      this.sampleForm.valueChanges
-        .subscribe(data => this.onValueChanged(data));
-     
-    }
-   
-    onValueChanged(data?: any) {
-      let form = this.sampleForm.form;
-  
-      for (const field in this.formErrors) {
-        // clear previous error message (if any)
-        this.formErrors[field] = '';
-        const control = form.get(field);
-  
-        if (control && control.dirty && !control.valid) {
-          const messages = this.validationMessages[field];
-          for (const key in control.errors) {
-            this.formErrors[field] += messages[key] + ' ';
-          }
+  }
+
+  getRecordForEdit(need: any) { //function to edit a selected charity need // GET /need/:need_id
+    this.editNeed = need;
+  }
+
+  ngAfterViewChecked() {
+    this.formChanged();
+  }
+
+  formChanged() {
+    //if the form didn't change then do nothing
+    if (this.currentForm === this.sampleForm) { return; }
+    //set the form to the current form for comparison
+    this.sampleForm = this.currentForm;
+    //subscribe to form changes and send the changes to the onValueChanged method
+    this.sampleForm.valueChanges
+      .subscribe(data => this.onValueChanged(data));
+
+  }
+
+  onValueChanged(data?: any) {
+    let form = this.sampleForm.form;
+
+    for (const field in this.formErrors) {
+      // clear previous error message (if any)
+      this.formErrors[field] = '';
+      const control = form.get(field);
+
+      if (control && control.dirty && !control.valid) {
+        const messages = this.validationMessages[field];
+        for (const key in control.errors) {
+          this.formErrors[field] += messages[key] + ' ';
         }
       }
     }
-  
-    //start out the errors as an emtpy string
-    formErrors = {
-      'type': '',
-      'originalAmount': '',
-      'description': '',
-      'dateNeeded': ''
-    };
-  
-    validationMessages = {
-      'type': {
-        'required':      'Type is required.'
-      },
-      'originalAmount': {
-        'required':      'Amount is required.'
-      },
-      'description': {
-        'required':      'Description is required.',
-        'maxlength':     'Description cannot exceed 150 characters'
-      },
-      'dateNeeded': {
-        'required':       'Date is required.',
-      }
-    };
   }
+
+  //start out the errors as an emtpy string
+  formErrors = {
+    'type': '',
+    'originalAmount': '',
+    'description': '',
+    'dateNeeded': ''
+  };
+
+  validationMessages = {
+    'type': {
+      'required': 'Type is required.'
+    },
+    'originalAmount': {
+      'required': 'Amount is required.'
+    },
+    'description': {
+      'required': 'Description is required.',
+      'maxlength': 'Description cannot exceed 150 characters'
+    },
+    'dateNeeded': {
+      'required': 'Date is required.',
+    }
+  };
+}
