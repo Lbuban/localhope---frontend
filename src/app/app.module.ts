@@ -4,6 +4,7 @@ import { AppRoutingModule } from './routing/routing.module';
 import { DataService } from './data.service';
 import { CharityService } from './charity.service';
 import { HttpModule } from '@angular/http';
+import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './navigation/navigation.component';
