@@ -5,6 +5,7 @@ import { DataService } from './data.service';
 import { CharityService } from './charity.service';
 import { HttpModule } from '@angular/http';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
+import { DataTablesModule } from 'angular-datatables';
 
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './navigation/navigation.component';
@@ -15,6 +16,7 @@ import { RouterModule }   from '@angular/router';
 import { RegistrationComponent } from './registration/registration.component';
 import { CharityComponent } from './charity/charity.component';
 import { DoGooderComponent } from './do-gooder/do-gooder.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
 
 
@@ -27,6 +29,7 @@ import { DoGooderComponent } from './do-gooder/do-gooder.component';
     RegistrationComponent,
     CharityComponent,
     DoGooderComponent,
+    ContactUsComponent,
 
    
     
@@ -35,7 +38,8 @@ import { DoGooderComponent } from './do-gooder/do-gooder.component';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpModule
+    HttpModule,
+    DataTablesModule
   ],
   providers: [
     DataService,

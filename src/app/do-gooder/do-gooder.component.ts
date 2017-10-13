@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service'; //this is pulling info from the data service
 // import { MdDialog, MdDialogRef } from '@angular/material';
 import { CharityService } from '../charity.service'
+import { DataTablesModule } from 'angular-datatables';
 
 @Component({
   selector: 'app-do-gooder',
@@ -13,8 +14,11 @@ export class DoGooderComponent implements OnInit {
   errorMessage: string;
   successMessage: string;
   needs: any[];
+  need;
   mode = 'Observable';
   charities;
+  userId = localStorage.getItem('userid');
+  charityJSON;
 
   constructor( 
     private dataService: DataService,
@@ -25,16 +29,17 @@ export class DoGooderComponent implements OnInit {
   ngOnInit() 
   { 
     this.getNeeds();
-    this.getCharities("411867244");
+    // this.getCharities();
   }
 
   getNeeds() { //function to pull the needs list.
     this.dataService.getRecords("dogooder")
       .subscribe(
-        needs => this.needs = needs,
+        needs => {this.needs = needs},
         error =>  this.errorMessage = <any>error);
        
   }
+
 
   getCharities(ein: string) { //function to pull the charity list.
     this.charityService.getCharityList(ein)
@@ -48,11 +53,14 @@ export class DoGooderComponent implements OnInit {
 
 
 
-  //endpoint will be dogooderid
-  // followCharity(endpoint: string, record:object): Observable<any> {
-  //   let apiUrl = `${this.baseUrl/user/}${endpoint}`;
-  //   console.log(apiUrl)
-  //   return this.http.post(apiUrl, record)
-  //       .map(this.extractData);
-  // }
+  followCharity(charityId){ //function to save a need once one has been added.
+    console.log(JSON.stringify(charityId))
+    this.dataService.postFollowCharity("user/followcharity", this.userId, JSON.stringify(charityId))
+    
+          .subscribe(
+            charity => {this.successMessage = "Need added successfully";
+            this.getNeeds();},
+            error =>  this.errorMessage = <any>error);
+            this.need = '';
+    }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms'; 
-import { DataService } from '../data.service'
+import { DataService } from '../data.service';
+import { DataTablesModule } from 'angular-datatables';
 
 @Component({
   selector: 'app-charity',
@@ -43,7 +44,8 @@ export class CharityComponent implements OnInit {
     console.log(this.model) 
     this.dataService.addCharityNeed("charity", this.userId, need.value)
           .subscribe(
-            student => this.successMessage = "Need added successfully",
+            student => {this.successMessage = "Need added successfully";
+            this.getNeeds();},
             error =>  this.errorMessage = <any>error);
             this.need = '';
     }

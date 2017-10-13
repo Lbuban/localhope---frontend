@@ -15,28 +15,52 @@ export class NavigationComponent implements OnInit {
   isCharity;
   userCheck;
   user;
-
+  welcome = localStorage.getItem('username');
+  type= localStorage.getItem('type')
+ 
+ 
+  
   @ViewChild('loginForm') currentForm: NgForm;
 
   constructor(private dataService: DataService, private router: Router) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { this.checkUser()}
+
+  checkUser() { console.log(this.type)
+                if (this.type=="User") {
+                this.router.navigateByUrl('/dogooder'); 
+                this.type==null;
+              
+                }
+                else if (this.type=="Charity") {
+                this.router.navigateByUrl('/charity');
+                this.type==null;
+                }
+              }
+
+  
   loginUser(user: NgForm){ //function to login a new or existing user.
     // console.log(JSON.stringify(user.value))
     this.dataService.addRecord("sessions", user.value)
       .subscribe(
         user => {
           this.successMessage = "login successful";
-          console.log(user.id)
+          this.welcome = user.firstName
             if (user.isCharity=="User") {
               localStorage.setItem('userid', user.id);
+              localStorage.setItem('username', user.firstName);
+              localStorage.setItem('type', user.isCharity);
               this.router.navigateByUrl('/dogooder'); 
+             
             }
             else if (user.isCharity=="Charity") {
               localStorage.setItem('userid', user.id);
-              this.router.navigateByUrl('/charity'); 
+              localStorage.setItem('username', user.firstName);
+              localStorage.setItem('type', user.isCharity);
+
+              this.router.navigateByUrl('/charity');
             }
+            
         },
         error => this.errorMessage = <any>error
        
@@ -44,7 +68,7 @@ export class NavigationComponent implements OnInit {
 
     this.user = '';
     ;
-
+      
             
     }
 
@@ -87,6 +111,15 @@ export class NavigationComponent implements OnInit {
         }
       }
     }
+  }
+
+  logOut(){
+    console.log("done")
+    localStorage.removeItem("username")
+    localStorage.removeItem("type")
+    this.router.navigateByUrl('/home');
+    this.welcome=null;
+    this.user=null;
   }
   formErrors = {
     'username': '',

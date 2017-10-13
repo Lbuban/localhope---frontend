@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -40,6 +40,22 @@ addCharityNeed(endpoint: string, userID, record:object): Observable<any> {
     return this.http.post(apiUrl, record)
         .map(this.extractData);
   }
+
+  postFollowCharity(endpoint:string, userID, record):Observable<any> {
+     let apiUrl = `${this.baseUrl}${endpoint}/${userID}`;
+     let headers = new Headers({ 'Content-Type': 'application/json' });
+     let options = new RequestOptions({ headers: headers, withCredentials: true });
+    console.log(apiUrl)
+    return this.http.post(apiUrl, record, options)
+        .map(this.extractData);
+  }
+//original charity post option that returns 415 error
+//     postFollowCharity(endpoint:string, userID, record):Observable<any> {
+//      let apiUrl = `${this.baseUrl}${endpoint}/${userID}`;
+//     console.log(apiUrl)
+//     return this.http.post(apiUrl, record)
+//         .map(this.extractData);
+//   }
 
   //take the response and turn it into JSON
 private extractData(res: Response) {
