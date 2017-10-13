@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service'; //this is pulling info from the data service
 // import { MdDialog, MdDialogRef } from '@angular/material';
 import { CharityService } from '../charity.service'
+import { DataTablesModule } from 'angular-datatables';
 
 @Component({
   selector: 'app-do-gooder',

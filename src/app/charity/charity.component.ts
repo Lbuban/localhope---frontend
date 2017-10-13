@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms'; 
-import { DataService } from '../data.service'
+import { DataService } from '../data.service';
+import { DataTablesModule } from 'angular-datatables';
 
 @Component({
   selector: 'app-charity',
