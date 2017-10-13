@@ -1,3 +1,4 @@
+<!-- Charity Needs Form -->
 <h1>
   Post Your Charity Needs
 </h1>
@@ -6,12 +7,12 @@
   <div class="form-group">
     <label for="type" class="mr-sm-2 col-sm-2 control-label">Donation Type</label>
     <div class="col-sm-10">
-        <select [(ngModel)]="model.type" name="type" class="custom-select mb-2 mr-sm-2 mb-sm-0" id="type" required>
+      <select [(ngModel)]="model.type" name="type" class="custom-select mb-2 mr-sm-2 mb-sm-0" id="type" required>
             <option selected value="Money">Money</option>
             <option value="Time">Time</option>
             <option value="Items">Items</option>
         </select>
-        <span *ngIf="formErrors.type" class="text-danger">
+      <span *ngIf="formErrors.type" class="text-danger">
             {{ formErrors.type }}
         </span>
     </div>
@@ -20,17 +21,19 @@
   <div class="form-group">
     <label for="originalAmount" class="col-sm-2 control-label">Amount</label>
     <div class="col-sm-10">
-        <input [(ngModel)]="model.originalAmount" type="integer" class="form-control" id="originalAmount" name="originalAmount" placeholder="e.g. $50, 1 crib, 2 hours" required>
-        <span *ngIf="formErrors.originalAmount" class="text-danger">
+      <input [(ngModel)]="model.originalAmount" type="integer" class="form-control" id="originalAmount" name="originalAmount" placeholder="e.g. $50, 1 crib, 2 hours"
+        required>
+      <span *ngIf="formErrors.originalAmount" class="text-danger">
             {{ formErrors.originalAmount }}
         </span>
-      </div>
+    </div>
   </div>
 
   <div class="form-group">
     <label for="description" class="col-sm-2 control-label">Description of Need</label>
     <div class="col-sm-10">
-      <input [(ngModel)]="model.description" type="text" class="form-control" id="description" name="description" placeholder="Brief description of need" required maxlength="150">
+      <input [(ngModel)]="model.description" type="text" class="form-control" id="description" name="description" placeholder="Brief description of need"
+        required maxlength="150">
       <span *ngIf="formErrors.description" class="text-danger">
           {{ formErrors.description  }}
       </span>
@@ -40,18 +43,19 @@
   <div class="form-group">
     <label for="dateNeeded" class="col-sm-2 control-label">Need by Date</label>
     <div class="col-sm-10">
-        <input [(ngModel)]="model.dateNeeded" type="date" class="form-control" id="dateNeeded" name="dateNeeded" placeholder="e.g. 10/27/2017" required>
-        <span *ngIf="formErrors.dateNeeded" class="text-danger">
+      <input [(ngModel)]="model.dateNeeded" type="date" class="form-control" id="dateNeeded" name="dateNeeded" placeholder="e.g. 10/27/2017"
+        required>
+      <span *ngIf="formErrors.dateNeeded" class="text-danger">
             {{ formErrors.dateNeeded }}
         </span>
-      </div>
+    </div>
   </div>
 
   <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
-        <button [disabled]="!sampleForm.form.valid" type="submit" class="btn btn-primary">Submit Need</button>
-      </div>
+    <div class="col-sm-offset-2 col-sm-10">
+      <button [disabled]="!sampleForm.form.valid" type="submit" class="btn btn-primary">Submit Need</button>
     </div>
+  </div>
 </form>
 
 <br>
@@ -60,66 +64,108 @@
 <br>
 <br>
 
+<!-- Charity Needs table -->
 <h1>
-    View Your Charity Needs
+  View Your Charity Needs
 </h1>
 
 
 <table datatable class="table table-hover table-bordered" id="dataTable" style="width:100%">
-    <thead>
-      <tr>
-        <th>Charity ID</th>
-        <th>Charity Name</th>
-        <th>Donation Type</th>
-        <th>Need by Date</th>
-        <th>Description</th>
-        <th>Original Amount</th>
-        <th>Edit</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let need of needs">
-        <td>{{need.users[0].id}}</td>
-        <td>{{need.users[0].charityName}}</td>
-        <td>{{need.type}}</td>
-        <td>{{need.dateNeeded}}</td>
-        <td>{{need.description}}</td>
-        <td>{{need.originalAmount}}</td>
-        <td id="editButton" class="text-center">
-          <button class="btn btn-primary glyphicon glyphicon-pencil" (click)="getRecordForEdit(need)" data-toggle="modal" data-target="#editNeedForm"></button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <thead>
+    <tr>
+      <th>Charity ID</th>
+      <th>Charity Name</th>
+      <th>Donation Type</th>
+      <th>Need by Date</th>
+      <th>Description</th>
+      <th>Original Amount</th>
+      <th>Edit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let need of needs">
+      <td>{{need.users[0].id}}</td>
+      <td>{{need.users[0].charityName}}</td>
+      <td>{{need.type}}</td>
+      <td>{{need.dateNeeded}}</td>
+      <td>{{need.description}}</td>
+      <td>{{need.originalAmount}}</td>
+      <td id="editButton" class="text-center">
+        <button class="btn btn-primary glyphicon glyphicon-pencil" (click)="getRecordForEdit(need)" data-toggle="modal" data-target="#editNeedForm"></button>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-  <div class="modal fade" id="editNeedForm">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Edit Need</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        
-          <div class="modal-body" *ngIf="editNeed">
-                <th>Donation Type 
-                  <input [(ngModel)]="editNeed.type" required>
-                </th>
-                <th>Need by Date
-                  <input [(ngModel)]="editNeed.dateNeeded" required>
-                </th>
-                <th>Description
-                  <input [(ngModel)]="editNeed.description" required>
-                </th>
-                <th>Original Amount
-                  <input [(ngModel)]="editNeed.originalAmount" required>
-                </th>
+<!-- Edit Modal -->
+<div class="modal fade" id="editNeedForm">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Edit Need</h3>
+      </div>
+
+      <div class="modal-body" *ngIf="editNeed">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label for="type" class="mr-sm-2 col-sm-2 control-label">Donation Type</label>
+            <div class="col-sm-10">
+              <select [(ngModel)]="editNeed.type" name="type" class="custom-select mb-2 mr-sm-2 mb-sm-0" id="type" required>
+                <option selected value="Money">Money</option>
+                <option value="Time">Time</option>
+                <option value="Items">Items</option>
+              </select>
+            </div>
           </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary">Save changes</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div>
+
+          <div class="form-group">
+            <label for="originalAmount" class="col-sm-2 control-label">Amount</label>
+            <div class="col-sm-10">
+              <input class="form-control" name="originalAmount" [(ngModel)]="editNeed.originalAmount" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="description" class="col-sm-2 control-label">Description of Need</label>
+            <div class="col-sm-10">
+              <input [(ngModel)]="editNeed.description" name="description" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="dateNeeded" class="col-sm-2 control-label">Need by Date</label>
+            <div class="col-sm-10">
+              <input [(ngModel)]="editNeed.dateNeeded" name="date" required>
+            </div>
+          </div>
+        </form>
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
+</div>
+
+
+
+
+<!-- <div class="modal-body" *ngIf="editNeed">
+                <th>Donation Type 
+                  <input [(ngModel)]="editNeed.type" required>
+                </th>
+                <br>
+                <th>Need by Date
+                  <input [(ngModel)]="editNeed.dateNeeded" required>
+                </th>
+                <br>
+                <th>Description
+                  <input [(ngModel)]="editNeed.description" required>
+                </th>
+                <br>
+                <th>Original Amount
+                  <input [(ngModel)]="editNeed.originalAmount" required>
+                </th>
+          </div> -->
