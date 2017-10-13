@@ -1,0 +1,103 @@
+id="donateTime" class="col-md-8 col-sm-6"
+h1 {
+    font-family: 'Neucha', cursive;
+    font-size: 55px;
+    color :#CCB54C;
+    text-align: center;
+}
+
+h3 {
+    font-family: 'Neucha', cursive;
+    text-align: center;
+}
+
+.wrapper {
+    
+    width: 90%;
+    margin: auto, 0;
+    padding:0;
+
+}
+.regButton {
+    text-align: center;
+}
+
+.regButton button {
+    border-radius: 5px;
+    width: 300px;
+    background-color: #182D48;
+    border-color: #CCB54C;
+    border-width: 5px;
+
+}
+ .rowOneCarousel {
+    float: right;
+    padding: 0;
+} 
+/* .item.left img */
+
+.carousel img{
+    height: 300px;
+    width: 400px;
+}
+
+#donateTime {
+    background-color: #596B56;
+    height: 300px;
+    color: white;
+    /* margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center; */
+
+}
+/* #donateTime h1 {
+color: #CCB54C;
+font-size: 80px;
+
+}
+
+#donateItems {
+    background-color: #182D48;
+    height: 300px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+#donateItems h1 {
+color: #CCB54C;
+font-size: 80px;
+
+}
+
+#donateMoney {
+    background-color: #4B0539;
+    height: 300px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+#donateMoney h1 {
+color: #CCB54C;
+font-size: 80px;
+
+} */
+#divDividerThick    {
+background-color: #4B0539;
+color: white;
+/* margin-top: 20px;
+margin-bottom: 20px; */
+}
+#copyright {
+/* display:  inline-flex;
+align-items: center;
+justify-content: center; */
+/* margin: 20px; */
+}
+.title  {
+    color: #CCB54C;
+}

@@ -3,7 +3,6 @@
 </h1>
 
 <form class="form-horizontal" (ngSubmit)="saveNeed(sampleForm)" #sampleForm="ngForm">
-  <!-- <input [ngModel]="registration?.id" ngModel #id="ngModel" type="hidden"> -->
   <div class="form-group">
     <label for="type" class="mr-sm-2 col-sm-2 control-label">Donation Type</label>
     <div class="col-sm-10">
@@ -66,7 +65,7 @@
 </h1>
 
 
-<table class="table table-hover table-bordered" id="dataTable" style="width:100%">
+<table datatable class="table table-hover table-bordered" id="dataTable" style="width:100%">
     <thead>
       <tr>
         <th>Charity ID</th>
@@ -75,7 +74,7 @@
         <th>Need by Date</th>
         <th>Description</th>
         <th>Original Amount</th>
-        <!-- <th>Status</th> -->
+        <th>Edit</th>
       </tr>
     </thead>
     <tbody>
@@ -86,7 +85,41 @@
         <td>{{need.dateNeeded}}</td>
         <td>{{need.description}}</td>
         <td>{{need.originalAmount}}</td>
-        <!-- <td>{{need.status}}</td> -->
+        <td id="editButton" class="text-center">
+          <button class="btn btn-primary glyphicon glyphicon-pencil" (click)="getRecordForEdit(need)" data-toggle="modal" data-target="#editNeedForm"></button>
+        </td>
       </tr>
     </tbody>
   </table>
+
+  <div class="modal fade" id="editNeedForm">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Edit Need</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        
+          <div class="modal-body" *ngIf="editNeed">
+                <th>Donation Type 
+                  <input [(ngModel)]="editNeed.type" required>
+                </th>
+                <th>Need by Date
+                  <input [(ngModel)]="editNeed.dateNeeded" required>
+                </th>
+                <th>Description
+                  <input [(ngModel)]="editNeed.description" required>
+                </th>
+                <th>Original Amount
+                  <input [(ngModel)]="editNeed.originalAmount" required>
+                </th>
+          </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
