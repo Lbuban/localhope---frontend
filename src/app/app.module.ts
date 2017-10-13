@@ -39,7 +39,8 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
     FormsModule,
     AppRoutingModule,
     HttpModule,
-    DataTablesModule
+    DataTablesModule,
+    BootstrapModalModule
   ],
   providers: [
     DataService,
