@@ -27,8 +27,8 @@ export class DataService {
             .catch(this.handleError);
     }
 
-    getCharityNeed(needId: number): Observable<any[]> {
-        let apiUrl = `${this.baseUrl}need/${needId}`;
+    getCharityNeed(endpoint, userId): Observable<any[]> {
+        let apiUrl = `${this.baseUrl}${endpoint}/${userId}`;
         return this.http.get(apiUrl)
             .map(this.extractData)
             .catch(this.handleError);
@@ -59,9 +59,11 @@ export class DataService {
 
      postNeedMet(endpoint:string, needId, record):Observable<any> {
         let apiUrl = `${this.baseUrl}${endpoint}/${needId}`;
-         return this.http.put(apiUrl, record)
-            .map(this.extractData)
-            .catch(this.handleError);
+       let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers, withCredentials: true });
+        console.log(apiUrl)
+        return this.http.post(apiUrl, record, options)
+            .map(this.extractData);
 }
 
         editRecord(endpoint: string, record: object, userID: number): Observable<object> {
