@@ -16,31 +16,58 @@
       <th>Description</th>
       <th>Original Amount</th>
       <th>Give</th>
-      <th>Follow/Unfollow</th>
+      <th>Follow</th>
       <!-- <th>Rating</th> -->
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let need of needs">
-      <td>{{need.users[0].id}}</td>
-      <td>{{need.users[0].charityName}}</td>
-      <!-- <td>{{need.category}}</td> -->
-      <!-- <td>{{need.rating}}</td> -->
-      <td>{{need.users[0].ein}}</td>
-      <td>{{need.type}}</td>
-      <td>{{need.dateNeeded}}</td>
-      <td>{{need.description}}</td>
-      <td>{{need.originalAmount}}</td>
-      <td class="text-center">
-        <button class="btn btn-primary glyphicon glyphicon-gift" ></button>
-      </td>
-      <td class="text-center">
-        <button attr.data-Id="{{need.users[0].id}}" #follow (click)="followCharity(follow.getAttribute('data-Id'))" class="btn btn-primary glyphicon glyphicon-ok"></button>
-      </td>  
+        <td>{{need.users[0].id}}</td>
+        <td>{{need.users[0].charityName}}</td>
+        <!-- <td>{{need.category}}</td> -->
+        <!-- <td>{{need.rating}}</td> -->
+        <td>{{need.users[0].ein}}</td>
+        <td>{{need.type}}</td>
+        <td>{{need.dateNeeded}}</td>
+        <td>{{need.description}}</td>
+        <td>{{need.originalAmount}}</td>
+        <td class="text-center">
+          <button attr.data-need-Id="{{need.id}}" #give (click)="giveNeed(give.getAttribute('data-need-Id'))"class="btn btn-primary glyphicon glyphicon-gift" ></button>
+        </td>
+        <td class="text-center">
+          <button attr.data-Id="{{need.users[0].id}}" #follow (click)="followCharity(follow.getAttribute('data-Id'))" class="btn btn-primary glyphicon glyphicon-ok"></button>
+        </td>  
       <!-- <td>{{charity.rating}}</td> -->
     </tr>
   </tbody>
 </table>
 
- <!-- (click)="followCharity"  -->
- <!-- (click)="followCharity({{need.users[0].id}})"  -->
+<h1>
+  Followed Charities
+</h1>
+
+ 
+<table class="table table-hover table-striped table-bordered" datatable="ng" id="dataTable" style="width:100%">
+  <thead>
+    <tr>
+      <th>Charity ID</th>
+      <th>Charity Name</th>
+      <th>EIN</th>
+      <th>Unfollow</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{user.id}}</td>
+      <td>{{user.charityName}}</td>
+      <td>{{user.ein}}</td>
+      <td class="text-center">
+        <button attr.data-Id="{{user.id}}" #unFollow (click)="unfollowCharity(unFollow.getAttribute('data-Id'))" class="btn btn-danger glyphicon glyphicon-remove"></button>
+      </td>  
+      
+    </tr>
+  </tbody>
+</table> 
+
+

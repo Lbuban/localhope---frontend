@@ -47,14 +47,14 @@ export class CharityComponent implements OnInit {
   saveNeed(need: NgForm) { //function to save a need once one has been added.
     console.log(this.model)
     this.dataService.addCharityNeed("charity", this.userId, need.value)
-      .subscribe(
-      student => {
-      this.successMessage = "Need added successfully";
-        this.getNeeds();
-      },
-      error => this.errorMessage = <any>error);
-    this.need = '';
-  }
+          .subscribe(
+            need => {this.successMessage = "Need added successfully";
+            this.getNeeds();
+            this.sampleForm.reset();
+            },
+            error =>  this.errorMessage = <any>error);
+            this.need = '';
+    }
 
   getNeeds() { //function to pull the needs list.
     this.dataService.getCharityNeeds(this.userId)

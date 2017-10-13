@@ -15,6 +15,8 @@ export class DoGooderComponent implements OnInit {
   successMessage: string;
   needs: any[];
   need;
+  needId;
+  users;
   mode = 'Observable';
   charities;
   userId = localStorage.getItem('userid');
@@ -29,16 +31,27 @@ export class DoGooderComponent implements OnInit {
   ngOnInit() 
   { 
     this.getNeeds();
+    this.getUser();
+    
     // this.getCharities();
   }
 
   getNeeds() { //function to pull the needs list.
     this.dataService.getRecords("dogooder")
       .subscribe(
-        needs => {this.needs = needs},
+        needs => {this.needs = needs;},
         error =>  this.errorMessage = <any>error);
-       
+        
   }
+
+  getUser(){
+      this.dataService.getCharityNeed("user/followedcharities", this.userId)
+      
+      .subscribe(
+        users => {this.users = users},
+        error =>  this.errorMessage = <any>error);
+        
+         }
 
 
   getCharities(ein: string) { //function to pull the charity list.
@@ -59,8 +72,34 @@ export class DoGooderComponent implements OnInit {
     
           .subscribe(
             charity => {this.successMessage = "Need added successfully";
+            this.getUser();},
+            error =>  this.errorMessage = <any>error);
+            this.need = '';
+    }
+
+    unfollowCharity(charityId){ //function to save a need once one has been added.
+    
+    this.dataService.postFollowCharity("user/unfollowcharity", this.userId, JSON.stringify(charityId))
+    
+          .subscribe(
+            charity => {this.successMessage = "Need added successfully";
+            this.getUser();},
+            error =>  this.errorMessage = <any>error);
+            this.need = '';
+    }
+  
+    giveNeed(needId){ //function to save a need once one has been added.
+    
+    let idJSON= JSON.stringify(this.userId)
+    console.log(idJSON)
+    this.dataService.postNeedMet("needstatus", needId, idJSON)
+    
+          .subscribe(
+            need => {this.successMessage = "Need added successfully";
             this.getNeeds();},
             error =>  this.errorMessage = <any>error);
             this.need = '';
     }
+      
+    
 }
