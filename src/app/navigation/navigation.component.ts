@@ -29,10 +29,12 @@ export class NavigationComponent implements OnInit {
   checkUser() { console.log(this.type)
                 if (this.type=="User") {
                 this.router.navigateByUrl('/dogooder'); 
+                this.type==null;
               
                 }
                 else if (this.type=="Charity") {
                 this.router.navigateByUrl('/charity');
+                this.type==null;
                 }
               }
 
@@ -114,6 +116,7 @@ export class NavigationComponent implements OnInit {
   logOut(){
     console.log("done")
     localStorage.removeItem("username")
+    localStorage.removeItem("type")
     this.router.navigateByUrl('/home');
     this.welcome=null;
     this.user=null;
