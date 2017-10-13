@@ -1,16 +1,18 @@
 <!-- Registration form for both doGooder and Charity, based on their 8228769selection during registration -->
-<div><h1>Registration</h1></div>
+<div id="title"><h1>Registration</h1><br></div>
 
 <!-- <app-status-message [successMessage]="successMessage" [errorMessage]="errorMessage"></app-status-message> -->
 
-<form novalidate (ngSubmit)="registerUser(registrationForm)"  #registrationForm="ngForm" class="form-horizontal">
- Please select an option <select [(ngModel)]="isCharity" (ngModelChange)="onChange($event)" name="isCharity">
+<form id="color1" novalidate (ngSubmit)="registerUser(registrationForm)"  #registrationForm="ngForm" class="form-horizontal color: control-label">
+Please select an option <select [(ngModel)]="isCharity" (ngModelChange)="onChange($event)" name="isCharity">
 
     <option value="User">User</option>
     <option value="Charity">Charity</option>
+<br>
+<br>
 </select>
-<br>
-<br>
+
+<div >
 <div *ngIf="this.userCheck===false || this.userCheck===true">
   <!-- <input [ngModel]="registration?.id" ngModel #id="ngModel" type="hidden" name="id"> -->
   <div class="form-group">
@@ -161,7 +163,7 @@
       </div>
     </div>
    </div>
- 
+  </div>
   <button [disabled]="!registrationForm.form.valid" class="btn btn-primary" *ngIf="this.userCheck===false || this.userCheck===true" type="submit">Submit</button>
 </form>
   <br>
