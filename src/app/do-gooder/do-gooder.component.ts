@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service'; //this is pulling info from the data service
 // import { MdDialog, MdDialogRef } from '@angular/material';
 import { CharityService } from '../charity.service'
+import { DataTablesModule } from 'angular-datatables';
 
 @Component({
   selector: 'app-do-gooder',
@@ -16,7 +17,8 @@ export class DoGooderComponent implements OnInit {
   need;
   mode = 'Observable';
   charities;
-  userId;
+  userId = localStorage.getItem('userid');
+  charityJSON;
 
   constructor( 
     private dataService: DataService,
@@ -51,27 +53,14 @@ export class DoGooderComponent implements OnInit {
 
 
 
-
-  // $(function(){
-  //   $('#tableBody').DataTable({
-  //     dom: 'Bfrtip',
-  //        buttons: [
-  //            'copy', 'csv', 'excel', 'pdf', 'print'
-  //        ],
-  //     colReorder: true,
-  //     "scrollX": true
-
-  //   })
-
-  //  });
-
-  // followCharity(){ //function to save a need once one has been added.
+  followCharity(charityId){ //function to save a need once one has been added.
+    console.log(JSON.stringify(charityId))
+    this.dataService.postFollowCharity("user/followcharity", this.userId, JSON.stringify(charityId))
     
-  //   this.dataService.addCharityNeed("charity", )
-  //         .subscribe(
-  //           student => {this.successMessage = "Need added successfully";
-  //           this.getNeeds();},
-  //           error =>  this.errorMessage = <any>error);
-  //           this.need = '';
-  //   }
+          .subscribe(
+            charity => {this.successMessage = "Need added successfully";
+            this.getNeeds();},
+            error =>  this.errorMessage = <any>error);
+            this.need = '';
+    }
 }
