@@ -1,3 +1,7 @@
 #loggedIn {
     float:right;
 }
+
+#logOutButton {
+    margin-left: 25px;
+}
