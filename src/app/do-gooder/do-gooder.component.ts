@@ -3,6 +3,7 @@ import { DataService } from '../data.service'; //this is pulling info from the d
 // import { MdDialog, MdDialogRef } from '@angular/material';
 import { CharityService } from '../charity.service'
 import { DataTablesModule } from 'angular-datatables';
+import { Subject } from 'rxjs/Rx';
 
 @Component({
   selector: 'app-do-gooder',
@@ -10,6 +11,10 @@ import { DataTablesModule } from 'angular-datatables';
   styleUrls: ['./do-gooder.component.css']
 })
 export class DoGooderComponent implements OnInit {
+
+  dtOptions: DataTables.Settings = {};
+  
+  dtTrigger = new Subject();
 
   errorMessage: string;
   successMessage: string;
@@ -30,16 +35,20 @@ export class DoGooderComponent implements OnInit {
 
   ngOnInit() 
   { 
+    this.dtOptions = {
+      pagingType: "full_numbers"
+    }
     this.getNeeds();
     this.getUser();
-    
-    // this.getCharities();
   }
 
   getNeeds() { //function to pull the needs list.
     this.dataService.getRecords("dogooder")
       .subscribe(
-        needs => {this.needs = needs;},
+        needs => {this.needs = needs;
+          this.dtTrigger.next();
+        
+        },
         error =>  this.errorMessage = <any>error);
         
   }
