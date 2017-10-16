@@ -20,7 +20,7 @@ sendUser = new EventEmitter<any>();
   isCharity;
   userCheck;
   user;
-  
+  welcome = localStorage.getItem('username');
   
 
   @ViewChild('registrationForm') currentForm: NgForm;
@@ -40,18 +40,27 @@ sendUser = new EventEmitter<any>();
   registerUser(user: NgForm){ //function to save a user once one has been added.
     // console.log(JSON.stringify(user.value))
     this.dataService.addRecord("registration", user.value)
-      .subscribe(
+     .subscribe(
         user => {
           this.successMessage = "login successful";
-          console.log(user.id)
+          this.welcome = user.firstName
             if (user.isCharity=="User") {
               localStorage.setItem('userid', user.id);
+              localStorage.setItem('username', user.firstName);
+              localStorage.setItem('type', user.isCharity);
               this.router.navigateByUrl('/dogooder'); 
+              location.reload()
+             
             }
             else if (user.isCharity=="Charity") {
               localStorage.setItem('userid', user.id);
-              this.router.navigateByUrl('/charity'); 
+              localStorage.setItem('username', user.firstName);
+              localStorage.setItem('type', user.isCharity);
+                          
+              this.router.navigateByUrl('/charity');
+              location.reload()
             }
+            
         },
         error => this.errorMessage = <any>error
        
@@ -59,7 +68,7 @@ sendUser = new EventEmitter<any>();
 
     this.user = '';
     ;
-
+      
             
     }
 
@@ -126,6 +135,7 @@ sendUser = new EventEmitter<any>();
     'username': {
       'required': 'A username is required',
       'minlength': 'Username must be a minimum of 2 characters long',
+      'pattern':  'Username cannot contain spaces',
       'maxlength': 'Username cannot be more than 30 characters long'
     },
     'password': {
