@@ -6,6 +6,7 @@ import { DialogComponent, DialogService } from "ng2-bootstrap-modal";
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ActivatedRoute, Params } from '@angular/router';
 import {Router} from '@angular/router';
+import { Subject } from 'rxjs/Rx';
 
 
 @Component({
@@ -15,6 +16,9 @@ import {Router} from '@angular/router';
 })
 export class CharityComponent implements OnInit {
 
+  dtOptions: DataTables.Settings = {};
+  
+  dtTrigger = new Subject();
 
   //these describe what kind of data these variables can have - i.e. string, number, array, etc. 
   successMessage: string;
@@ -40,6 +44,9 @@ export class CharityComponent implements OnInit {
   };
 
   ngOnInit() {
+    this.dtOptions = {
+      pagingType: "full_numbers"
+    }
     this.postuser()
     this.getNeeds()
   }
@@ -61,10 +68,23 @@ export class CharityComponent implements OnInit {
             this.sampleForm.reset();
     }
 
+    saveEditedNeed(need: NgForm) { //function to save an edited need.
+      console.log()
+      this.dataService.editRecord("updateneed", need.value, need.value.id)
+            .subscribe(
+              need => {this.successMessage = "Need added successfully";
+              },
+              error =>  this.errorMessage = <any>error);
+              this.need = '';
+              this.getNeeds();
+      }
+
   getNeeds() { //function to pull the needs list.
     this.dataService.getCharityNeeds(this.userId)
       .subscribe(
-      needs => this.needs = needs,
+      needs => {this.needs = needs,
+      this.dtTrigger.next();
+    },
       error => this.errorMessage = <any>error);
 
   }
@@ -108,7 +128,7 @@ export class CharityComponent implements OnInit {
   }
 
 
-  deleteCharityNeed(needid:number) { //function to delete a student from the record. 
+  deleteCharityNeed(needid:number) { //function to delete a charity from the record. 
         this.dataService.deleteRecord("deleteneed", needid)
         
           .subscribe(

@@ -47,7 +47,6 @@ export class DoGooderComponent implements OnInit {
       .subscribe(
         needs => {this.needs = needs;
           this.dtTrigger.next();
-        
         },
         error =>  this.errorMessage = <any>error);
         

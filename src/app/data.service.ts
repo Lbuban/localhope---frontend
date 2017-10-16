@@ -41,6 +41,13 @@ export class DataService {
             .map(this.extractData);
     }
 
+    // editRecord(endpoint: string, id: any, record: object): Observable<any> {
+    //     let apiUrl = `${this.baseUrl}${endpoint}/${id}`;
+    //     console.log(apiUrl)
+    //     return this.http.put(apiUrl, record)
+    //         .map(this.extractData);
+    // }
+
     addCharityNeed(endpoint: string, userID, record: object): Observable<any> {
         let apiUrl = `${this.baseUrl}${endpoint}/${userID}`;
         console.log(apiUrl)
