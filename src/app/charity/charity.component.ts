@@ -6,6 +6,7 @@ import { DialogComponent, DialogService } from "ng2-bootstrap-modal";
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ActivatedRoute, Params } from '@angular/router';
 
+
 @Component({
   selector: 'app-charity',
   templateUrl: './charity.component.html',
@@ -21,6 +22,7 @@ export class CharityComponent implements OnInit {
   userId = parseInt(localStorage.getItem('userid'));
   needs;
   editNeed: any;
+  needid: number;
 
 
   constructor(private dataService: DataService) { }
@@ -100,6 +102,16 @@ export class CharityComponent implements OnInit {
     }
   }
 
+
+  deleteCharityNeed(needid:number) { //function to delete a student from the record. 
+
+        this.dataService.deleteRecord("deleteneed", needid)
+          .subscribe(
+            need => {this.successMessage = "Need deleted successfully";},
+            error =>  this.errorMessage = <any>error);
+            console.log(needid)
+      }
+   
   //start out the errors as an emtpy string
   formErrors = {
     'type': '',

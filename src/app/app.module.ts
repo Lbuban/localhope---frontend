@@ -20,6 +20,7 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +31,7 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
     CharityComponent,
     DoGooderComponent,
     ContactUsComponent,
+  
 
    
     
