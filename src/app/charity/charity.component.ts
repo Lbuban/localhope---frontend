@@ -63,6 +63,7 @@ export class CharityComponent implements OnInit {
 
   getNeeds() { //function to pull the needs list.
     this.dataService.getCharityNeeds(this.userId)
+ 
       .subscribe(
       needs => this.needs = needs,
       error => this.errorMessage = <any>error);
