@@ -18,7 +18,7 @@ Please select an option <select [(ngModel)]="isCharity" (ngModelChange)="onChang
   <div class="form-group">
     <label for="username" class="col-sm-2 control-label">Username</label>
     <div class="col-sm-10">
-      <input [ngModel]="" ngModel #username="ngModel" type="text" class="form-control" id="username" name="username" placeholder="enter your Username" required minlength="2" maxlength="30">
+      <input [ngModel]="" ngModel #username="ngModel" type="text" class="form-control" id="username" name="username" placeholder="enter your Username" required minlength="2" maxlength="30" pattern="^\S*$" >
       <span *ngIf="formErrors.username" class="text-danger">
           {{ formErrors.username }}
       </span>
@@ -156,7 +156,7 @@ Please select an option <select [(ngModel)]="isCharity" (ngModelChange)="onChang
     <div class="form-group">
         <label for="charityPreference" class="col-sm-2 control-label">Charity Preference</label>
         <div class="col-sm-10">
-          <input [ngModel]="registration?.charityPreference" ngModel #charityPreference="ngModel" type="text" class="form-control" id="charityPreference" name="charityPreference" placeholder="enter your charity preference here"  required >
+          <input [ngModel]="registration?.charityPreference" ngModel #charityPreference="ngModel" type="text" class="form-control" id="charityPreference" name="charityPreference" placeholder="enter your charity preference here"  >
           <span *ngIf="formErrors.charityPreference" class="text-danger">
               {{ formErrors.charityPreference }}
           </span>

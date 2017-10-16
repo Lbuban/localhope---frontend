@@ -135,6 +135,7 @@ sendUser = new EventEmitter<any>();
     'username': {
       'required': 'A username is required',
       'minlength': 'Username must be a minimum of 2 characters long',
+      'pattern':  'Username cannot contain spaces',
       'maxlength': 'Username cannot be more than 30 characters long'
     },
     'password': {
