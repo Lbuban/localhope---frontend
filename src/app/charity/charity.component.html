@@ -97,8 +97,9 @@
       <td *ngIf="!need.needMet">no</td>
       <td>{{need.hasFollowers}}</td>
       <td id="notifyButton" class="text-center">
-          <button ng-disabled="!need.hasFollowers" class="btn btn-primary glyphicon glyphicon-send" (click)="notifyFollowers( need.users[0].id , need.id)"></button> 
-      </td>
+          <button [disabled]="!need.hasFollowers" class="btn btn-primary glyphicon glyphicon-send" (click)="notifyFollowers( need.users[0].id , need.id)"></button> 
+      </td> 
+      <!-- ng-disabled="need.hasFollowers"  -->
       <td id="editButton" class="text-center">
         <button class="btn btn-primary glyphicon glyphicon-pencil" (click)="getRecordForEdit(need)" data-toggle="modal" data-target="#editNeedForm"></button>
       </td>

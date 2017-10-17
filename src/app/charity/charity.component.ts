@@ -150,6 +150,7 @@ export class CharityComponent implements OnInit {
         
   }
   notifyFollowers(charityID: number, needID: number){
+    
     this.dataService.postNotifyFollowers("message", charityID, needID)
     .subscribe(
       need => {this.successMessage = "followers notified successfully";
