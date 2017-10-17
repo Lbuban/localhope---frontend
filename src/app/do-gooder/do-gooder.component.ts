@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataService } from '../data.service'; //this is pulling info from the data service
 // import { MdDialog, MdDialogRef } from '@angular/material';
 import { CharityService } from '../charity.service'
-import { DataTablesModule, DataTableDirective } from 'angular-datatables';
-import { Subject } from 'rxjs/Rx';
+import { DataTablesModule } from 'angular-datatables';
+
 
 @Component({
   selector: 'app-do-gooder',
@@ -12,9 +12,6 @@ import { Subject } from 'rxjs/Rx';
 })
 export class DoGooderComponent implements OnInit {
 
-  dtOptions: DataTables.Settings = {};
-  
-  dtTrigger = new Subject();
 
   errorMessage: string;
   successMessage: string;
@@ -34,13 +31,10 @@ export class DoGooderComponent implements OnInit {
 
   ) {} 
 
-  @ViewChild(DataTableDirective) dataTableElement: DataTableDirective;
+  
 
   ngOnInit() 
   { 
-    this.dtOptions = {
-      pagingType: "full_numbers"
-    }
     this.getNeeds();
     this.getUser();
   }
@@ -50,10 +44,6 @@ export class DoGooderComponent implements OnInit {
     this.dataService.getRecords("dogooder")
       .subscribe(
         needs => {this.needs = needs;
-          this.dataTableElement.dtInstance.then(inst => {
-            inst && inst.destroy();
-          });
-          this.dtTrigger.next();
         },
         error =>  this.errorMessage = <any>error);
         
@@ -68,10 +58,6 @@ export class DoGooderComponent implements OnInit {
       
       .subscribe(
         users => {this.users = users
-          this.dataTableElement.dtInstance.then(inst => {
-            inst && inst.destroy();
-          });
-          this.dtTrigger.next();
         },
         error =>  this.errorMessage = <any>error);
          }
@@ -86,6 +72,19 @@ export class DoGooderComponent implements OnInit {
           },
         error =>  this.errorMessage = <any>error);
   }
+
+  findLocalCharities(distance: string) { //function to pull the charity list.
+    let distanceNumber = parseInt(distance)
+   console.log(this.userId, distanceNumber)
+    this.charityService.locateUser("distance", this.userId, distanceNumber)
+      .subscribe(
+        charities => {
+          this.charities = charities;
+          console.log(charities)
+          },
+        error =>  this.errorMessage = <any>error);
+  }
+
 
 
 

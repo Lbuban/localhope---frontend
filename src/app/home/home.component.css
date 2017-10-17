@@ -1,8 +1,8 @@
 
 h1 {
     font-family: 'Neucha', cursive;
-    font-size: 55px;
-    color :#CCB54C;
+    font-size: 100px;
+    color: #05668D;
     text-align: center;
 }
 
@@ -25,8 +25,8 @@ h3 {
 .regButton button {
     border-radius: 5px;
     width: 300px;
-    background-color: #182D48;
-    border-color: #CCB54C;
+    background-color: #05668D;
+    border-color:#F0F3BD;
     border-width: 5px;
 
 }
@@ -42,7 +42,7 @@ h3 {
 }
 
 #donateTime {
-    background-color: #596B56;
+    background-color: #05668D;
     height: 300px;
     margin: 0;
     display: flex;
@@ -51,13 +51,13 @@ h3 {
 
 }
 #donateTime h1 {
-color: #CCB54C;
+color: #F0F3BD;
 font-size: 80px;
 
 }
 
 #donateItems {
-    background-color: #182D48;
+    background-color: #028090;
     height: 300px;
     margin: 0;
     display: flex;
@@ -66,13 +66,13 @@ font-size: 80px;
 
 }
 #donateItems h1 {
-color: #CCB54C;
+color: #F0F3BD;
 font-size: 80px;
 
 }
 
 #donateMoney {
-    background-color: #4B0539;
+    background-color: #00A896;
     height: 300px;
     margin: 0;
     display: flex;
@@ -81,7 +81,7 @@ font-size: 80px;
 
 }
 #donateMoney h1 {
-color: #CCB54C;
+color:#F0F3BD;
 font-size: 80px;
 
 }

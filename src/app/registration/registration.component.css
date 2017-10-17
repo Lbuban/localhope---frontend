@@ -6,17 +6,17 @@ form {
     text-align: center;
 }
 #title  {
-    color: #CCB54C;
-    background-color: #182D48;
+    color: #F0F3BD;
+    background-color: #05668D;
     padding-top: 5px;
 }
 #color1 {
-    background-color: #596B56;
+    background-color: #F0F3BD;
     padding: 20px;
 }
 .control-label  {
-    color: #CCB54C; 
+    color: #05668D; 
 }
 .form-control   {
-    background-color: lightgrey;
+    background-color: #FEFEFE;
 }
