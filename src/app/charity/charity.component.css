@@ -12,3 +12,7 @@ input {
 .modalHide {
     display: none !important;
 }
+
+td, th {
+    text-align: center;
+}
