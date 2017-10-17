@@ -79,6 +79,9 @@ export class CharityComponent implements OnInit {
       },
       error => this.errorMessage = <any>error);
     this.need = '';
+    // jQuery("#editNeedForm").addClass("modalHide")
+    setTimeout((jQuery("#closeButton").click()), 500)
+    // jQuery("body").removeClass("modal-open")
     this.getNeeds();
   }
 
@@ -87,10 +90,10 @@ export class CharityComponent implements OnInit {
       .subscribe(
       needs => {
         this.needs = needs,
-        this.dataTableSucks.dtInstance.then(inst => {
-          inst && inst.destroy();
-          this.dtTrigger.next();
-        });
+          this.dataTableSucks.dtInstance.then(inst => {
+            inst && inst.destroy();
+            this.dtTrigger.next();
+          });
       },
       error => this.errorMessage = <any>error);
 
@@ -136,7 +139,7 @@ export class CharityComponent implements OnInit {
 
 
   deleteCharityNeed(needid: number) { //function to delete a charity from the record. 
-    this.dataService.deleteRecord("deleteneed", needid)
+    this.dataService.deleteRecord("deleteneed", needid, this.userId)
 
       .subscribe(
       need => {

@@ -113,7 +113,7 @@ export class DataService {
         return Observable.throw(errMsg);
     }
     //Charity need Delete function: string="deleteneed", needid="#"
-    deleteRecord(endpoint: string, needid:number): Observable<object> {
+    deleteRecord(endpoint: string, needid:number, userID? ): Observable<object> {
         let apiUrl = `${this.baseUrl}${endpoint}/${needid}`;
         return this.http.delete(apiUrl)
             .map(this.extractData)
