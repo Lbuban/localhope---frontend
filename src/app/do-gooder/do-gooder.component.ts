@@ -21,6 +21,7 @@ export class DoGooderComponent implements OnInit {
   needs: any[];
   need;
   needId;
+  giveNeed: any;
   users;
   mode = 'Observable';
   charities;
@@ -44,6 +45,7 @@ export class DoGooderComponent implements OnInit {
     this.getUser();
   }
 
+  
   getNeeds() { //function to pull the needs list.
     this.dataService.getRecords("dogooder")
       .subscribe(
@@ -55,6 +57,10 @@ export class DoGooderComponent implements OnInit {
         },
         error =>  this.errorMessage = <any>error);
         
+  }
+
+  getRecordForEdit(need: any) { //function to edit a selected charity need // GET /need/:need_id
+    this.giveNeed = need;
   }
 
   getUser(){
@@ -105,11 +111,10 @@ export class DoGooderComponent implements OnInit {
             this.need = '';
     }
   
-    giveNeed(needId){ //function to save a need once one has been added.
-    
-    let idJSON= JSON.stringify(this.userId)
-    console.log(idJSON)
-    this.dataService.postNeedMet("needstatus", needId, idJSON)
+    decrementNeed(needId, decrement){ //function to save a need once one has been added.
+    let decrementNumber = parseInt(decrement)
+    console.log(needId, decrementNumber)
+    this.dataService.addDecrementNeed("needreduce", needId, decrementNumber)
     
           .subscribe(
             need => {this.successMessage = "Need added successfully";
