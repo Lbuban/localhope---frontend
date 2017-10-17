@@ -87,6 +87,16 @@ export class DoGooderComponent implements OnInit {
         error =>  this.errorMessage = <any>error);
   }
 
+  findLocalCharities(distance: string) { //function to pull the charity list.
+    let distanceNumber = parseInt(distance)
+    this.charityService.locateUser("", this.userId, distanceNumber)
+      .subscribe(
+        charities => {
+          this.charities = charities;
+          console.log(charities)
+          },
+        error =>  this.errorMessage = <any>error);
+  }
 
 
   followCharity(charityId){ //function to save a need once one has been added.
