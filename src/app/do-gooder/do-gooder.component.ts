@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataService } from '../data.service'; //this is pulling info from the data service
 // import { MdDialog, MdDialogRef } from '@angular/material';
 import { CharityService } from '../charity.service'
-import { DataTablesModule } from 'angular-datatables';
+import { DataTablesModule, DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs/Rx';
 
 @Component({
@@ -21,6 +21,7 @@ export class DoGooderComponent implements OnInit {
   needs: any[];
   need;
   needId;
+  giveNeed: any;
   users;
   mode = 'Observable';
   charities;
@@ -33,6 +34,8 @@ export class DoGooderComponent implements OnInit {
 
   ) {} 
 
+  @ViewChild(DataTableDirective) dataTableElement: DataTableDirective;
+
   ngOnInit() 
   { 
     this.dtOptions = {
@@ -42,23 +45,35 @@ export class DoGooderComponent implements OnInit {
     this.getUser();
   }
 
+  
   getNeeds() { //function to pull the needs list.
     this.dataService.getRecords("dogooder")
       .subscribe(
         needs => {this.needs = needs;
+          this.dataTableElement.dtInstance.then(inst => {
+            inst && inst.destroy();
+          });
           this.dtTrigger.next();
         },
         error =>  this.errorMessage = <any>error);
         
   }
 
+  getRecordForEdit(need: any) { //function to edit a selected charity need // GET /need/:need_id
+    this.giveNeed = need;
+  }
+
   getUser(){
       this.dataService.getCharityNeed("user/followedcharities", this.userId)
       
       .subscribe(
-        users => {this.users = users},
+        users => {this.users = users
+          this.dataTableElement.dtInstance.then(inst => {
+            inst && inst.destroy();
+          });
+          this.dtTrigger.next();
+        },
         error =>  this.errorMessage = <any>error);
-        
          }
 
 
@@ -96,11 +111,10 @@ export class DoGooderComponent implements OnInit {
             this.need = '';
     }
   
-    giveNeed(needId){ //function to save a need once one has been added.
-    
-    let idJSON= JSON.stringify(this.userId)
-    console.log(idJSON)
-    this.dataService.postNeedMet("needstatus", needId, idJSON)
+    decrementNeed(needId, decrement){ //function to save a need once one has been added.
+    let decrementNumber = parseInt(decrement)
+    console.log(needId, decrementNumber)
+    this.dataService.addDecrementNeed("needreduce", needId, decrementNumber)
     
           .subscribe(
             need => {this.successMessage = "Need added successfully";
