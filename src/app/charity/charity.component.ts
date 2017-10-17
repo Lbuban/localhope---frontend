@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { DataService } from '../data.service';
-import { DataTablesModule } from 'angular-datatables';
+import { DataTablesModule, DataTableDirective } from 'angular-datatables';
 import { DialogComponent, DialogService } from "ng2-bootstrap-modal";
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ActivatedRoute, Params } from '@angular/router';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 import { Subject } from 'rxjs/Rx';
 
 
@@ -17,7 +17,7 @@ import { Subject } from 'rxjs/Rx';
 export class CharityComponent implements OnInit {
 
   dtOptions: DataTables.Settings = {};
-  
+
   dtTrigger = new Subject();
 
   //these describe what kind of data these variables can have - i.e. string, number, array, etc. 
@@ -35,6 +35,7 @@ export class CharityComponent implements OnInit {
   sampleForm: NgForm;
   editForm: NgForm;
   @ViewChild('sampleForm') currentForm: NgForm;
+  @ViewChild(DataTableDirective) dataTableSucks: DataTableDirective;
 
   model: object = { //"model" is potato.
     type: "",
@@ -58,33 +59,39 @@ export class CharityComponent implements OnInit {
   saveNeed(need: NgForm) { //function to save a need once one has been added.
     console.log(this.model)
     this.dataService.addCharityNeed("charity", this.userId, need.value)
-          .subscribe(
-            need => {this.successMessage = "Need added successfully";
-            
-            },
-            error =>  this.errorMessage = <any>error);
-            this.need = '';
-            this.getNeeds();
-            this.sampleForm.reset();
-    }
+      .subscribe(
+      need => {
+      this.successMessage = "Need added successfully";
 
-    saveEditedNeed(need: NgForm) { //function to save an edited need.
-      console.log()
-      this.dataService.editRecord("updateneed", need.value, need.value.id)
-            .subscribe(
-              need => {this.successMessage = "Need added successfully";
-              },
-              error =>  this.errorMessage = <any>error);
-              this.need = '';
-              this.getNeeds();
-      }
+      },
+      error => this.errorMessage = <any>error);
+    this.need = '';
+    this.getNeeds();
+    this.sampleForm.reset();
+  }
+
+  saveEditedNeed(need: NgForm) { //function to save an edited need.
+    console.log()
+    this.dataService.editRecord("updateneed", need.value, need.value.id)
+      .subscribe(
+      need => {
+      this.successMessage = "Need added successfully";
+      },
+      error => this.errorMessage = <any>error);
+    this.need = '';
+    this.getNeeds();
+  }
 
   getNeeds() { //function to pull the needs list.
     this.dataService.getCharityNeeds(this.userId)
       .subscribe(
-      needs => {this.needs = needs,
-      this.dtTrigger.next();
-    },
+      needs => {
+        this.needs = needs,
+        this.dataTableSucks.dtInstance.then(inst => {
+          inst && inst.destroy();
+          this.dtTrigger.next();
+        });
+      },
       error => this.errorMessage = <any>error);
 
   }
@@ -128,16 +135,17 @@ export class CharityComponent implements OnInit {
   }
 
 
-  deleteCharityNeed(needid:number) { //function to delete a charity from the record. 
-        this.dataService.deleteRecord("deleteneed", needid)
-        
-          .subscribe(
-            need => {this.successMessage = "Need deleted successfully";
-            },
-            error =>  this.errorMessage = <any>error);
-            
-      }
-   
+  deleteCharityNeed(needid: number) { //function to delete a charity from the record. 
+    this.dataService.deleteRecord("deleteneed", needid)
+
+      .subscribe(
+      need => {
+      this.successMessage = "Need deleted successfully";
+      },
+      error => this.errorMessage = <any>error);
+
+  }
+
   //start out the errors as an emtpy string
   formErrors = {
     'type': '',
