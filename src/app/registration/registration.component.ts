@@ -38,7 +38,7 @@ sendUser = new EventEmitter<any>();
 
 
   registerUser(user: NgForm){ //function to save a user once one has been added.
-    // console.log(JSON.stringify(user.value))
+    console.log(JSON.stringify(user.value))
     this.dataService.addRecord("registration", user.value)
      .subscribe(
         user => {
@@ -175,7 +175,8 @@ sendUser = new EventEmitter<any>();
     },
     'email': {
       'required': 'A email is required',
-      'maxlength': 'Email cannot be more than 100 characters long'
+      'maxlength': 'Email cannot be more than 100 characters long',
+      'email': "Must be formatted as an email address"
     },
     'ein': {
       'required': 'A EIN is required',
