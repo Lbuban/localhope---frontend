@@ -28,6 +28,7 @@ export class CharityComponent implements OnInit {
   needs;
   editNeed: any;
   needid: number;
+  charityid: number;
 
 
   constructor(private dataService: DataService, private router: Router) { }
@@ -132,15 +133,26 @@ export class CharityComponent implements OnInit {
 
 
   deleteCharityNeed(needid:number) { //function to delete a charity from the record. 
-        this.dataService.deleteRecord("deleteneed", needid, this.userId)
+    this.dataService.deleteRecord("deleteneed", needid, this.userId)
+    
+      .subscribe(
+        need => {this.successMessage = "Need deleted successfully";
+      },
+      error =>  this.errorMessage = <any>error);
         
-          .subscribe(
-            need => {this.successMessage = "Need deleted successfully";
-            },
-            error =>  this.errorMessage = <any>error);
-            
-      }
-   
+  }
+  notifyFollowers(charityID: number, needID: number){
+    this.dataService.postNotifyFollowers("message", charityID, needID)
+    .subscribe(
+      need => {this.successMessage = "followers notified successfully";
+      
+      },
+      error =>  this.errorMessage = <any>error);
+      this.need = '';
+      this.getNeeds();
+      this.sampleForm.reset();
+  }
+
   //start out the errors as an emtpy string
   formErrors = {
     'type': '',

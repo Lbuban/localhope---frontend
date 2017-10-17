@@ -73,23 +73,28 @@
 <table [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" datatable class="table table-hover table-bordered" id="dataTable" style="width:100%">
   <thead>
     <tr>
-      <th>Charity ID</th>
+      <th>Need ID</th>
       <th>Charity Name</th>
       <th>Donation Type</th>
       <th>Need by Date</th>
       <th>Description</th>
       <th>Original Amount</th>
+      <th>Notify Followers</th>
       <th>Edit</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let need of needs">
       <td>{{need.id}}</td>
-      <td>{{need.users[0].charityName}}</td>
+      <td>{{need.users[0].charityName}} {{need.users[0].id}}</td>
       <td>{{need.type}}</td>
       <td>{{need.dateNeeded}}</td>
       <td>{{need.description}}</td>
       <td>{{need.originalAmount}}</td>
+      <td id="notifyButton" class="text-center">
+          <button class="btn btn-primary glyphicon glyphicon-send" (click)="notifyFollowers( need.users[0].id , need.id)"></button>
+          
+        </td>
       <td id="editButton" class="text-center">
         <button class="btn btn-primary glyphicon glyphicon-pencil" (click)="getRecordForEdit(need)" data-toggle="modal" data-target="#editNeedForm"></button>
       </td>
