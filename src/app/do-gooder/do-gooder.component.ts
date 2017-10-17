@@ -46,8 +46,6 @@ export class DoGooderComponent implements OnInit {
     this.dataService.getRecords("dogooder")
       .subscribe(
         needs => {this.needs = needs;
-          this.dtTrigger.next();
-        
         },
         error =>  this.errorMessage = <any>error);
         

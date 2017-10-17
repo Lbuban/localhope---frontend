@@ -60,6 +60,19 @@ export class CharityComponent implements OnInit {
             this.getNeeds();
             this.sampleForm.reset();
     }
+  
+  saveEditedNeed(need: NgForm) { //function to save an edited need.
+    console.log()
+    this.dataService.editRecord("updateneed", need.value, need.value.id)
+      .subscribe(
+      need => {
+      this.successMessage = "Need added successfully";
+      },
+      error => this.errorMessage = <any>error);
+    this.need = '';
+    setTimeout((jQuery("#closeButton").click()), 500)
+    this.getNeeds();
+  }
 
   getNeeds() { //function to pull the needs list.
     this.dataService.getCharityNeeds(this.userId)
