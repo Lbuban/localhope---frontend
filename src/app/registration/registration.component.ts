@@ -89,10 +89,10 @@ sendUser = new EventEmitter<any>();
 
     onChange(){
  
-  if (this.isCharity=="User") 
+  if (this.isCharity==="User") 
     {
      this.userCheck=true}
-  else if (this.isCharity=="Charity")  
+  else if (this.isCharity==="Charity")  
      {this.userCheck=false};
   }
    
