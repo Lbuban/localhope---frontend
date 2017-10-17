@@ -35,7 +35,7 @@ export class CharityComponent implements OnInit {
   sampleForm: NgForm;
   editForm: NgForm;
   @ViewChild('sampleForm') currentForm: NgForm;
-  @ViewChild(DataTableDirective) dataTableSucks: DataTableDirective;
+  @ViewChild(DataTableDirective) dataTableElement: DataTableDirective;
 
   model: object = { //"model" is potato.
     type: "",
@@ -90,7 +90,7 @@ export class CharityComponent implements OnInit {
       .subscribe(
       needs => {
         this.needs = needs,
-          this.dataTableSucks.dtInstance.then(inst => {
+          this.dataTableElement.dtInstance.then(inst => {
             inst && inst.destroy();
             this.dtTrigger.next();
           });
