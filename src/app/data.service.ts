@@ -48,7 +48,7 @@ export class DataService {
     //         .map(this.extractData);
     // }
 
-    addCharityNeed(endpoint: string, userID, record: object): Observable<any> {
+    addCharityNeed(endpoint: string, userID, record): Observable<any> {
         let apiUrl = `${this.baseUrl}${endpoint}/${userID}`;
         console.log(apiUrl)
         return this.http.post(apiUrl, record)
@@ -113,13 +113,20 @@ export class DataService {
         return Observable.throw(errMsg);
     }
     //Charity need Delete function: string="deleteneed", needid="#"
-    deleteRecord(endpoint: string, needid:number, userID? ): Observable<object> {
+    deleteRecord(endpoint: string, needid:number, record? ): Observable<object> {
         let apiUrl = `${this.baseUrl}${endpoint}/${needid}`;
         return this.http.delete(apiUrl)
             .map(this.extractData)
             .catch(this.handleError);
     }
-
-
+  addDecrementNeed(endpoint: string, userID, record): Observable<any> {
+        let apiUrl = `${this.baseUrl}${endpoint}/${userID}`;
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers, withCredentials: true });
+        
+        console.log(apiUrl)
+        return this.http.post(apiUrl, record, options)
+            .map(this.extractData);
+    }
 }
 
