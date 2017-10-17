@@ -8,7 +8,7 @@ import 'rxjs/add/observable/throw';
 @Injectable()
 export class CharityService {
 
-  private baseUrl = "https://api.data.charitynavigator.org/v2/Organizations/"
+  private baseUrl = "https://localhope-backend.herokuapp.com/"
 
   constructor (private http: Http) {}
   
