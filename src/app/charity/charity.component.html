@@ -79,6 +79,7 @@
       <th>Need by Date</th>
       <th>Description</th>
       <th>Original Amount</th>
+      <th>Notify Followers</th>
       <th>Need Met</th>
       <th>Edit</th>
     </tr>
@@ -86,11 +87,15 @@
   <tbody>
     <tr *ngFor="let need of needs">
       <td>{{need.id}}</td>
-      <td>{{need.users[0].charityName}}</td>
+      <td>{{need.users[0].charityName}} {{need.users[0].id}}</td>
       <td>{{need.type}}</td>
       <td>{{need.dateNeeded}}</td>
       <td>{{need.description}}</td>
       <td>{{need.originalAmount}}</td>
+      <td id="notifyButton" class="text-center">
+          <button class="btn btn-primary glyphicon glyphicon-send" (click)="notifyFollowers( need.users[0].id , need.id)"></button>
+          
+        </td>
       <td *ngIf="need.needMet">yes</td>
       <td *ngIf="!need.needMet">no</td>
       <td id="editButton" class="text-center">

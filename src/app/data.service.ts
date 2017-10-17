@@ -119,6 +119,23 @@ export class DataService {
             .map(this.extractData)
             .catch(this.handleError);
     }
+    postNotifyFollowers(endpoint: string, charityID: number, NeedID: number) : Observable<any> {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        let apiUrl = `${this.baseUrl}${endpoint}/${charityID}`;
+        console.log(apiUrl)
+        return this.http.post(apiUrl, NeedID, options)
+            .map(this.extractData);
+    }
+    // sample code: 
+    // addCharityNeed(endpoint: string, userID, record: object): Observable<any> {
+    //     let apiUrl = `${this.baseUrl}${endpoint}/${userID}`;
+    //     console.log(apiUrl)
+    //     return this.http.post(apiUrl, record)
+    //         .map(this.extractData);
+    // }
+
+
   addDecrementNeed(endpoint: string, userID, record): Observable<any> {
         let apiUrl = `${this.baseUrl}${endpoint}/${userID}`;
         let headers = new Headers({ 'Content-Type': 'application/json' });
