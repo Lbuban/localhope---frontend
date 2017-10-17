@@ -76,6 +76,9 @@ export class CharityComponent implements OnInit {
               },
               error =>  this.errorMessage = <any>error);
               this.need = '';
+              // jQuery("#editNeedForm").addClass("modalHide")
+              setTimeout((jQuery("#closeButton").click()), 500)
+              // jQuery("body").removeClass("modal-open")
               this.getNeeds();
       }
 
@@ -129,7 +132,7 @@ export class CharityComponent implements OnInit {
 
 
   deleteCharityNeed(needid:number) { //function to delete a charity from the record. 
-        this.dataService.deleteRecord("deleteneed", needid)
+        this.dataService.deleteRecord("deleteneed", needid, this.userId)
         
           .subscribe(
             need => {this.successMessage = "Need deleted successfully";
