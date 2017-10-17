@@ -80,6 +80,7 @@
       <th>Description</th>
       <th>Original Amount</th>
       <th>Notify Followers</th>
+      <th>Need Met</th>
       <th>Edit</th>
     </tr>
   </thead>
@@ -95,6 +96,8 @@
           <button class="btn btn-primary glyphicon glyphicon-send" (click)="notifyFollowers( need.users[0].id , need.id)"></button>
           
         </td>
+      <td *ngIf="need.needMet">yes</td>
+      <td *ngIf="!need.needMet">no</td>
       <td id="editButton" class="text-center">
         <button class="btn btn-primary glyphicon glyphicon-pencil" (click)="getRecordForEdit(need)" data-toggle="modal" data-target="#editNeedForm"></button>
       </td>
