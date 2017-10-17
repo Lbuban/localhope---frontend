@@ -79,8 +79,9 @@
       <th>Need by Date</th>
       <th>Description</th>
       <th>Original Amount</th>
-      <th>Notify Followers</th>
       <th>Need Met</th>
+      <th>hasFollowers</th>
+      <th>Notify Followers</th>
       <th>Edit</th>
     </tr>
   </thead>
@@ -92,12 +93,12 @@
       <td>{{need.dateNeeded}}</td>
       <td>{{need.description}}</td>
       <td>{{need.originalAmount}}</td>
-      <td id="notifyButton" class="text-center">
-          <button class="btn btn-primary glyphicon glyphicon-send" (click)="notifyFollowers( need.users[0].id , need.id)"></button>
-          
-        </td>
       <td *ngIf="need.needMet">yes</td>
       <td *ngIf="!need.needMet">no</td>
+      <td>{{need.hasFollowers}}</td>
+      <td id="notifyButton" class="text-center">
+          <button ng-disabled="!need.hasFollowers" class="btn btn-primary glyphicon glyphicon-send" (click)="notifyFollowers( need.users[0].id , need.id)"></button> 
+      </td>
       <td id="editButton" class="text-center">
         <button class="btn btn-primary glyphicon glyphicon-pencil" (click)="getRecordForEdit(need)" data-toggle="modal" data-target="#editNeedForm"></button>
       </td>
