@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataService } from '../data.service'; //this is pulling info from the data service
 // import { MdDialog, MdDialogRef } from '@angular/material';
 import { CharityService } from '../charity.service'
-import { DataTablesModule } from 'angular-datatables';
+import { DataTablesModule, DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs/Rx';
 
 @Component({
@@ -33,6 +33,8 @@ export class DoGooderComponent implements OnInit {
 
   ) {} 
 
+  @ViewChild(DataTableDirective) dataTableElement: DataTableDirective;
+
   ngOnInit() 
   { 
     this.dtOptions = {
@@ -46,6 +48,9 @@ export class DoGooderComponent implements OnInit {
     this.dataService.getRecords("dogooder")
       .subscribe(
         needs => {this.needs = needs;
+          this.dataTableElement.dtInstance.then(inst => {
+            inst && inst.destroy();
+          });
           this.dtTrigger.next();
         },
         error =>  this.errorMessage = <any>error);
@@ -56,9 +61,13 @@ export class DoGooderComponent implements OnInit {
       this.dataService.getCharityNeed("user/followedcharities", this.userId)
       
       .subscribe(
-        users => {this.users = users},
+        users => {this.users = users
+          this.dataTableElement.dtInstance.then(inst => {
+            inst && inst.destroy();
+          });
+          this.dtTrigger.next();
+        },
         error =>  this.errorMessage = <any>error);
-        
          }
 
 
