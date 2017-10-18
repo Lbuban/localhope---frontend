@@ -1,8 +1,8 @@
-id="donateTime" class="col-md-8 col-sm-6"
+
 h1 {
     font-family: 'Neucha', cursive;
     font-size: 55px;
-    color :#CCB54C;
+    color: #CCB54C;
     text-align: center;
 }
 
@@ -12,12 +12,11 @@ h3 {
 }
 
 .wrapper {
-    
     width: 90%;
     margin: auto, 0;
     padding:0;
-
 }
+
 .regButton {
     text-align: center;
 }
@@ -28,15 +27,14 @@ h3 {
     background-color: #182D48;
     border-color: #CCB54C;
     border-width: 5px;
-
 }
+
  .rowOneCarousel {
     float: right;
     padding: 0;
 } 
-/* .item.left img */
 
-.carousel img{
+.carousel img {
     height: 300px;
     width: 400px;
 }
@@ -45,53 +43,13 @@ h3 {
     background-color: #596B56;
     height: 300px;
     color: white;
-    /* margin: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center; */
-
-}
-/* #donateTime h1 {
-color: #CCB54C;
-font-size: 80px;
-
 }
 
-#donateItems {
-    background-color: #182D48;
-    height: 300px;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-}
-#donateItems h1 {
-color: #CCB54C;
-font-size: 80px;
-
-}
-
-#donateMoney {
+#divDividerThick {
     background-color: #4B0539;
-    height: 300px;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
+    color: white;
 }
-#donateMoney h1 {
-color: #CCB54C;
-font-size: 80px;
 
-} */
-#divDividerThick    {
-background-color: #4B0539;
-color: white;
-/* margin-top: 20px;
-margin-bottom: 20px; */
-}
 #copyright {
     background-color: #182D48;
     color: white;
@@ -103,6 +61,7 @@ margin-bottom: 20px; */
     padding-right: 10px;
     padding-top: -10px;
 }
+
 .title  {
     color: #CCB54C;
 }

@@ -8,19 +8,11 @@ import {Router} from '@angular/router';
   styleUrls: ['./contact-us.component.css']
 })
 export class ContactUsComponent implements OnInit {
-  // contactUsForm: NgForm;
-  // successMessage: string;
-  // errorMessage: string;
-  // isCharity;
-  // userCheck;
-  // user;
+
   
-
-
   constructor() { }
 
   ngOnInit() {
   }
 
 }
-// export default ContactUsComponent
