@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { DataService } from '../data.service'; //this is pulling info from the data service
-// import { MdDialog, MdDialogRef } from '@angular/material';
+import { DataService } from '../data.service'; 
 import { CharityService } from '../charity.service'
 import { DataTablesModule } from 'angular-datatables';
 
@@ -28,25 +27,22 @@ export class DoGooderComponent implements OnInit {
   constructor( 
     private dataService: DataService,
     private charityService: CharityService
-
   ) {} 
 
-  
-
-  ngOnInit() 
-  { 
+  ngOnInit() { 
     this.getNeeds();
     this.getUser();
   }
 
   
-  getNeeds() { //function to pull the needs list.
+  getNeeds() { //function to pull the needs list from charities with needs.
+    // call the dataService and the getRecords function. Pass in the "dogooder" endpoint.
     this.dataService.getRecords("dogooder")
+    // once function is called, subscribe/populate the table with needs.
       .subscribe(
         needs => {this.needs = needs;
         },
         error =>  this.errorMessage = <any>error);
-        
   }
 
   getRecordForEdit(need: any) { //function to edit a selected charity need // GET /need/:need_id
@@ -91,7 +87,7 @@ export class DoGooderComponent implements OnInit {
 
 
 
-  followCharity(charityId){ //function to save a need once one has been added.
+  followCharity(charityId){ //function for a user to follow a selected charity.
     console.log(JSON.stringify(charityId))
     this.dataService.postFollowCharity("user/followcharity", this.userId, JSON.stringify(charityId))
     
@@ -102,7 +98,7 @@ export class DoGooderComponent implements OnInit {
             this.need = '';
     }
 
-    unfollowCharity(charityId){ //function to save a need once one has been added.
+    unfollowCharity(charityId){ //function for a user to unfollow a selected charity.
     
     this.dataService.postFollowCharity("user/unfollowcharity", this.userId, JSON.stringify(charityId))
     

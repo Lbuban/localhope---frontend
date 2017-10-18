@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { DataService } from '../data.service'
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navigation',
@@ -16,94 +16,86 @@ export class NavigationComponent implements OnInit {
   userCheck;
   user;
   welcome = localStorage.getItem('username');
-  type= localStorage.getItem('type')
- 
- 
-  
+  type = localStorage.getItem('type')
+
+
+//ViewChild is used here so that we can "watch" the loginform for any changes made to the DOM. 
   @ViewChild('loginForm') currentForm: NgForm;
 
   constructor(private dataService: DataService, private router: Router) { }
 
-  ngOnInit() { this.checkUser()}
+  ngOnInit() { this.checkUser() }
 
-  checkUser() { console.log(this.type)
-                if (this.type=="User") {
-                this.router.navigateByUrl('/dogooder'); 
-                this.type==null;
-              
-                }
-                else if (this.type=="Charity") {
-                this.router.navigateByUrl('/charity');
-                this.type==null;
-                }
-              }
+  checkUser() {
+    console.log(this.type)
+    if (this.type == "User") {
+      this.router.navigateByUrl('/dogooder');
+      this.type == null;
 
-  
-  loginUser(user: NgForm){ //function to login a new or existing user.
-    // console.log(JSON.stringify(user.value))
+    }
+    else if (this.type == "Charity") {
+      this.router.navigateByUrl('/charity');
+      this.type == null;
+    }
+  }
+
+
+  loginUser(user: NgForm) { //function to login an existing user or charity.
     this.dataService.addRecord("sessions", user.value)
       .subscribe(
-        user => {
-          this.successMessage = "login successful";
-          this.welcome = user.firstName
-            if (user.isCharity=="User") {
-              localStorage.setItem('userid', user.id);
-              localStorage.setItem('username', user.firstName);
-              localStorage.setItem('type', user.isCharity);
-              this.router.navigateByUrl('/dogooder'); 
-             
-            }
-            else if (user.isCharity=="Charity") {
-              localStorage.setItem('userid', user.id);
-              localStorage.setItem('username', user.firstName);
-              localStorage.setItem('type', user.isCharity);
+      user => {
+        this.successMessage = "login successful";
+        this.welcome = user.firstName
+        //use local storage to store the userid, username and type as user navigates throughout the site.
+        if (user.isCharity == "User") {
+          localStorage.setItem('userid', user.id);
+          localStorage.setItem('username', user.firstName);
+          localStorage.setItem('type', user.isCharity);
+          this.router.navigateByUrl('/dogooder');
+        }
+        else if (user.isCharity == "Charity") {
+          localStorage.setItem('userid', user.id);
+          localStorage.setItem('username', user.firstName);
+          localStorage.setItem('type', user.isCharity);
+          this.router.navigateByUrl('/charity');
+        }
+      },
+      error => this.errorMessage = <any>error
 
-              this.router.navigateByUrl('/charity');
-            }
-            
-        },
-        error => this.errorMessage = <any>error
-       
       );
 
     this.user = '';
     ;
-      
-            
-    }
 
-    ngAfterViewChecked() {
-      this.formChanged();
-    }
-  
-    formChanged() {
-      //if the form didn't change then do nothing
-      if (this.currentForm === this.loginForm) { return; }
-      //set the form to the current form for comparison
-      this.loginForm = this.currentForm;
-      //subscribe to form changes and send the changes to the onValueChanged method
-      this.loginForm.valueChanges
-        .subscribe(data => this.onValueChanged(data));
-     
-    }
-
-    onChange(){
- 
-  if (this.isCharity=="User") 
-    {
-     this.userCheck=true}
-  else if (this.isCharity=="Charity")  
-     {this.userCheck=false};
   }
-   
+
+  ngAfterViewChecked() {
+    this.formChanged();
+  }
+
+  formChanged() {
+    //if the form didn't change then do nothing
+    if (this.currentForm === this.loginForm) { return; }
+    //set the form to the current form for comparison
+    this.loginForm = this.currentForm;
+    //subscribe to form changes and send the changes to the onValueChanged method
+    this.loginForm.valueChanges
+      .subscribe(data => this.onValueChanged(data));
+  }
+
+  onChange() {
+    if (this.isCharity == "User") {
+      this.userCheck = true
+    }
+    else if (this.isCharity == "Charity") { this.userCheck = false };
+  }
+
   onValueChanged(data?: any) {
     let form = this.loginForm.form;
-
     for (const field in this.formErrors) {
       // clear previous error message (if any)
       this.formErrors[field] = '';
       const control = form.get(field);
-
       if (control && control.dirty && !control.valid) {
         const messages = this.validationMessages[field];
         for (const key in control.errors) {
@@ -113,14 +105,15 @@ export class NavigationComponent implements OnInit {
     }
   }
 
-  logOut(){
+  logOut() { //function to log-out user
     console.log("done")
     localStorage.removeItem("username")
     localStorage.removeItem("type")
     this.router.navigateByUrl('/home');
-    this.welcome=null;
-    this.user=null;
+    this.welcome = null;
+    this.user = null;
   }
+
   formErrors = {
     'username': '',
     'password': '',
