@@ -27,7 +27,7 @@ sendUser = new EventEmitter<any>();
 
  constructor(private dataService: DataService, private router: Router) { } 
 
-  // onSubmit() { //function to submit the data once the button is clicked.
+  // onSubmit() { //function to submit the data once the Submit button is clicked.
   //   // console.log(this.sampleForm) //.value gets us the value of the form field. Data is potato.
   //   console.log(this.model);
   // }
