@@ -30,7 +30,7 @@
 <h1>
   Charity Needs Page
 </h1>
-
+<div *ngIf="!needs">Loading...</div>
 <div *ngIf="!charities">
   <table class="table table-hover table-bordered" id="dataTable" style="width:100%">
     <thead>

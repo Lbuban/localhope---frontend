@@ -20,7 +20,7 @@ export class DataService {
             .catch(this.handleError);
     }
 
-    getCharityNeeds(userID: number): Observable<any[]> {
+    getCharityNeeds(userID): Observable<any[]> {
         let apiUrl = `${this.baseUrl}charity/${userID}`;
         return this.http.get(apiUrl)
             .map(this.extractData)
@@ -34,6 +34,8 @@ export class DataService {
             .catch(this.handleError);
     }
 
+    //Post to the backend
+
     addRecord(endpoint: string, record: object): Observable<any> {
         let apiUrl = `${this.baseUrl}${endpoint}`;
         console.log(apiUrl)
@@ -41,12 +43,6 @@ export class DataService {
             .map(this.extractData);
     }
 
-    // editRecord(endpoint: string, id: any, record: object): Observable<any> {
-    //     let apiUrl = `${this.baseUrl}${endpoint}/${id}`;
-    //     console.log(apiUrl)
-    //     return this.http.put(apiUrl, record)
-    //         .map(this.extractData);
-    // }
 
     addCharityNeed(endpoint: string, userID, record): Observable<any> {
         let apiUrl = `${this.baseUrl}${endpoint}/${userID}`;
@@ -71,8 +67,28 @@ export class DataService {
         console.log(apiUrl)
         return this.http.post(apiUrl, record, options)
             .map(this.extractData);
-}
+    }
 
+     postNotifyFollowers(endpoint: string, charityID: number, NeedID: number) : Observable<any> {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        let apiUrl = `${this.baseUrl}${endpoint}/${charityID}`;
+        console.log(apiUrl)
+        return this.http.post(apiUrl, NeedID, options)
+            .map(this.extractData);
+    }
+    
+    addDecrementNeed(endpoint: string, userID, record): Observable<any> {
+        let apiUrl = `${this.baseUrl}${endpoint}/${userID}`;
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers, withCredentials: true });
+        
+        console.log(apiUrl)
+        return this.http.post(apiUrl, record, options)
+            .map(this.extractData);
+    }
+
+//put to the back end for edits
         editRecord(endpoint: string, record: object, userID: number): Observable<object> {
         let apiUrl = `${this.baseUrl}${endpoint}/${userID}`;
         return this.http.put(apiUrl, record)
@@ -81,15 +97,16 @@ export class DataService {
     }
 
 
-    //original charity post option that returns 415 error
-    //     postFollowCharity(endpoint:string, userID, record):Observable<any> {
-    //      let apiUrl = `${this.baseUrl}${endpoint}/${userID}`;
-    //     console.log(apiUrl)
-    //     return this.http.post(apiUrl, record)
-    //         .map(this.extractData);
-    //   }
+    //deletes
+     //Charity need Delete function: string="deleteneed", needid="#"
+    deleteRecord(endpoint: string, needid:number, userId:string): Observable<any> {
+        let apiUrl = `${this.baseUrl}${endpoint}/${needid}`;
+        console.log(needid, userId, "service")
+        return this.http.delete(apiUrl, userId )
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
 
-    //take the response and turn it into JSON
     private extractData(res: Response) {
         let results = res.json();
         return results || [];
@@ -112,38 +129,10 @@ export class DataService {
 
         return Observable.throw(errMsg);
     }
-    //Charity need Delete function: string="deleteneed", needid="#"
-    deleteRecord(endpoint: string, needid:number, record? ): Observable<object> {
-        let apiUrl = `${this.baseUrl}${endpoint}/${needid}`;
-        return this.http.delete(apiUrl)
-            .map(this.extractData)
-            .catch(this.handleError);
-    }
-    postNotifyFollowers(endpoint: string, charityID: number, NeedID: number) : Observable<any> {
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
-        let apiUrl = `${this.baseUrl}${endpoint}/${charityID}`;
-        console.log(apiUrl)
-        return this.http.post(apiUrl, NeedID, options)
-            .map(this.extractData);
-    }
-    // sample code: 
-    // addCharityNeed(endpoint: string, userID, record: object): Observable<any> {
-    //     let apiUrl = `${this.baseUrl}${endpoint}/${userID}`;
-    //     console.log(apiUrl)
-    //     return this.http.post(apiUrl, record)
-    //         .map(this.extractData);
-    // }
+   
+ 
+   
 
-
-  addDecrementNeed(endpoint: string, userID, record): Observable<any> {
-        let apiUrl = `${this.baseUrl}${endpoint}/${userID}`;
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers, withCredentials: true });
-        
-        console.log(apiUrl)
-        return this.http.post(apiUrl, record, options)
-            .map(this.extractData);
-    }
+  
 }
 

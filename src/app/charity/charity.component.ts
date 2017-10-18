@@ -24,7 +24,7 @@ export class CharityComponent implements OnInit {
   successMessage: string;
   errorMessage: string;
   need: string;
-  userId = parseInt(localStorage.getItem('userid'));
+  userId = localStorage.getItem('userid');
   needs;
   editNeed: any;
   needid: number;
@@ -91,12 +91,7 @@ export class CharityComponent implements OnInit {
  
       .subscribe(
       needs => {
-        this.needs = needs,
-          this.dataTableElement.dtInstance.then(inst => {
-            inst && inst.destroy();
-            this.dtTrigger.next();
-          });
-      },
+        this.needs = needs},
       error => this.errorMessage = <any>error);
 
   }
@@ -140,8 +135,9 @@ export class CharityComponent implements OnInit {
   }
 
 
-  deleteCharityNeed(needid:number) { //function to delete a charity from the record. 
-    this.dataService.deleteRecord("deleteneed", needid, this.userId)
+  deleteCharityNeed(needId:number) { //function to delete a charity from the record. 
+   console.log(needId, this.userId)
+    this.dataService.deleteRecord("deleteneed", needId, this.userId)
     
       .subscribe(
         need => {this.successMessage = "Need deleted successfully";
