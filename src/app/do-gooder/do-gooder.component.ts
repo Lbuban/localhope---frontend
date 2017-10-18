@@ -59,15 +59,6 @@ export class DoGooderComponent implements OnInit {
          }
 
 
-  getCharities(ein: string) { //function to pull the charity list.
-    this.charityService.getCharityList(ein)
-      .subscribe(
-        charities => {
-          this.charities = charities;
-          console.log(charities)
-          },
-        error =>  this.errorMessage = <any>error);
-  }
     resetNeeds(option1, option2, option3, option4, option5){
     this.charities=null;
 
