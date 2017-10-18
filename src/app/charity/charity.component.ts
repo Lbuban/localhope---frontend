@@ -137,7 +137,7 @@ export class CharityComponent implements OnInit {
 
   deleteCharityNeed(needId:number) { //function to delete a charity from the record. 
    console.log(needId, this.userId)
-    this.dataService.deleteRecord("deleteneed", needId, this.userId)
+    this.dataService.deleteRecord("deleteneed", needId, JSON.stringify(this.userId))
     
       .subscribe(
         need => {this.successMessage = "Need deleted successfully";

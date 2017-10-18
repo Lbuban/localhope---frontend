@@ -89,7 +89,7 @@ export class DataService {
     }
 
 //put to the back end for edits
-        editRecord(endpoint: string, record: object, userID: number): Observable<object> {
+        editRecord(endpoint: string, record: object, userID: number): Observable<object> {    
         let apiUrl = `${this.baseUrl}${endpoint}/${userID}`;
         return this.http.put(apiUrl, record)
             .map(this.extractData)
@@ -100,9 +100,11 @@ export class DataService {
     //deletes
      //Charity need Delete function: string="deleteneed", needid="#"
     deleteRecord(endpoint: string, needid:number, userId:string): Observable<any> {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers, withCredentials: true });
         let apiUrl = `${this.baseUrl}${endpoint}/${needid}`;
         console.log(needid, userId, "service")
-        return this.http.delete(apiUrl, userId )
+        return this.http.put(apiUrl, userId, options )
             .map(this.extractData)
             .catch(this.handleError);
     }
@@ -129,10 +131,6 @@ export class DataService {
 
         return Observable.throw(errMsg);
     }
-   
- 
-   
-
   
 }
 
