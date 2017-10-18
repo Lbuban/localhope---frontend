@@ -68,8 +68,14 @@ export class DoGooderComponent implements OnInit {
           },
         error =>  this.errorMessage = <any>error);
   }
-  resetNeeds(){
+    resetNeeds(option1, option2, option3, option4, option5){
     this.charities=null;
+
+    option1.checked = false
+    option2.checked = false
+    option3.checked = false
+    option4.checked = false
+    option5.checked = false
     return this.getNeeds();
   };
   findLocalCharities(distance: string) { //function to pull the charity list.
