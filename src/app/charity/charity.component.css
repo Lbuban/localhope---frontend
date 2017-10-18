@@ -1,18 +1,19 @@
 .modal-dialog {
-    width: 900px;
-    max-width: 100%;
-    max-height: 100%;
+  width: 900px;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 input {
-    width: 700px;
-    border-radius: 5px;
+  width: 700px;
+  border-radius: 5px;
 }
 
 .modalHide {
-    display: none !important;
+  display: none !important;
 }
 
-td, th {
-    text-align: center;
+td,
+th {
+  text-align: center;
 }

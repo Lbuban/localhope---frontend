@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { DataService } from '../data.service';
-import { DataTablesModule, DataTableDirective } from 'angular-datatables';
 import { DialogComponent, DialogService } from "ng2-bootstrap-modal";
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { ActivatedRoute, Params } from '@angular/router';
@@ -16,9 +15,7 @@ import { Subject } from 'rxjs/Rx';
 })
 export class CharityComponent implements OnInit {
 
-  dtOptions: DataTables.Settings = {};
 
-  dtTrigger = new Subject();
 
   //these describe what kind of data these variables can have - i.e. string, number, array, etc. 
   successMessage: string;
@@ -36,7 +33,6 @@ export class CharityComponent implements OnInit {
   sampleForm: NgForm;
   editForm: NgForm;
   @ViewChild('sampleForm') currentForm: NgForm;
-  @ViewChild(DataTableDirective) dataTableElement: DataTableDirective;
 
   model: object = { //"model" is potato.
     type: "",
@@ -46,23 +42,18 @@ export class CharityComponent implements OnInit {
   };
 
   ngOnInit() {
-    this.dtOptions = {
-      pagingType: "full_numbers"
-    }
-    this.postuser()
+
+
     this.getNeeds()
   }
 
-  postuser() {
-    console.log(this.userId)
-  }
 
   saveNeed(need: NgForm) { //function to save a need once one has been added.
     console.log(this.model)
     this.dataService.addCharityNeed("charity", this.userId, need.value)
       .subscribe(
       need => {
-      this.successMessage = "Need added successfully";
+        this.successMessage = "Need added successfully";
 
       },
       error => this.errorMessage = <any>error);
@@ -76,22 +67,20 @@ export class CharityComponent implements OnInit {
     this.dataService.editRecord("updateneed", need.value, need.value.id)
       .subscribe(
       need => {
-      this.successMessage = "Need added successfully";
+        this.successMessage = "Need added successfully";
       },
       error => this.errorMessage = <any>error);
     this.need = '';
-    // jQuery("#editNeedForm").addClass("modalHide")
     setTimeout((jQuery("#closeButton").click()), 500)
-    // jQuery("body").removeClass("modal-open")
     this.getNeeds();
   }
 
   getNeeds() { //function to pull the needs list.
     this.dataService.getCharityNeeds(this.userId)
- 
       .subscribe(
       needs => {
-        this.needs = needs},
+        this.needs = needs
+      },
       error => this.errorMessage = <any>error);
 
   }
@@ -103,8 +92,6 @@ export class CharityComponent implements OnInit {
   ngAfterViewChecked() {
     this.formChanged();
   }
-
-
 
   formChanged() {
     //if the form didn't change then do nothing
@@ -135,27 +122,26 @@ export class CharityComponent implements OnInit {
   }
 
 
-  deleteCharityNeed(needId:number) { //function to delete a charity from the record. 
-   console.log(needId, this.userId)
+  deleteCharityNeed(needId: number) { //function to delete a charity from the record. 
+    console.log(needId, this.userId)
     this.dataService.deleteRecord("deleteneed", needId, JSON.stringify(this.userId))
-    
       .subscribe(
-        need => {this.successMessage = "Need deleted successfully";
+      need => {
+      this.successMessage = "Need deleted successfully";
       },
-      error =>  this.errorMessage = <any>error);
-        
+      error => this.errorMessage = <any>error);
   }
-  notifyFollowers(charityID: number, needID: number){
-    
+  notifyFollowers(charityID: number, needID: number) {
+
     this.dataService.postNotifyFollowers("message", charityID, needID)
-    .subscribe(
-      need => {this.successMessage = "followers notified successfully";
-      
+      .subscribe(
+      need => {
+      this.successMessage = "followers notified successfully";
       },
-      error =>  this.errorMessage = <any>error);
-      this.need = '';
-      this.getNeeds();
-      this.sampleForm.reset();
+      error => this.errorMessage = <any>error);
+    this.need = '';
+    this.getNeeds();
+    this.sampleForm.reset();
   }
 
   //start out the errors as an emtpy string
