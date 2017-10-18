@@ -1,21 +1,40 @@
 h1 {
     text-align: center;
+    opacity: none;
 }
 
+#wrapper {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+#container {
+    width: 80%;
+    margin: 0, auto;
+}
 form {
     text-align: center;
 }
 #title  {
     color: #F0F3BD;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     background-color: #05668D;
+    text-shadow: 2px 2px black;
     padding-top: 5px;
 }
 #color1 {
-    background-color: #F0F3BD;
+    background-color: lightgray;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
     padding: 20px;
 }
 .control-label  {
+
     color: #05668D; 
+    text-shadow: .5px .5px black;
+
 }
 .form-control   {
     background-color: #FEFEFE;
