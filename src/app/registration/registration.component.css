@@ -39,3 +39,7 @@ form {
 .form-control   {
     background-color: #FEFEFE;
 }
+
+#charityType {
+    margin-right: 50px;
+}
