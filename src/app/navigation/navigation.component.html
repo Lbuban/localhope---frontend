@@ -1,7 +1,6 @@
+<!-- Bootstrap navigation bar on top -->
 <nav class="navbar navbar-default">
-
-
-
+  
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -13,24 +12,19 @@
       </button>
       <a class="navbar-brand" href="#">LocalHope</a>
     </div>
-
+    <!-- Welcome message on top right. Interpolate the welcome function to dynamically add user's first name, if user is logged in  -->
     <div id="loggedIn">
       <div *ngIf="welcome">Welcome {{welcome}}
+        <!-- Present a log out button, if user is logged in -->
         <button id="logOutButton" (click)="logOut()">Log Out</button>
       </div>
-
     </div>
 
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <!-- <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Link</a></li>
-      </ul> -->
       <div id="notLoggedIn" *ngIf="!welcome">
         <form novalidate (ngSubmit)="loginUser(loginForm)" #loginForm="ngForm" class="form-horizontal" name="loginForm" class="navbar-form navbar-right">
-          <!-- <form novalidate (ngSubmit)="loginUser(loginForm)"  #loginForm="ngForm" class="form-horizontal"> -->
           <div class="form-group">
             <input [ngModel]="" ngModel #username="ngModel" type="text" class="form-control" id="username" name="username" placeholder="enter your Username"
               required minlength="2" maxlength="30">
@@ -41,13 +35,10 @@
           </div>
           <button type="submit" class="btn btn-default">Log-in</button>
         </form>
-
       </div>
       <!-- /.navbar-collapse -->
     </div>
     <!-- /.container-fluid -->
   </div>
-
-
 
 </nav>
