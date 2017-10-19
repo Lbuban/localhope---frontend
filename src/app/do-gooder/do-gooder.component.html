@@ -124,8 +124,10 @@
           <td>{{charity.originalAmount}}</td>
           <td class="text-center">
             <!-- upon click of the "Give" button, call the getRecordForEdit function and pass the selected need. Interpolate the need.id attribute, which dynamically stores the id for each user -->
-            <button attr.data-need-Id="{{charity?.id}}" (click)="getRecordForEdit(charity)" data-toggle="modal" data-target="#giveForm"
-              #give (click)="giveNeed(give.getAttribute('data-need-Id'))" class="btn btn-primary glyphicon glyphicon-gift"></button>
+             <span data-toggle="modal" data-target="#giveForm">
+                <button attr.data-need-Id="{{charity?.id}}" (click)="getRecordForEdit(charity)" data-toggle="tooltip" data-placement="top" title="Tooltip on top"
+                id="give" #give (click)="giveNeed(give.getAttribute('data-need-Id'))" class="btn btn-primary glyphicon glyphicon-gift"></button>
+              </span>
           </td>
           <td class="text-center">
             <!-- upon click of the "Follow" button, call the followCharity function. Interpolate the need.user.id attribute, which dynamically stores it for each user-->
