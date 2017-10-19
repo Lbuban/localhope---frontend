@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC');
 
 h1 {
     font-family: 'Neucha', cursive;
@@ -5,6 +6,7 @@ h1 {
     color: #05668D;
     text-align: center;
     text-shadow: 4px 4px black;
+
 }
 h2 {font-family: 'Neucha', cursive;
     text-align: center;
