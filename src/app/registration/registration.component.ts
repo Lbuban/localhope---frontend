@@ -72,6 +72,8 @@ sendUser = new EventEmitter<any>();
             
     }
 
+
+    
     ngAfterViewChecked() {
       this.formChanged();
     }
