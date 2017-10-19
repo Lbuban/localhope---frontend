@@ -24,6 +24,7 @@ export class DoGooderComponent implements OnInit {
   userId = localStorage.getItem('userid');
   charityJSON;
   counter = 0;
+  coords;
 
   constructor(
     private dataService: DataService,
@@ -33,6 +34,7 @@ export class DoGooderComponent implements OnInit {
   ngOnInit() {
     this.getNeeds();
     this.getUser();
+    this.showPosition();
   }
 
 
@@ -143,4 +145,14 @@ export class DoGooderComponent implements OnInit {
     return setTimeout((jQuery("#closeButton").click()), 500)
   }
 
- 
+  showPosition() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(position => {
+        this.coords = position.coords;
+        console.log(this.coords)
+      });
+    } else {
+      alert("Sorry, your browser does not support HTML5 geolocation.");
+    }
+  }
+}
