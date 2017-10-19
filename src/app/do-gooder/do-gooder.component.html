@@ -188,8 +188,12 @@
               <label for="originalAmount" class="col-sm-2 control-label">Give Amount</label>
               <div class="col-sm-10">
                 <!-- input field that pulls the remaining quantity for that need. User can then dynamically change the amount -->
-                <input value={{giveNeed?.originalAmount}} class="form-control" name="originalAmount" #amount [ngModel]="giveNeed?.originalAmount"
+               <div id="counter">
+                <button type="button" (click)="increaseOne()">+</button>
+               <input [(value)]="counter" id="amount" class="form-control" name="originalAmount" #amount [ngModel]="counter"
                   required>
+                <button type="button" (click)="decreaseOne()">-</button>
+                </div>
               </div>
             </div>
             <!-- Give button to associate the entered amount to that need, decrement upon click. -->
