@@ -142,4 +142,5 @@ export class DoGooderComponent implements OnInit {
     this.counter = 0;
     return setTimeout((jQuery("#closeButton").click()), 500)
   }
-}
+
+ 
