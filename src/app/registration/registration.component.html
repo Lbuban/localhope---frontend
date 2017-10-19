@@ -17,7 +17,7 @@
       <div>
         <div *ngIf="this.userCheck===false || this.userCheck===true">
           <div class="form-group">
-            <label for="username" class="col-sm-2 control-label">Username</label>
+            <label for="username" class="col-sm-2 control-label">Username*</label>
             <div class="col-sm-10">
               <input [ngModel]="registration?.username" ngModel #username="ngModel" type="text" class="form-control" id="username" name="username"
                 placeholder="enter your Username" required minlength="2" maxlength="30" pattern="^\S*$">
@@ -27,7 +27,7 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="password" class="col-sm-2 control-label">Password</label>
+            <label for="password" class="col-sm-2 control-label">Password*</label>
             <div class="col-sm-10">
               <input [ngModel]="registration?.password" ngModel #password="ngModel" type="password" class="form-control" id="password"
                 name="password" placeholder="enter your password" required minlength="6" maxlength="12">
@@ -37,7 +37,7 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="firstName" class="col-sm-2 control-label">First Name</label>
+            <label for="firstName" class="col-sm-2 control-label">First Name*</label>
             <div class="col-sm-10">
               <input [ngModel]="registration?.firstName" ngModel #firstName="ngModel" type="text" class="form-control" id="firstName" name="firstName"
                 required minlength="2" maxlength="200">
@@ -47,7 +47,7 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="lastName" class="col-sm-2 control-label">Last Name</label>
+            <label for="lastName" class="col-sm-2 control-label">Last Name*</label>
             <div class="col-sm-10">
               <input [ngModel]="registration?.lastName" ngModel #lastName="ngModel" type="text" class="form-control" id="lastName" name="lastName"
                 required minlength="2" maxlength="200">
@@ -57,7 +57,7 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="streetAddress" class="col-sm-2 control-label">Street Address</label>
+            <label for="streetAddress" class="col-sm-2 control-label">Street Address*</label>
             <div class="col-sm-10">
               <input [ngModel]="registration?.streetAddress" ngModel #streetAddress="ngModel" type="text" class="form-control" id="streetAddress"
                 name="streetAddress" required maxlength="200">
@@ -67,7 +67,7 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="city" class="col-sm-2 control-label">City</label>
+            <label for="city" class="col-sm-2 control-label">City*</label>
             <div class="col-sm-10">
               <input [ngModel]="registration?.city" ngModel #city="ngModel" type="text" class="form-control" id="city" name="city" required
                 maxlength="50">
@@ -77,7 +77,7 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="state" class="col-sm-2 control-label">State</label>
+            <label for="state" class="col-sm-2 control-label">State*</label>
             <div class="col-sm-10">
               <input [ngModel]="registration?.state" ngModel #state="ngModel" type="text" class="form-control" id="state" name="state"
                 required maxlength="2">
@@ -87,7 +87,7 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="zipCode" class="col-sm-2 control-label">Zip Code</label>
+            <label for="zipCode" class="col-sm-2 control-label">Zip Code*</label>
             <div class="col-sm-10">
               <input [ngModel]="registration?.zip" ngModel #zip="ngModel" type="text" class="form-control" id="zipCode" name="zipCode"
                 placeholder="enter your zip code in this format: 12345" required maxlength="10">
@@ -97,7 +97,7 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="phone" class="col-sm-2 control-label">Phone Number</label>
+            <label for="phone" class="col-sm-2 control-label">Phone Number*</label>
             <div class="col-sm-10">
               <input [ngModel]="" ngModel #phone="ngModel" type="text" class="form-control" id="phone" name="phone" placeholder="enter your phone number in this format: 111-222-3333"
                 required maxlength="15">
@@ -107,7 +107,7 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="email" class="col-sm-2 control-label">Email Address</label>
+            <label for="email" class="col-sm-2 control-label">Email Address*</label>
             <div class="col-sm-10">
               <input [ngModel]="registration?.email" ngModel #email="ngModel" type="text" class="form-control" id="email" name="email"
                 email placeholder="enter your email in this format: aaaabbbb@cccc.com" required maxlength="100">
@@ -121,7 +121,7 @@
         <!-- div for charity users: additional registration fields specific to charity role -->
         <div *ngIf="this.userCheck===false">
           <div class="form-group">
-            <label for="ein" class="col-sm-2 control-label">EIN</label>
+            <label for="ein" class="col-sm-2 control-label">EIN*</label>
             <div class="col-sm-10">
               <input [ngModel]="registration?.ein" ngModel #sat="ngModel" type="text" class="form-control" id="ein" name="ein" placeholder=""
                 required maxlength="10">
@@ -131,7 +131,7 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="charityName" class="col-sm-2 control-label">Charity Name</label>
+            <label for="charityName" class="col-sm-2 control-label">Charity Name*</label>
             <div class="col-sm-10">
               <input [ngModel]="registration?.charityName" ngModel #charityName="ngModel" type="text" class="form-control" id="charityName"
                 name="charityName" placeholder="enter your charity name here" required maxlength="200">
@@ -141,7 +141,7 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="charityUserRole" class="col-sm-2 control-label">Charity User Role</label>
+            <label for="charityUserRole" class="col-sm-2 control-label">Charity User Role*</label>
             <div class="col-sm-10">
               <input [ngModel]="registration?.charityUserRole" ngModel #charityUserRole="ngModel" type="text" class="form-control" id="charityUserRole"
                 name="charityUserRole" placeholder="enter your role" required maxlength="20">
@@ -154,7 +154,7 @@
           <!-- Charity Type dropdown: -->
           <div *ngIf="this.userCheck===false">
             <div class="form-group">
-              <label for="charityType" class="mr-sm-2 col-sm-2 control-label" for="inlineFormCustomSelectPref">Charity Type</label>
+              <label for="charityType" class="mr-sm-2 col-sm-2 control-label" for="inlineFormCustomSelectPref">Charity Type*</label>
               <div class="col-sm-10">
                 <select [ngModel]="registration?.charityType" ngModel #charityType="ngModel" type="text" class="form-control" id="charityType"
                   name="charityType" placeholder="enter your role" required maxlength="20" class="custom-select mb-2 mr-sm-2 mb-sm-0">
@@ -210,12 +210,15 @@
               </div>
             </div>
             <!-- end of user-specific fields: -->
-          
         </div>
         <!-- Registration Submit button disabled until all field validations are met: -->
-        <button [disabled]="!registrationForm.form.valid" class="btn btn-primary" *ngIf="this.userCheck===false || this.userCheck===true"
+        <div *ngIf="this.userCheck===false || this.userCheck===true">
+        <button [disabled]="!registrationForm.form.valid" class="btn btn-primary" 
           type="submit">Submit</button>
+           <p> (*) Denotes a required field</p>
+        </div>  
         </div>
+       
     </form>
     </div>
     <br>

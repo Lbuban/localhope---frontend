@@ -40,6 +40,7 @@
   <br>
   <div *ngIf="!needs">Loading...</div>
   <div *ngIf="!charities">
+    <h2>All Charities with Needs</h2>
     <table class="table table-hover table-bordered" id="dataTable" style="width:100%">
       <thead>
         <tr>
@@ -86,11 +87,14 @@
 
   <br>
   <hr>
-  <br>
+ 
 
   <!-- table to pull charities based on location -->
   <!-- If charities exist based on location criteria, change the table to populate according to criteria. NgIf uses the "charities" function. -->
+   
+
   <div *ngIf="charities">
+    <h2>Charities Near You</h2>
     <table class="table table-hover table-bordered" id="dataTable" style="width:100%">
       <thead>
         <tr>
@@ -106,6 +110,7 @@
           <th>Follow</th>
         </tr>
       </thead>
+      <div *ngIf="charities?.length===0">No results found. Try broadening your search. </div>
       <tbody>
         <!-- loop over each charity in the array and display the attributes in a table -->
         <tr *ngFor="let charity of charities">
@@ -130,37 +135,40 @@
       </tbody>
     </table>
   </div>
-
-
+<p> Following a charity allows them to send you text notifications when they add a need you may be able to fulfill.</p>
+ <a class="btn btn-primary" role="button" href="#followedCharities" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">Click to See Followed Charities</a>
   <!-- Table to display charities that user has selected to "Follow" -->
-  <h2>
-    Followed Organizations
-  </h2>
-  <table class="table table-hover table-striped table-bordered" style="width:100%">
-    <thead>
-      <tr>
-        <th>Charity ID</th>
-        <th>Charity Name</th>
-        <th>EIN</th>
-        <th>Unfollow</th>
+  <div class="collapse" id="followedCharities">
+    <div class="well">
+    <h2>
+      Followed Organizations
+    </h2>
+    <table class="table table-hover table-striped table-bordered" style="width:100%">
+      <thead>
+        <tr>
+          <th>Charity ID</th>
+          <th>Charity Name</th>
+          <th>EIN</th>
+          <th>Unfollow</th>
 
-      </tr>
-    </thead>
+        </tr>
+      </thead>
 
-    <tbody>
-      <!-- loop over each user and display the attributes in a table -->
-      <tr *ngFor="let user of users">
-        <td>{{user.id}}</td>
-        <td>{{user.charityName}}</td>
-        <td>{{user.ein}}</td>
-        <td class="text-center">
-          <!-- upon click of the "Unfollow" button, call the unfollowCharity function. Interpolate the user.id attribute, which dynamically stores it for each user-->
-          <button attr.data-Id="{{user.id}}" #unFollow (click)="unfollowCharity(unFollow.getAttribute('data-Id'))" class="btn btn-danger glyphicon glyphicon-remove"></button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
+      <tbody>
+        <!-- loop over each user and display the attributes in a table -->
+        <tr *ngFor="let user of users">
+          <td>{{user.id}}</td>
+          <td>{{user.charityName}}</td>
+          <td>{{user.ein}}</td>
+          <td class="text-center">
+            <!-- upon click of the "Unfollow" button, call the unfollowCharity function. Interpolate the user.id attribute, which dynamically stores it for each user-->
+            <button attr.data-Id="{{user.id}}" #unFollow (click)="unfollowCharity(unFollow.getAttribute('data-Id'))" class="btn btn-danger glyphicon glyphicon-remove"></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
   <!-- When user selects "Give" a Modal will pop up to allow user to enter a specified give amount -->
   <div class="modal fade" id="giveForm">
     <div class="modal-dialog" role="document">

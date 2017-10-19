@@ -5,17 +5,15 @@ h1 {
 
 #wrapper {
     width: 100%;
-    text-align: center;
+     text-align: center;
     display: flex;
-    justify-content: center;
+    justify-content: center; 
 }
 #container {
     width: 80%;
     margin: 0, auto;
 }
-form {
-    text-align: center;
-}
+
 #title  {
     color: #F0F3BD;
     border-top-left-radius: 10px;
