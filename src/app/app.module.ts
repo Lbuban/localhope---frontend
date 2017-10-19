@@ -17,6 +17,8 @@ import { RegistrationComponent } from './registration/registration.component';
 import { CharityComponent } from './charity/charity.component';
 import { DoGooderComponent } from './do-gooder/do-gooder.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { TestingComponent } from './testing/testing.component';
+import { CounterComponent } from './counter/counter.component';
 
 
 
@@ -31,6 +33,8 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
     CharityComponent,
     DoGooderComponent,
     ContactUsComponent,
+    TestingComponent,
+    CounterComponent,
   
 
    

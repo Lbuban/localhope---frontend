@@ -25,8 +25,10 @@ getTestBed().initTestEnvironment(
   platformBrowserDynamicTesting()
 );
 // Then we find all the tests.
-const context = require.context('./', true, /\.spec\.ts$/);
+//I changed the path to add "testing.component" to it, instead of "all", to restrict it to only that folder:
+const context = require.context('./', true, /home.component\.spec\.ts$/);
 // And load the modules.
 context.keys().map(context);
 // Finally, start Karma to run the tests.
 __karma__.start();
+
