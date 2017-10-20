@@ -6,6 +6,7 @@ import { CharityService } from './charity.service';
 import { HttpModule } from '@angular/http';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { DataTablesModule } from 'angular-datatables';
+import {TooltipModule} from "ng2-tooltip";
 
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './navigation/navigation.component';
@@ -19,6 +20,7 @@ import { DoGooderComponent } from './do-gooder/do-gooder.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { TestingComponent } from './testing/testing.component';
 import { CounterComponent } from './counter/counter.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 
 
@@ -39,19 +41,24 @@ import { CounterComponent } from './counter/counter.component';
 
    
     
+    ResetPasswordComponent,
   ],
+  
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     HttpModule,
     DataTablesModule,
-    BootstrapModalModule
+    BootstrapModalModule,
+    TooltipModule
   ],
+
   providers: [
     DataService,
     CharityService,
   ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

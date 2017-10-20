@@ -1,10 +1,12 @@
  /* You can add global styles to this file, and also import other style files */
+ @import url('https://fonts.googleapis.com/css?family=Open+Sans');
  .container {
     padding: 0px;
     margin: 0px;
     width: 100%;
 }  
 body    {
-padding-bottom: 80px;
-background-color: #ECF0F1;
+    padding-bottom: 80px;
+    background-color: #ECF0F1;
+    font-family: 'Open Sans', sans-serif;   
 }

@@ -17,6 +17,7 @@ export class NavigationComponent implements OnInit {
   user;
   welcome = localStorage.getItem('username');
   type = localStorage.getItem('type')
+  badLogin;
 
 
 //ViewChild is used here so that we can "watch" the loginform for any changes made to the DOM. 
@@ -60,8 +61,10 @@ export class NavigationComponent implements OnInit {
           this.router.navigateByUrl('/charity');
         }
       },
-      error => this.errorMessage = <any>error
-
+      error => {this.errorMessage = <any>error
+        this.badLogin = true
+      }
+      
       );
 
     this.user = '';
@@ -113,6 +116,19 @@ export class NavigationComponent implements OnInit {
     this.welcome = null;
     this.user = null;
   }
+//  function for sending username upon bad login
+  forgotPassword(userPassword){ //function to save a user once one has been added.
+    console.log(JSON.stringify(userPassword))
+    this.dataService.passwordReset("sendgrid/getpassword", userPassword)
+     .subscribe(
+        user => {
+          this.successMessage = "login successful";  
+        },
+        error => this.errorMessage = <any>error
+      );
+    this.user = '';
+    ;      
+    }
 
   formErrors = {
     'username': '',

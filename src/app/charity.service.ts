@@ -11,13 +11,7 @@ export class CharityService {
   private baseUrl = "https://localhope-backend.herokuapp.com/"
 
   constructor (private http: Http) {}
-  
-getCharityList(ein: string): Observable<any[]> {
-  let apiUrl = this.baseUrl+ ein + "/Ratings?app_id=e35eaadd&app_key=030589f4c21e566f0a0e3aeb51a210e1";
-  return this.http.get(apiUrl)
-      .map(this.extractData)
-      .catch(this.handleError);
-}
+
 
 //function to pull charities based on location
 locateUser(endpoint:string, userID, record):Observable<any> {
@@ -52,4 +46,13 @@ private handleError(error: Response | any) {
 
   return Observable.throw(errMsg);
 }
+
+//add record, once user has reset password.
+addRecordOnReset(endpoint: string, record: object): Observable<any> {
+    let apiUrl = `${this.baseUrl}${endpoint}`;
+    console.log(apiUrl)
+    return this.http.post(apiUrl, record)
+        .map(this.extractData);
+}
+
 }

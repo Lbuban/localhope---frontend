@@ -66,22 +66,22 @@ export class CharityComponent implements OnInit {
     console.log()
     this.dataService.editRecord("updateneed", need.value, need.value.id)
       .subscribe(
-      need => {
-        this.successMessage = "Need added successfully";
-      },
-      error => this.errorMessage = <any>error);
-    this.need = '';
-    setTimeout((jQuery("#closeButton").click()), 500)
-    this.getNeeds();
+        need => {
+          this.successMessage = "Need added successfully";
+          this.need = '';
+          setTimeout((jQuery("#closeButton").click()), 500);
+          this.getNeeds();
+        },
+        error => this.errorMessage = <any>error
+      );
   }
 
   getNeeds() { //function to pull the needs list.
     this.dataService.getCharityNeeds(this.userId)
       .subscribe(
-      needs => {
-        this.needs = needs
-      },
-      error => this.errorMessage = <any>error);
+        needs => this.needs = needs,
+        error => this.errorMessage = <any>error
+      );
 
   }
 
