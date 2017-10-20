@@ -69,7 +69,7 @@ export class CharityComponent implements OnInit {
         need => {
           this.successMessage = "Need added successfully";
           this.need = '';
-          setTimeout((jQuery("#closeButton").click()), 500);
+          setTimeout(($("#closeButton").click()), 500);
           this.getNeeds();
         },
         error => this.errorMessage = <any>error

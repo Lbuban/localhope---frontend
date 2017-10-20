@@ -182,7 +182,7 @@ export class DoGooderComponent implements OnInit {
   }
   closeModal() {
     this.counter = 0;
-    return setTimeout((jQuery("#closeButton").click()), 500)
+    return setTimeout(($("#closeButton").click()), 500)
   }
 
   showPosition() {
