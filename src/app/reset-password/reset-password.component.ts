@@ -37,6 +37,7 @@ export class ResetPasswordComponent implements OnInit {
       .subscribe(
       user => {
         this.successMessage = "reset successful";
+        this.router.navigateByUrl('/home');
         
       },
       error => this.errorMessage = <any>error

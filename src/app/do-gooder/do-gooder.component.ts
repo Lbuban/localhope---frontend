@@ -157,10 +157,11 @@ export class DoGooderComponent implements OnInit {
 
   decrementNeed(needId, decrement) { //function to save a need once one has been added.
     let decrementNumber = parseInt(decrement)
-    console.log(needId, decrementNumber)
-    this.dataService.addDecrementNeed("needreduce", needId, decrementNumber)
+    let payload= '{"userid":'+'"'+ this.userId +'" , "reduceBy":"'+ decrement+'"}'
+    console.log(payload)
+    this.dataService.addDecrementNeed("needreduce", needId, payload)
 
-      .subscribe(
+      .subscribe( 
       need => {
         this.successMessage = "Need added successfully";
         this.getNeeds();
