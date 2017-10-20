@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataService } from '../data.service';
 import { CharityService } from '../charity.service'
-import { DataTablesModule } from 'angular-datatables';
 import { NgForm } from '@angular/forms';
 
 
@@ -183,7 +182,7 @@ export class DoGooderComponent implements OnInit {
   }
   closeModal() {
     this.counter = 0;
-    return setTimeout((jQuery("#closeButton").click()), 500)
+    return setTimeout((document.getElementById("closeButton").click()), 500)
   }
 
   showPosition() {

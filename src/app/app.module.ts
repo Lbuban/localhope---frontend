@@ -5,7 +5,6 @@ import { DataService } from './data.service';
 import { CharityService } from './charity.service';
 import { HttpModule } from '@angular/http';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
-import { DataTablesModule } from 'angular-datatables';
 import {TooltipModule} from "ng2-tooltip";
 
 import { AppComponent } from './app.component';
@@ -41,7 +40,6 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     FormsModule,
     AppRoutingModule,
     HttpModule,
-    DataTablesModule,
     BootstrapModalModule,
     TooltipModule
   ],
