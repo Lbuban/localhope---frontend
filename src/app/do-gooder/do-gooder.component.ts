@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataService } from '../data.service';
 import { CharityService } from '../charity.service'
 import { DataTablesModule } from 'angular-datatables';
+import { NgForm } from '@angular/forms';
+
 
 
 @Component({
@@ -11,23 +13,36 @@ import { DataTablesModule } from 'angular-datatables';
 })
 export class DoGooderComponent implements OnInit {
 
+  disgtanceForm: NgForm;
+  editForm: NgForm;
+  @ViewChild('distanceForm') currentForm: NgForm;
+  lat = localStorage.getItem('lat');
+  long = localStorage.getItem('long');
+  userId = localStorage.getItem('userid');
+
+  model = {
+    id:this.userId,
+    latitude: this.lat,
+    longitude: this.long,
+    distance: ""
+
+  };
 
   errorMessage: string;
   successMessage: string;
   needs: any[];
   need;
+  nearMe = true;
   needId;
   giveNeed: any;
   users;
   mode = 'Observable';
   charities;
-  userId = localStorage.getItem('userid');
   charityJSON;
   counter = 0;
   coords;
-  lat = localStorage.getItem('lat');
-  long= localStorage.getItem('long');
-  
+
+
 
   constructor(
     private dataService: DataService,
@@ -47,7 +62,7 @@ export class DoGooderComponent implements OnInit {
       // once function is called, subscribe/populate the table with needs.
       .subscribe(
       needs => {
-      this.needs = needs;
+        this.needs = needs;
       },
       error => this.errorMessage = <any>error);
   }
@@ -61,7 +76,7 @@ export class DoGooderComponent implements OnInit {
 
       .subscribe(
       users => {
-      this.users = users
+        this.users = users
       },
       error => this.errorMessage = <any>error);
   }
@@ -77,10 +92,32 @@ export class DoGooderComponent implements OnInit {
     option5.checked = false
     return this.getNeeds();
   };
-  findLocalCharities(distance: string) { //function to pull the charity list.
-    let distanceNumber = parseInt(distance)
-    console.log(this.userId, distanceNumber)
-    this.charityService.locateUser("distance", this.userId, distanceNumber)
+
+  
+  findLocalCharities(distanceForm: NgForm) { //function to pull the charity list.
+    // let distanceNumber = parseInt(distance)
+    console.log(this.userId, distanceForm, this.model)
+
+    if (this.nearMe) {
+      //requires url with endpoint/distance and payload with lat and long
+      console.log("near", this.nearMe)
+      
+      let latAndLong= this.model.latitude+this.model.longitude
+      console.log(JSON.stringify(latAndLong), parseInt(this.model.distance))
+      this.charityService.locateNearMe("distancecurrent", parseInt(this.model.distance), this.model)
+        .subscribe(
+        charities => {
+          this.charities = charities;
+          console.log(charities)
+        },
+        error => this.errorMessage = <any>error);
+    }
+    else if (!this.nearMe) {
+
+      console.log("far", this.nearMe)
+    }
+    this.charityService.locateUser("distance", this.userId, parseInt(this.model.distance))
+
       .subscribe(
       charities => {
         this.charities = charities;
@@ -98,7 +135,7 @@ export class DoGooderComponent implements OnInit {
 
       .subscribe(
       charity => {
-      this.successMessage = "Need added successfully";
+        this.successMessage = "Need added successfully";
         this.getUser();
       },
       error => this.errorMessage = <any>error);
@@ -111,7 +148,7 @@ export class DoGooderComponent implements OnInit {
 
       .subscribe(
       charity => {
-      this.successMessage = "Need added successfully";
+        this.successMessage = "Need added successfully";
         this.getUser();
       },
       error => this.errorMessage = <any>error);
@@ -125,7 +162,7 @@ export class DoGooderComponent implements OnInit {
 
       .subscribe(
       need => {
-      this.successMessage = "Need added successfully";
+        this.successMessage = "Need added successfully";
         this.getNeeds();
       },
       error => this.errorMessage = <any>error);
@@ -153,11 +190,14 @@ export class DoGooderComponent implements OnInit {
       navigator.geolocation.getCurrentPosition(position => {
         this.coords = position.coords;
         localStorage.setItem('lat', this.coords.latitude);
-        localStorage.setItem('long',this.coords.longitude);
+        localStorage.setItem('long', this.coords.longitude);
         console.log(this.coords)
       });
     } else {
       alert("Sorry, your browser does not support HTML5 geolocation.");
     }
   }
+
+
+
 }

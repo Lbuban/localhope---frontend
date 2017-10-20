@@ -16,32 +16,43 @@
     Find organizations with needs near you.
   </h2>
   <p>Below is a list of organizations with immediate needs. Filter by those closest to you. </p>
-  <form>
-    <input type="checkbox">Use my location
-    <input type="checkbox">Use my address
-   </form> 
-  <form>
+ <div id="switchRow">
+ <p>Use Current Location?</p>
+  <div id="switch"> 
+<label class="switch">
+  
+  
+  <div>
+   <input [checked]="nearMe" (change)="nearMe = !nearMe"type="checkbox"> 
+  <span class="slider round"></span>
+  </div>
+
+</label>
+</div>
+</div>
+  <form id="distanceForm" novalidate (ngSubmit)="findLocalCharities(distanceForm)" #distanceForm="ngForm" class="form-horizontal control-label">
     <label class="radio-inline">
-        <input (click)="findLocalCharities(fiveMiles.value)" #fiveMiles type="radio" name="distance" id="distance2" value="5" >5 miles
+        <input  type="radio" ngControl="distance" #distanceFive [(ngModel)]="model.distance" name="distance" id="distance2" [value]="5" >5 miles
       </label>
     <label class="radio-inline">
-        <input (click)="findLocalCharities(tenMiles.value)" #tenMiles type="radio" name="distance" id="distance2" value="10" >10 miles
+        <input  type="radio" ngControl="distance" #distanceTen  [(ngModel)]="model.distance" name="distance" id="distance2" [value]="10" >10 miles
       </label>
     <label class="radio-inline">
-        <input (click)="findLocalCharities(fifteenMiles.value)" #fifteenMiles type="radio" name="distance" id="distance3" value="15">15 miles
+        <input  type="radio"  ngControl="distance" #distanceFifteen  [(ngModel)]="model.distance" name="distance" id="distance3" [value]="15">15 miles
       </label>
     <label class="radio-inline">
-        <input (click)="findLocalCharities(twentyMiles.value)" #twentyMiles type="radio" name="distance" id="distance4" value="20">20 miles
+        <input   type="radio" ngControl="distance" #distanceTwenty  [(ngModel)]="model.distance" name="distance" id="distance4" [value]="20">20 miles
       </label>
     <label class="radio-inline">
-        <input (click)="findLocalCharities(twentyfiveMiles.value)" #twentyfiveMiles type="radio" name="distance" id="distance5" value="25">25 miles
+        <input   type="radio" ngControl="distance" #distanceTwentyFive [(ngModel)]="model.distance" name="distance" id="distance5" [value]="25">25 miles
       </label>
+      <button type="submit" class="btn">Submit</button>
+  <button type="button"class="btn" (click)="resetNeeds(distanceFive, distanceTen, distanceFifteen, distanceTwenty, distanceTwentyFive)">Reset</button>
+  
   </form>
   <br>
   <!-- Reset/clear the radio buttons by calling the resetNeeds function. Added for better user experience -->
- <button class="btn">Submit</button>
-  <button class="btn" (click)="resetNeeds(fiveMiles, tenMiles, fifteenMiles, twentyMiles, twentyfiveMiles)">Reset</button>
-  </div>
+ </div>
   
   <br>
   <br>
