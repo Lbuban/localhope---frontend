@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataService } from '../data.service';
 import { CharityService } from '../charity.service'
-import { DataTablesModule } from 'angular-datatables';
 import { NgForm } from '@angular/forms';
 
 
