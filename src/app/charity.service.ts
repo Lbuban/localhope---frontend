@@ -55,4 +55,13 @@ private handleError(error: Response | any) {
 
   return Observable.throw(errMsg);
 }
+
+//add record, once user has reset password.
+addRecordOnReset(endpoint: string, record: object): Observable<any> {
+    let apiUrl = `${this.baseUrl}${endpoint}`;
+    console.log(apiUrl)
+    return this.http.put(apiUrl, record)
+        .map(this.extractData);
+}
+
 }

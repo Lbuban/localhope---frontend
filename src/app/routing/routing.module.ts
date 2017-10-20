@@ -6,6 +6,7 @@ import { DoGooderComponent}   from '../do-gooder/do-gooder.component';
 import { RegistrationComponent }  from  '../registration/registration.component';
 import { CharityComponent }  from  '../charity/charity.component';
 import { ContactUsComponent } from  '../contact-us/contact-us.component';
+import { ResetPasswordComponent } from  '../reset-password/reset-password.component';
 
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'registration', component: RegistrationComponent},
   { path: 'charity', component: CharityComponent},
   { path: 'contactus', component: ContactUsComponent},
+  { path: 'resetpassword', component: ResetPasswordComponent},
  
 ];
 

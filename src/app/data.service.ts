@@ -43,6 +43,15 @@ export class DataService {
             .map(this.extractData);
     }
 
+    passwordReset(endpoint: string, record: object): Observable<any> {
+        let apiUrl = `${this.baseUrl}${endpoint}`;
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers, withCredentials: true });
+        console.log(apiUrl)
+        return this.http.post(apiUrl, record, options)
+            .map(this.extractData);
+    }
+
 
     addCharityNeed(endpoint: string, userID, record): Observable<any> {
         let apiUrl = `${this.baseUrl}${endpoint}/${userID}`;

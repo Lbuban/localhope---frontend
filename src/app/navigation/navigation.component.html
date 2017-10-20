@@ -34,11 +34,40 @@
               name="password" placeholder="password" required minlength="6" maxlength="12">
           </div>
           <button type="submit" class="btn btn-default">Log-in</button>
+          <div id="badLogin" *ngIf="badLogin">
+            <p>Oops, incorrect login! Double check your username and password.</p>
+            <p>Forgot your password? Click <a data-target="#forgotForm" data-toggle="modal" href="#"><b>here</b></a></p>
+          </div>
         </form>
       </div>
       <!-- /.navbar-collapse -->
     </div>
     <!-- /.container-fluid -->
   </div>
-
 </nav>
+
+
+
+<!-- modal for user to enter username when login fails -->
+<div class="modal fade" id="forgotForm">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Please enter your username</h3>
+      </div>
+      <div class="modal-body">
+        <form id="passwordReset" novalidate (ngSubmit)="forgotPassword(forgotForm)" #forgotForm="ngForm" class="form-horizontal color: control-label">
+          <div class="form-group">
+            <input [ngModel]="user?.userName" ngModel #username="ngModel" type="text" class="form-control" id="userName" name="userName" placeholder="username">
+          </div>
+          <!-- <button type="submit" class="btn btn-default">Submit</button> -->
+          <button class="btn btn-default" type="button" (click)=forgotPassword(username.value) data-dismiss="modal">Submit</button>
+          <button id="closeButton" type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <br>
+          <br>
+          <p>Please check your email for directions to reset your password</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
