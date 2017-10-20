@@ -51,7 +51,7 @@ private handleError(error: Response | any) {
 addRecordOnReset(endpoint: string, record: object): Observable<any> {
     let apiUrl = `${this.baseUrl}${endpoint}`;
     console.log(apiUrl)
-    return this.http.post(apiUrl, record)
+    return this.http.put(apiUrl, record)
         .map(this.extractData);
 }
 

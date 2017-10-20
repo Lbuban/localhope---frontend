@@ -11,11 +11,15 @@
   </div>
   <!-- List of all participating charities with needs - can be filtered above using radio buttons-->
  <br>
+ <div id="findOrgs" >
   <h2>
     Find organizations with needs near you.
   </h2>
   <p>Below is a list of organizations with immediate needs. Filter by those closest to you. </p>
-
+  <form>
+    <input type="checkbox">Use my location
+    <input type="checkbox">Use my address
+   </form> 
   <form>
     <label class="radio-inline">
         <input (click)="findLocalCharities(fiveMiles.value)" #fiveMiles type="radio" name="distance" id="distance2" value="5" >5 miles
@@ -35,7 +39,10 @@
   </form>
   <br>
   <!-- Reset/clear the radio buttons by calling the resetNeeds function. Added for better user experience -->
-  <button (click)="resetNeeds(fiveMiles, tenMiles, fifteenMiles, twentyMiles, twentyfiveMiles)">Reset</button>
+ <button class="btn">Submit</button>
+  <button class="btn" (click)="resetNeeds(fiveMiles, tenMiles, fifteenMiles, twentyMiles, twentyfiveMiles)">Reset</button>
+  </div>
+  
   <br>
   <br>
   <div *ngIf="!needs">Loading...</div>

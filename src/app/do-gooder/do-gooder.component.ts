@@ -25,6 +25,9 @@ export class DoGooderComponent implements OnInit {
   charityJSON;
   counter = 0;
   coords;
+  lat = localStorage.getItem('lat');
+  long= localStorage.getItem('long');
+  
 
   constructor(
     private dataService: DataService,
@@ -149,6 +152,8 @@ export class DoGooderComponent implements OnInit {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
         this.coords = position.coords;
+        localStorage.setItem('lat', this.coords.latitude);
+        localStorage.setItem('long',this.coords.longitude);
         console.log(this.coords)
       });
     } else {
