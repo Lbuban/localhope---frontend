@@ -145,7 +145,7 @@ h3 {
 @media screen and (max-width: 775px) {
     #donateItems, #donateMoney, #donateTime {
         width:100%;
-        
+        height: 180px;
     }
 
     #rowOneCarousel, #rowTwoCarousel, #rowThreeCarousel{
@@ -153,13 +153,16 @@ h3 {
     }
 
     .row {
-    margin-top: 0px;
+        margin-top: 0px;
     }
-#donateItems h1, 
+
+    #donateItems h1, 
     #donateTime h1,
     #donateMoney h1 {
-    font-size: 60px;
-    
+        font-size: 60px;
+    }
 
-}
+    h1 {
+        font-size: 60px;
+    }
 }
