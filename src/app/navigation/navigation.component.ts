@@ -48,25 +48,21 @@ export class NavigationComponent implements OnInit {
         this.successMessage = "login successful";
         this.welcome = user.firstName
         //use local storage to store the userid, username and type as user navigates throughout the site.
-        if (user.isCharity == "User") {
           localStorage.setItem('userid', user.id);
           localStorage.setItem('username', user.firstName);
           localStorage.setItem('type', user.isCharity);
-          this.router.navigateByUrl('/dogooder');
-        }
-        else if (user.isCharity == "Charity") {
-          localStorage.setItem('userid', user.id);
-          localStorage.setItem('username', user.firstName);
-          localStorage.setItem('type', user.isCharity);
-          this.router.navigateByUrl('/charity');
-        }
+          this.badLogin = false
+            if (user.isCharity == "User") {
+              this.router.navigateByUrl('/dogooder');
+            }
+             else if (user.isCharity == "Charity") {
+              this.router.navigateByUrl('/charity');
+            }
       },
       error => {this.errorMessage = <any>error
         this.badLogin = true
       }
-      
       );
-
     this.user = '';
     ;
 
