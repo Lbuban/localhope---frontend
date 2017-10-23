@@ -154,5 +154,12 @@ h3 {
 
     .row {
     margin-top: 0px;
+    }
+#donateItems h1, 
+    #donateTime h1,
+    #donateMoney h1 {
+    font-size: 60px;
+    
+
 }
 }
