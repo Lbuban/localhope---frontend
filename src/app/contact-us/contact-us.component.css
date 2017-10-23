@@ -2,7 +2,7 @@
 h1 {
     font-family: 'Neucha', cursive;
     font-size: 55px;
-    color: #CCB54C;
+    color: #F0F3BD;
     text-align: center;
 }
 
@@ -17,18 +17,6 @@ h3 {
     padding:0;
 }
 
-.regButton {
-    text-align: center;
-}
-
-.regButton button {
-    border-radius: 5px;
-    width: 300px;
-    background-color: #182D48;
-    border-color: #CCB54C;
-    border-width: 5px;
-}
-
  .rowOneCarousel {
     float: right;
     padding: 0;
@@ -36,26 +24,30 @@ h3 {
 
 .carousel img {
     height: 300px;
-    width: 400px;
+  
 }
 
-#donateTime {
-    background-color: #596B56;
+#contactInfo {
+    background-color: #028090;
+    padding-left: 30px;
     height: 300px;
     color: white;
 }
 
 #divDividerThick {
-    background-color: #4B0539;
+    margin-top: 20px;
+    background-color: #00A896;
     color: white;
+    padding-left: 30px;
+    height: 450px;
 }
 
 #copyright {
-    background-color: #182D48;
+    margin-top: 20px;
+    background-color: #05668D;
     color: white;
-    display: table-cell;
     vertical-align: bottom;
-    height: 423px;
+    height: 450px;
     padding-bottom: 25px;
     padding-left: 20px;
     padding-right: 10px;
@@ -63,6 +55,30 @@ h3 {
 }
 
 .title  {
-    color: #CCB54C;
+    color: #F0F3BD;
+    text-shadow: 2px 2px  black;
 }
 
+.row1 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    height: 100%;
+
+}
+.row2 {
+    margin-top: 20px;
+    height: 100%;
+
+}
+
+@media screen and (max-width: 775px) {
+  #rowOneCarousel {
+     display: none;
+     
+ }
+ 
+    #copyright, #ivDividerThick, .row1, .row2 { 
+    margin: 0;  
+ }
+
+}
