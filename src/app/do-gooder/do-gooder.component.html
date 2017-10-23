@@ -62,12 +62,10 @@
     <table class="table table-hover table-bordered" id="dataTable" style="width:100%">
       <thead>
         <tr>
-          <!-- <th>Charity ID</th> -->
           <th>Charity Name</th>
-          <th>Charity Type</th>
-          <!-- <th>EIN</th> -->
-          <th>Need Category</th>
-          <th>Need by Date</th>
+          <th class="optional">Charity Type</th>
+          <th class="optional">Need Category</th>
+          <th class="optional">Need by Date</th>
           <th>Description</th>
           <th>Original Amount</th>
           <th>Give</th>
@@ -78,12 +76,10 @@
 
         <!-- Loop over each need in the array and display the attributes in a table -->
         <tr *ngFor="let need of needs">
-          <!-- <td>{{need.users[0].id}}</td> -->
           <td>{{need.users[0].charityName}}</td>
-          <td>{{need.users[0].charityType}}</td>
-          <!-- <td>{{need.users[0].ein}}</td> -->
-          <td>{{need.type}}</td>
-          <td>{{need.dateNeeded}}</td>
+          <td class="optional">{{need.users[0].charityType}}</td>
+          <td class="optional">{{need.type}}</td>
+          <td class="optional">{{need.dateNeeded}}</td>
           <td>{{need.description}}</td>
           <td>{{need.originalAmount}}</td>
           <td class="text-center">
@@ -116,12 +112,10 @@
     <table class="table table-hover table-bordered" id="dataTable" style="width:100%">
       <thead>
         <tr>
-          <!-- <th>Charity ID</th> -->
           <th>Charity Name</th>
-          <th>Charity Type</th>
-          <!-- <th>EIN</th> -->
-          <th>Need Category</th>
-          <th>Need by Date</th>
+          <th class="optional" >Charity Type</th>
+          <th class="optional">Need Category</th>
+          <th class="optional">Need by Date</th>
           <th>Description</th>
           <th>Original Amount</th>
           <th>Give</th>
@@ -132,12 +126,10 @@
       <tbody>
         <!-- loop over each charity in the array and display the attributes in a table -->
         <tr *ngFor="let charity of charities">
-          <!-- <td>{{charity.users[0].id}}</td> -->
           <td>{{charity.users[0].charityName}}</td>
-          <td>{{charity.users[0].charityType}}</td>
-          <!-- <td>{{charity.users[0].ein}}</td> -->
-          <td>{{charity.type}}</td>
-          <td>{{charity.dateNeeded}}</td>
+          <td class="optional">{{charity.users[0].charityType}}</td>
+          <td class="optional"> {{charity.type}}</td>
+          <td class="optional">{{charity.dateNeeded}}</td>
           <td>{{charity.description}}</td>
           <td>{{charity.originalAmount}}</td>
           <td class="text-center">
