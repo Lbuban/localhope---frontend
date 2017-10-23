@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Amatic+SC');
-@import url('https://fonts.googleapis.com/css?family=Amatic+SC|Slabo+27px');
 @import url('https://fonts.googleapis.com/css?family=PT+Sans+Narrow');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
@@ -10,6 +9,10 @@ th {
     font-size: 18px; 
 
 }
+
+table {
+    background-color: white;
+  }
 
 td {
     text-align: center;
@@ -30,7 +33,6 @@ img {
 #body {
     margin-right: 30px;
     margin-left: 30px;
-    font-family: 'Slabo 27px', serif;
 }
 
 #tagline h1 {
@@ -44,6 +46,7 @@ h2 {
     font-size: 30px;
     font-family: 'Open Sans', sans-serif;
 }
+
 
 #amount {
     width: 15%;

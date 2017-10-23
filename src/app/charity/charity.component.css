@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Amatic+SC');
-@import url('https://fonts.googleapis.com/css?family=Amatic+SC|Slabo+27px');
 @import url('https://fonts.googleapis.com/css?family=PT+Sans+Narrow');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
+table {
+  background-color: white;
+}
 
 #tagline h1 {
   text-align: center;
@@ -57,9 +59,8 @@ img {
   background-color: lightgray;
 }
 
-
-
-.container{
+.container {
   display: flex;
   justify-content: center;
 }
+

@@ -80,10 +80,9 @@
   </h1>
 
   <!-- <div *ngIf="!needs">Loading...</div> -->
-  <table class="table table-hover table-bordered" id="dataTable" style="width:100%">
+  <table class="table table-hover table-bordered" style="width:100%">
     <thead>
       <tr>
-
         <th>Charity Name</th>
         <th>Donation Type</th>
         <th>Need by Date</th>
@@ -97,7 +96,6 @@
     </thead>
     <tbody>
       <tr *ngFor="let need of needs">
-
         <td>{{need.users[0].charityName}}</td>
         <td>{{need.type}}</td>
         <td>{{need.dateNeeded}}</td>
