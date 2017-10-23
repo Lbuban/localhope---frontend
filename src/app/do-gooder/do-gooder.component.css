@@ -20,6 +20,19 @@ td {
     color: #6C7A89;
 }
 
+#wrapper {
+    display: flex;
+    justify-content: center;
+}
+.container {
+    width: 75%;
+    height: 400px;
+     border: solid; 
+    background-image: url("../../assets/images/Good.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
 .modal-dialog {
     width: 900px;
     max-width: 100%;
@@ -163,5 +176,10 @@ input:checked + .slider:before {
     .optional { 
      display: none;  
  }
+
+    .container {
+    height: 200px;  
+    background-image: url("../../assets/images/Goodsmall.jpg");
+    }
 
 }
