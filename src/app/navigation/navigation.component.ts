@@ -28,7 +28,6 @@ export class NavigationComponent implements OnInit {
   ngOnInit() { this.checkUser() }
 
   checkUser() {
-    console.log(this.type)
     if (this.type == "User") {
       this.router.navigateByUrl('/dogooder');
       this.type == null;
@@ -105,7 +104,6 @@ export class NavigationComponent implements OnInit {
   }
 
   logOut() { //function to log-out user
-    console.log("done")
     localStorage.removeItem("username")
     localStorage.removeItem("type")
     this.router.navigateByUrl('/home');
@@ -114,7 +112,6 @@ export class NavigationComponent implements OnInit {
   }
 //  function for sending username upon bad login
   forgotPassword(userPassword){ //function to save a user once one has been added.
-    console.log(JSON.stringify(userPassword))
     this.dataService.passwordReset("sendgrid/getpassword", userPassword)
      .subscribe(
         user => {

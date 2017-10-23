@@ -38,7 +38,6 @@ sendUser = new EventEmitter<any>();
 
 
   registerUser(user: NgForm){ //function to save a user once one has been added.
-    console.log(JSON.stringify(user.value))
     this.dataService.addRecord("registration", user.value)
      .subscribe(
         user => {

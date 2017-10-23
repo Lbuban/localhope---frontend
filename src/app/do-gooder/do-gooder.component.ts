@@ -95,41 +95,34 @@ export class DoGooderComponent implements OnInit {
   
   findLocalCharities(distanceForm: NgForm) { //function to pull the charity list.
     // let distanceNumber = parseInt(distance)
-    console.log(this.userId, distanceForm, this.model)
-
     if (this.nearMe) {
-      //requires url with endpoint/distance and payload with lat and long
-      console.log("near", this.nearMe)
-      
+      //requires url with endpoint/distance and payload with lat and long      
       let latAndLong= this.model.latitude+this.model.longitude
       console.log(JSON.stringify(latAndLong), parseInt(this.model.distance))
       this.charityService.locateNearMe("distancecurrent", parseInt(this.model.distance), this.model)
         .subscribe(
         charities => {
           this.charities = charities;
-          console.log(charities)
         },
         error => this.errorMessage = <any>error);
     }
     else if (!this.nearMe) {
 
-      console.log("far", this.nearMe)
-    }
+
     this.charityService.locateUser("distance", this.userId, parseInt(this.model.distance))
 
       .subscribe(
       charities => {
         this.charities = charities;
-        console.log(charities)
       },
       error => this.errorMessage = <any>error);
+  }
   }
 
 
 
 
   followCharity(charityId) { //function for a user to follow a selected charity.
-    console.log(JSON.stringify(charityId))
     this.dataService.postFollowCharity("user/followcharity", this.userId, JSON.stringify(charityId))
 
       .subscribe(
@@ -157,7 +150,6 @@ export class DoGooderComponent implements OnInit {
   decrementNeed(needId, decrement) { //function to save a need once one has been added.
     let decrementNumber = parseInt(decrement)
     let payload= '{"userid":'+'"'+ this.userId +'" , "reduceBy":"'+ decrement+'"}'
-    console.log(payload)
     this.dataService.addDecrementNeed("needreduce", needId, payload)
 
       .subscribe( 
@@ -191,7 +183,6 @@ export class DoGooderComponent implements OnInit {
         this.coords = position.coords;
         localStorage.setItem('lat', this.coords.latitude);
         localStorage.setItem('long', this.coords.longitude);
-        console.log(this.coords)
       });
     } else {
       alert("Sorry, your browser does not support HTML5 geolocation.");

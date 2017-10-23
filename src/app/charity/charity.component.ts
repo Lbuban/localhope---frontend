@@ -50,7 +50,6 @@ export class CharityComponent implements OnInit {
 
 
   saveNeed(need: NgForm) { //function to save a need once one has been added.
-    console.log(this.model)
     this.dataService.addCharityNeed("charity", this.userId, need.value)
       .subscribe(
       need => {
@@ -64,7 +63,6 @@ export class CharityComponent implements OnInit {
   }
 
   saveEditedNeed(need: NgForm) { //function to save an edited need.
-    console.log()
     this.dataService.editRecord("updateneed", need.value, need.value.id)
       .subscribe(
         need => {
@@ -125,7 +123,6 @@ export class CharityComponent implements OnInit {
 
 
   deleteCharityNeed(needId: number) { //function to delete a charity from the record. 
-    console.log(needId, this.userId)
     this.dataService.deleteRecord("deleteneed", needId, JSON.stringify(this.userId))
       .subscribe(
       need => {
