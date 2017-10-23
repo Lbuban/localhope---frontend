@@ -7,3 +7,10 @@
 .navbar-default{
     background-color: #ECECEC;
 }
+
+@media screen and (max-width: 775px) {
+    #copyright {
+        display: none;
+
+    }    
+}
