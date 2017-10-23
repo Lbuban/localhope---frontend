@@ -2,8 +2,29 @@
 @import url('https://fonts.googleapis.com/css?family=PT+Sans+Narrow');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
+
+#wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  width: 75%;
+  height: 400px;
+   border: solid; 
+  background-image: url("../../assets/images/break.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
 table {
   background-color: white;
+}
+
+#view {
+  display: flex;
+  justify-content: center;
 }
 
 #tagline h1 {
@@ -53,7 +74,11 @@ img {
   margin: 5px;
   font-family: 'Open Sans', sans-serif;
   text-shadow: 1px 1px black;
+  display: flex;
+  justify-content: center;
 }
+
+
 
 #submitNeed {
   background-color: lightgray;
@@ -64,3 +89,23 @@ img {
   justify-content: center;
 }
 
+@media screen and (max-width: 775px) {
+  th, td {
+     font-size: 10px;
+     
+ }
+    .optional { 
+     display: none;  
+ }
+
+ .container {
+    height: 200px;  
+    background-image: url("../../assets/images/break.jpg");
+    }
+
+    input {
+      width: 80%;
+      
+    }
+
+}

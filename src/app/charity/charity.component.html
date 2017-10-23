@@ -1,6 +1,8 @@
 
-  <div class="container">
-    <img src="../../assets/images/break.jpg">
+  <div id="wrapper">  
+    <div class="container">
+    <!-- <img src="../../assets/images/break.jpg"> -->
+    </div>
   </div>
 
 <!-- Charity Needs Form -->
@@ -9,11 +11,11 @@
         <h1>Engage. Excite. Employ.</h1>
     </div>
   <div id="postNeeds">
-  <h1>
-    Post Your Charity Needs
-    </h1>
-
+   
     <form class="form-horizontal" (ngSubmit)="saveNeed(sampleForm)" #sampleForm="ngForm">
+        <div id="postHeader">
+            <h1>Post Your Charity Needs</h1>
+          </div>
       <div class="form-group">
         <label for="type" class="mr-sm-2 col-sm-2 control-label">Donation Type</label>
         <div class="col-sm-10">
@@ -70,12 +72,10 @@
   </div>
   <br>
   <br>
-  <hr>
-  <br>
   <br>
 
   <!-- Charity Needs table -->
-  <h1>
+  <h1 id="view">
     View Your Charity Needs
   </h1>
 
@@ -84,12 +84,12 @@
     <thead>
       <tr>
         <th>Charity Name</th>
-        <th>Donation Type</th>
-        <th>Need by Date</th>
+        <th class="optional">Donation Type</th>
+        <th class="optional">Need by Date</th>
         <th>Description</th>
-        <th>Original Amount</th>
-        <th>Need Met</th>
-        <th>Being Followed</th>
+        <th class="optional">Original Amount</th>
+        <th class="optional">Need Met</th>
+        <th class="optional">Being Followed</th>
         <th>Notify Followers</th>
         <th>Edit</th>
       </tr>
@@ -97,13 +97,13 @@
     <tbody>
       <tr *ngFor="let need of needs">
         <td>{{need.users[0].charityName}}</td>
-        <td>{{need.type}}</td>
-        <td>{{need.dateNeeded}}</td>
+        <td class="optional">{{need.type}}</td>
+        <td class="optional">{{need.dateNeeded}}</td>
         <td>{{need.description}}</td>
-        <td>{{need.originalAmount}}</td>
-        <td *ngIf="need.needMet">yes</td>
-        <td *ngIf="!need.needMet">no</td>
-        <td>{{need.hasFollowers}}</td>
+        <td class="optional">{{need.originalAmount}}</td>
+        <td class="optional" *ngIf="need.needMet">yes</td>
+        <td class="optional" *ngIf="!need.needMet">no</td>
+        <td class="optional">{{need.hasFollowers}}</td>
         <td id="notifyButton" class="text-center">
           <div style="display: inline;" tooltip="Sorry, your organization doesn't have any followers at this time" [tooltipDisabled]="need.hasFollowers"
             tooltipPlacement="top">
