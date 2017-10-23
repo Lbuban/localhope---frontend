@@ -4,12 +4,14 @@
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-        aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span>Log In</span>
-       
-      </button>
+      <div *ngIf="!welcome">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+            aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span>Log In</span>
+          
+          </button>
+      </div>
       <a class="navbar-brand" href="#">LocalHope</a>
     </div>
     <!-- Welcome message on top right. Interpolate the welcome function to dynamically add user's first name, if user is logged in  -->
