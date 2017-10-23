@@ -24,7 +24,7 @@ td {
 }
 
 img {
-    width: 100%;
+    width: 85%;
 }
 
 #body {
@@ -37,7 +37,7 @@ img {
     text-align: center;
     font-size: 100px;
     font-family: 'Amatic SC', cursive;
-    margin-top: -50px;
+    margin-top: 10px;
 }
 
 h2 {
@@ -136,6 +136,11 @@ input:checked + .slider:before {
   -ms-transform: translateX(26px);
   transform: translateX(26px);
 }
+
+.container{
+    display: flex;
+    justify-content: center;
+  }
 
 /* Rounded sliders */
 .slider.round {
