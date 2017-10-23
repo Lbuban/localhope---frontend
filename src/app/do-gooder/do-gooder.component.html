@@ -45,10 +45,11 @@
       </label>
     <label class="radio-inline">
         <input   type="radio" ngControl="distance" #distanceTwentyFive [(ngModel)]="model.distance" name="distance" id="distance5" [value]="25">25 miles
-      </label>
+    </label>
+    <div class="divButtons">
       <button type="submit" class="btn">Submit</button>
-  <button type="button"class="btn" (click)="resetNeeds(distanceFive, distanceTen, distanceFifteen, distanceTwenty, distanceTwentyFive)">Reset</button>
-  
+      <button type="button"class="btn" (click)="resetNeeds(distanceFive, distanceTen, distanceFifteen, distanceTwenty, distanceTwentyFive)">Reset</button>
+    </div>
   </form>
   <br>
   <!-- Reset/clear the radio buttons by calling the resetNeeds function. Added for better user experience -->

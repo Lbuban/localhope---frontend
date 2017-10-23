@@ -67,6 +67,13 @@ h2 {
     margin: 5px;
     font-family: 'Open Sans', sans-serif;
     text-shadow: 1px 1px black;
+    text-align: center;
+}
+
+.divButtons {
+    display: inline-block;
+
+    
 }
 #switch {
     display: flex;
@@ -74,16 +81,16 @@ h2 {
     justify-content: flex-start;
 }
 
-#switchRow {
+ #switchRow {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
-}
+    justify-content: center;
+} 
 /* switch css */
 /* The switch - the box around the slider */
 .switch {
   position: relative;
-  display: inline-block;
+   display: inline-block; 
   width: 60px;
   height: 28px;
 }
