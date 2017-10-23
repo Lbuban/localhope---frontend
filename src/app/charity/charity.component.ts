@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { DataService } from '../data.service';
 import { DialogComponent, DialogService } from "ng2-bootstrap-modal";
@@ -26,6 +26,7 @@ export class CharityComponent implements OnInit {
   editNeed: any;
   needid: number;
   charityid: number;
+  
 
 
   constructor(private dataService: DataService, private router: Router) { }
@@ -92,6 +93,7 @@ export class CharityComponent implements OnInit {
   ngAfterViewChecked() {
     this.formChanged();
   }
+
 
   formChanged() {
     //if the form didn't change then do nothing
