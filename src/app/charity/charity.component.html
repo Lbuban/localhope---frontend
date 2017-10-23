@@ -96,9 +96,13 @@
       <td *ngIf="need.needMet">yes</td>
       <td *ngIf="!need.needMet">no</td>
       <td>{{need.hasFollowers}}</td>
-      <td id="notifyButton" class="text-center">
-        <button [disabled]="!need.hasFollowers" class="btn btn-primary glyphicon glyphicon-send" (click)="notifyFollowers( need.users[0].id , need.id)"></button>
-      </td>
+        <td id="notifyButton" class="text-center">
+          <div style="display: inline;" tooltip="Sorry, your organization doesn't have any followers at this time" [tooltipDisabled]="need.hasFollowers" tooltipPlacement="top">
+            <button [disabled]="!need.hasFollowers"
+                    class="btn btn-primary glyphicon glyphicon-send"
+                    (click)="notifyFollowers( need.users[0].id , need.id)"></button>
+          </div>
+        </td>
       <!-- ng-disabled="need.hasFollowers"  -->
       <td id="editButton" class="text-center">
         <button class="btn btn-primary glyphicon glyphicon-pencil" (click)="getRecordForEdit(need)" data-toggle="modal" data-target="#editNeedForm"></button>

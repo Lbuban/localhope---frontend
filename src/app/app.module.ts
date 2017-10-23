@@ -41,7 +41,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     AppRoutingModule,
     HttpModule,
     BootstrapModalModule,
-    TooltipModule
+    TooltipModule,
   ],
 
   providers: [
