@@ -99,7 +99,7 @@ export class DoGooderComponent implements OnInit {
       //requires url with endpoint/distance and payload with lat and long      
       let latAndLong= this.model.latitude+this.model.longitude
       console.log(JSON.stringify(latAndLong), parseInt(this.model.distance))
-      this.charityService.locateNearMe("distancecurrent", parseInt(this.model.distance), this.model)
+      this.dataService.postRecord("distancecurrent", parseInt(this.model.distance), this.model)
         .subscribe(
         charities => {
           this.charities = charities;
@@ -109,7 +109,7 @@ export class DoGooderComponent implements OnInit {
     else if (!this.nearMe) {
 
 
-    this.charityService.locateUser("distance", this.userId, parseInt(this.model.distance))
+    this.dataService.postRecord("distance", this.userId, parseInt(this.model.distance))
 
       .subscribe(
       charities => {
@@ -123,7 +123,7 @@ export class DoGooderComponent implements OnInit {
 
 
   followCharity(charityId) { //function for a user to follow a selected charity.
-    this.dataService.postFollowCharity("user/followcharity", this.userId, JSON.stringify(charityId))
+    this.dataService.postRecord("user/followcharity", this.userId, JSON.stringify(charityId))
 
       .subscribe(
       charity => {
@@ -136,7 +136,7 @@ export class DoGooderComponent implements OnInit {
 
   unfollowCharity(charityId) { //function for a user to unfollow a selected charity.
 
-    this.dataService.postFollowCharity("user/unfollowcharity", this.userId, JSON.stringify(charityId))
+    this.dataService.postRecord("user/unfollowcharity", this.userId, JSON.stringify(charityId))
 
       .subscribe(
       charity => {
@@ -150,7 +150,7 @@ export class DoGooderComponent implements OnInit {
   decrementNeed(needId, decrement) { //function to save a need once one has been added.
     let decrementNumber = parseInt(decrement)
     let payload= '{"userid":'+'"'+ this.userId +'" , "reduceBy":"'+ decrement+'"}'
-    this.dataService.addDecrementNeed("needreduce", needId, payload)
+    this.dataService.postRecord("needreduce", needId, payload)
 
       .subscribe( 
       need => {

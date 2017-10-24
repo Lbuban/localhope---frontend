@@ -50,7 +50,7 @@ export class CharityComponent implements OnInit {
 
 
   saveNeed(need: NgForm) { //function to save a need once one has been added.
-    this.dataService.addCharityNeed("charity", this.userId, need.value)
+    this.dataService.postRecord("charity", this.userId, need.value)
       .subscribe(
       need => {
         this.successMessage = "Need added successfully";
@@ -132,7 +132,7 @@ export class CharityComponent implements OnInit {
   }
   notifyFollowers(charityID: number, needID: number) {
 
-    this.dataService.postNotifyFollowers("message", charityID, needID)
+    this.dataService.postRecord("message", charityID, needID)
       .subscribe(
       need => {
       this.successMessage = "followers notified successfully";
