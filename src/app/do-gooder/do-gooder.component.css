@@ -177,7 +177,7 @@ input:checked + .slider:before {
      display: none;  
  }
 
-    .container {
+ .container {
     height: 200px;  
     background-image: url("../../assets/images/Goodsmall.jpg");
     }
