@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { DataService } from '../data.service';
 import { DialogComponent, DialogService } from "ng2-bootstrap-modal";
@@ -26,6 +26,7 @@ export class CharityComponent implements OnInit {
   editNeed: any;
   needid: number;
   charityid: number;
+  
 
 
   constructor(private dataService: DataService, private router: Router) { }
@@ -49,8 +50,7 @@ export class CharityComponent implements OnInit {
 
 
   saveNeed(need: NgForm) { //function to save a need once one has been added.
-    console.log(this.model)
-    this.dataService.addCharityNeed("charity", this.userId, need.value)
+    this.dataService.postRecord("charity", this.userId, need.value)
       .subscribe(
       need => {
         this.successMessage = "Need added successfully";
@@ -63,13 +63,12 @@ export class CharityComponent implements OnInit {
   }
 
   saveEditedNeed(need: NgForm) { //function to save an edited need.
-    console.log()
     this.dataService.editRecord("updateneed", need.value, need.value.id)
       .subscribe(
         need => {
           this.successMessage = "Need added successfully";
           this.need = '';
-          setTimeout((jQuery("#closeButton").click()), 500);
+          setTimeout((document.getElementById("closeButton").click()), 500);
           this.getNeeds();
         },
         error => this.errorMessage = <any>error
@@ -77,7 +76,7 @@ export class CharityComponent implements OnInit {
   }
 
   getNeeds() { //function to pull the needs list.
-    this.dataService.getCharityNeeds(this.userId)
+    this.dataService.getNeed("charity",this.userId)
       .subscribe(
         needs => this.needs = needs,
         error => this.errorMessage = <any>error
@@ -92,6 +91,7 @@ export class CharityComponent implements OnInit {
   ngAfterViewChecked() {
     this.formChanged();
   }
+
 
   formChanged() {
     //if the form didn't change then do nothing
@@ -123,7 +123,6 @@ export class CharityComponent implements OnInit {
 
 
   deleteCharityNeed(needId: number) { //function to delete a charity from the record. 
-    console.log(needId, this.userId)
     this.dataService.deleteRecord("deleteneed", needId, JSON.stringify(this.userId))
       .subscribe(
       need => {
@@ -133,7 +132,7 @@ export class CharityComponent implements OnInit {
   }
   notifyFollowers(charityID: number, needID: number) {
 
-    this.dataService.postNotifyFollowers("message", charityID, needID)
+    this.dataService.postRecord("message", charityID, needID)
       .subscribe(
       need => {
       this.successMessage = "followers notified successfully";

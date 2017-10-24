@@ -5,3 +5,16 @@
 #logOutButton {
     margin-left: 25px;
 }
+
+#badLogin {
+    color: #AD0707;
+}
+
+.modal-body {
+    margin-right: 30px;
+    margin-left: 30px;
+}
+
+.navbar-default{
+    background-color: #ECECEC;
+}

@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataService } from '../data.service';
 import { CharityService } from '../charity.service'
-import { DataTablesModule } from 'angular-datatables';
+import { NgForm } from '@angular/forms';
+
 
 
 @Component({
@@ -11,23 +12,36 @@ import { DataTablesModule } from 'angular-datatables';
 })
 export class DoGooderComponent implements OnInit {
 
+  disgtanceForm: NgForm;
+  editForm: NgForm;
+  @ViewChild('distanceForm') currentForm: NgForm;
+  lat = localStorage.getItem('lat');
+  long = localStorage.getItem('long');
+  userId = localStorage.getItem('userid');
+
+  model = {
+    id:this.userId,
+    latitude: this.lat,
+    longitude: this.long,
+    distance: ""
+
+  };
 
   errorMessage: string;
   successMessage: string;
   needs: any[];
   need;
+  nearMe = true;
   needId;
   giveNeed: any;
   users;
   mode = 'Observable';
   charities;
-  userId = localStorage.getItem('userid');
   charityJSON;
   counter = 0;
   coords;
-  lat = localStorage.getItem('lat');
-  long= localStorage.getItem('long');
-  
+
+
 
   constructor(
     private dataService: DataService,
@@ -47,7 +61,7 @@ export class DoGooderComponent implements OnInit {
       // once function is called, subscribe/populate the table with needs.
       .subscribe(
       needs => {
-      this.needs = needs;
+        this.needs = needs;
       },
       error => this.errorMessage = <any>error);
   }
@@ -57,11 +71,11 @@ export class DoGooderComponent implements OnInit {
   }
 
   getUser() {
-    this.dataService.getCharityNeed("user/followedcharities", this.userId)
+    this.dataService.getNeed("user/followedcharities", this.userId)
 
       .subscribe(
       users => {
-      this.users = users
+        this.users = users
       },
       error => this.errorMessage = <any>error);
   }
@@ -77,28 +91,43 @@ export class DoGooderComponent implements OnInit {
     option5.checked = false
     return this.getNeeds();
   };
-  findLocalCharities(distance: string) { //function to pull the charity list.
-    let distanceNumber = parseInt(distance)
-    console.log(this.userId, distanceNumber)
-    this.charityService.locateUser("distance", this.userId, distanceNumber)
+
+  
+  findLocalCharities(distanceForm: NgForm) { //function to pull the charity list.
+    // let distanceNumber = parseInt(distance)
+    if (this.nearMe) {
+      //requires url with endpoint/distance and payload with lat and long      
+      let latAndLong= this.model.latitude+this.model.longitude
+      console.log(JSON.stringify(latAndLong), parseInt(this.model.distance))
+      this.dataService.postRecord("distancecurrent", parseInt(this.model.distance), this.model)
+        .subscribe(
+        charities => {
+          this.charities = charities;
+        },
+        error => this.errorMessage = <any>error);
+    }
+    else if (!this.nearMe) {
+
+
+    this.dataService.postRecord("distance", this.userId, parseInt(this.model.distance))
+
       .subscribe(
       charities => {
         this.charities = charities;
-        console.log(charities)
       },
       error => this.errorMessage = <any>error);
+  }
   }
 
 
 
 
   followCharity(charityId) { //function for a user to follow a selected charity.
-    console.log(JSON.stringify(charityId))
-    this.dataService.postFollowCharity("user/followcharity", this.userId, JSON.stringify(charityId))
+    this.dataService.postRecord("user/followcharity", this.userId, JSON.stringify(charityId))
 
       .subscribe(
       charity => {
-      this.successMessage = "Need added successfully";
+        this.successMessage = "Need added successfully";
         this.getUser();
       },
       error => this.errorMessage = <any>error);
@@ -107,11 +136,11 @@ export class DoGooderComponent implements OnInit {
 
   unfollowCharity(charityId) { //function for a user to unfollow a selected charity.
 
-    this.dataService.postFollowCharity("user/unfollowcharity", this.userId, JSON.stringify(charityId))
+    this.dataService.postRecord("user/unfollowcharity", this.userId, JSON.stringify(charityId))
 
       .subscribe(
       charity => {
-      this.successMessage = "Need added successfully";
+        this.successMessage = "Need added successfully";
         this.getUser();
       },
       error => this.errorMessage = <any>error);
@@ -120,12 +149,12 @@ export class DoGooderComponent implements OnInit {
 
   decrementNeed(needId, decrement) { //function to save a need once one has been added.
     let decrementNumber = parseInt(decrement)
-    console.log(needId, decrementNumber)
-    this.dataService.addDecrementNeed("needreduce", needId, decrementNumber)
+    let payload= '{"userid":'+'"'+ this.userId +'" , "reduceBy":"'+ decrement+'"}'
+    this.dataService.postRecord("needreduce", needId, payload)
 
-      .subscribe(
+      .subscribe( 
       need => {
-      this.successMessage = "Need added successfully";
+        this.successMessage = "Need added successfully";
         this.getNeeds();
       },
       error => this.errorMessage = <any>error);
@@ -145,7 +174,7 @@ export class DoGooderComponent implements OnInit {
   }
   closeModal() {
     this.counter = 0;
-    return setTimeout((jQuery("#closeButton").click()), 500)
+    return setTimeout((document.getElementById("closeButton").click()), 500)
   }
 
   showPosition() {
@@ -153,11 +182,13 @@ export class DoGooderComponent implements OnInit {
       navigator.geolocation.getCurrentPosition(position => {
         this.coords = position.coords;
         localStorage.setItem('lat', this.coords.latitude);
-        localStorage.setItem('long',this.coords.longitude);
-        console.log(this.coords)
+        localStorage.setItem('long', this.coords.longitude);
       });
     } else {
       alert("Sorry, your browser does not support HTML5 geolocation.");
     }
   }
+
+
+
 }

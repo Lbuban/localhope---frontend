@@ -28,7 +28,6 @@ export class NavigationComponent implements OnInit {
   ngOnInit() { this.checkUser() }
 
   checkUser() {
-    console.log(this.type)
     if (this.type == "User") {
       this.router.navigateByUrl('/dogooder');
       this.type == null;
@@ -48,25 +47,21 @@ export class NavigationComponent implements OnInit {
         this.successMessage = "login successful";
         this.welcome = user.firstName
         //use local storage to store the userid, username and type as user navigates throughout the site.
-        if (user.isCharity == "User") {
           localStorage.setItem('userid', user.id);
           localStorage.setItem('username', user.firstName);
           localStorage.setItem('type', user.isCharity);
-          this.router.navigateByUrl('/dogooder');
-        }
-        else if (user.isCharity == "Charity") {
-          localStorage.setItem('userid', user.id);
-          localStorage.setItem('username', user.firstName);
-          localStorage.setItem('type', user.isCharity);
-          this.router.navigateByUrl('/charity');
-        }
+          this.badLogin = false
+            if (user.isCharity == "User") {
+              this.router.navigateByUrl('/dogooder');
+            }
+             else if (user.isCharity == "Charity") {
+              this.router.navigateByUrl('/charity');
+            }
       },
       error => {this.errorMessage = <any>error
         this.badLogin = true
       }
-      
       );
-
     this.user = '';
     ;
 
@@ -109,7 +104,6 @@ export class NavigationComponent implements OnInit {
   }
 
   logOut() { //function to log-out user
-    console.log("done")
     localStorage.removeItem("username")
     localStorage.removeItem("type")
     this.router.navigateByUrl('/home');
@@ -118,7 +112,6 @@ export class NavigationComponent implements OnInit {
   }
 //  function for sending username upon bad login
   forgotPassword(userPassword){ //function to save a user once one has been added.
-    console.log(JSON.stringify(userPassword))
     this.dataService.passwordReset("sendgrid/getpassword", userPassword)
      .subscribe(
         user => {

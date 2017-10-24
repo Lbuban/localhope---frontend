@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Amatic+SC');
-@import url('https://fonts.googleapis.com/css?family=Amatic+SC|Slabo+27px');
 @import url('https://fonts.googleapis.com/css?family=PT+Sans+Narrow');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
@@ -11,12 +10,29 @@ th {
 
 }
 
+table {
+    background-color: white;
+  }
+
 td {
     text-align: center;
     font-weight: bold;
     color: #6C7A89;
 }
 
+#wrapper {
+    display: flex;
+    justify-content: center;
+}
+.container {
+    width: 75%;
+    height: 400px;
+     border: solid; 
+    background-image: url("../../assets/images/Good.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
 .modal-dialog {
     width: 900px;
     max-width: 100%;
@@ -24,27 +40,26 @@ td {
 }
 
 img {
-    width: 100%;
-    height: 450px;
+    width: 85%;
 }
 
 #body {
     margin-right: 30px;
     margin-left: 30px;
-    font-family: 'Slabo 27px', serif;
 }
 
 #tagline h1 {
     text-align: center;
     font-size: 100px;
     font-family: 'Amatic SC', cursive;
-    margin-top: -50px;
+    margin-top: 10px;
 }
 
 h2 {
     font-size: 30px;
     font-family: 'Open Sans', sans-serif;
 }
+
 
 #amount {
     width: 15%;
@@ -68,4 +83,103 @@ h2 {
     margin: 5px;
     font-family: 'Open Sans', sans-serif;
     text-shadow: 1px 1px black;
+    text-align: center;
+}
+
+.divButtons {
+    display: inline-block;
+
+    
+}
+#switch {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+ #switchRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+} 
+/* switch css */
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+   display: inline-block; 
+  width: 60px;
+  height: 28px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {display:none;}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px;
+  left: 4px;
+  bottom: 3px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+  }
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+@media screen and (max-width: 775px) {
+  th, td {
+     font-size: 10px;
+     
+ }
+ 
+    .optional { 
+     display: none;  
+ }
+
+ .container {
+    height: 200px;  
+    background-image: url("../../assets/images/Goodsmall.jpg");
+    }
+
 }

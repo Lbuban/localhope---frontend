@@ -1,10 +1,9 @@
-<div class="jumbotron">
+
+<div id="wrapper">  
   <div class="container">
-    <img src="https://www.chicagosfoodbank.org/wp-content/uploads/2016/10/volunteer-header-1600x500.jpg">
-    <!-- <img src="../../assets/images/child.jpg"/> -->
+      <!-- <img src="../../assets/images/Good.jpg"> -->
   </div>
 </div>
-
 <div id="body">
   <div id="tagline">
     <h1>Find. Follow. Fulfill.</h1>
@@ -16,32 +15,44 @@
     Find organizations with needs near you.
   </h2>
   <p>Below is a list of organizations with immediate needs. Filter by those closest to you. </p>
-  <form>
-    <input type="checkbox">Use my location
-    <input type="checkbox">Use my address
-   </form> 
-  <form>
+ <div id="switchRow">
+ <p>Use Current Location?</p>
+  <div id="switch"> 
+<label class="switch">
+  
+  
+  <div>
+   <input [checked]="nearMe" (change)="nearMe = !nearMe"type="checkbox"> 
+  <span class="slider round"></span>
+  </div>
+
+</label>
+</div>
+</div>
+  <form id="distanceForm" novalidate (ngSubmit)="findLocalCharities(distanceForm)" #distanceForm="ngForm" class="form-horizontal control-label">
     <label class="radio-inline">
-        <input (click)="findLocalCharities(fiveMiles.value)" #fiveMiles type="radio" name="distance" id="distance2" value="5" >5 miles
+        <input  type="radio" ngControl="distance" #distanceFive [(ngModel)]="model.distance" name="distance" id="distance2" [value]="5" >5 miles
       </label>
     <label class="radio-inline">
-        <input (click)="findLocalCharities(tenMiles.value)" #tenMiles type="radio" name="distance" id="distance2" value="10" >10 miles
+        <input  type="radio" ngControl="distance" #distanceTen  [(ngModel)]="model.distance" name="distance" id="distance2" [value]="10" >10 miles
       </label>
     <label class="radio-inline">
-        <input (click)="findLocalCharities(fifteenMiles.value)" #fifteenMiles type="radio" name="distance" id="distance3" value="15">15 miles
+        <input  type="radio"  ngControl="distance" #distanceFifteen  [(ngModel)]="model.distance" name="distance" id="distance3" [value]="15">15 miles
       </label>
     <label class="radio-inline">
-        <input (click)="findLocalCharities(twentyMiles.value)" #twentyMiles type="radio" name="distance" id="distance4" value="20">20 miles
+        <input   type="radio" ngControl="distance" #distanceTwenty  [(ngModel)]="model.distance" name="distance" id="distance4" [value]="20">20 miles
       </label>
     <label class="radio-inline">
-        <input (click)="findLocalCharities(twentyfiveMiles.value)" #twentyfiveMiles type="radio" name="distance" id="distance5" value="25">25 miles
-      </label>
+        <input   type="radio" ngControl="distance" #distanceTwentyFive [(ngModel)]="model.distance" name="distance" id="distance5" [value]="25">25 miles
+    </label>
+    <div class="divButtons">
+      <button type="submit" class="btn">Submit</button>
+      <button type="button"class="btn" (click)="resetNeeds(distanceFive, distanceTen, distanceFifteen, distanceTwenty, distanceTwentyFive)">Reset</button>
+    </div>
   </form>
   <br>
   <!-- Reset/clear the radio buttons by calling the resetNeeds function. Added for better user experience -->
- <button class="btn">Submit</button>
-  <button class="btn" (click)="resetNeeds(fiveMiles, tenMiles, fifteenMiles, twentyMiles, twentyfiveMiles)">Reset</button>
-  </div>
+ </div>
   
   <br>
   <br>
@@ -51,12 +62,10 @@
     <table class="table table-hover table-bordered" id="dataTable" style="width:100%">
       <thead>
         <tr>
-          <!-- <th>Charity ID</th> -->
           <th>Charity Name</th>
-          <th>Charity Type</th>
-          <!-- <th>EIN</th> -->
-          <th>Need Category</th>
-          <th>Need by Date</th>
+          <th class="optional">Charity Type</th>
+          <th class="optional">Need Category</th>
+          <th class="optional">Need by Date</th>
           <th>Description</th>
           <th>Original Amount</th>
           <th>Give</th>
@@ -67,12 +76,10 @@
 
         <!-- Loop over each need in the array and display the attributes in a table -->
         <tr *ngFor="let need of needs">
-          <!-- <td>{{need.users[0].id}}</td> -->
           <td>{{need.users[0].charityName}}</td>
-          <td>{{need.users[0].charityType}}</td>
-          <!-- <td>{{need.users[0].ein}}</td> -->
-          <td>{{need.type}}</td>
-          <td>{{need.dateNeeded}}</td>
+          <td class="optional">{{need.users[0].charityType}}</td>
+          <td class="optional">{{need.type}}</td>
+          <td class="optional">{{need.dateNeeded}}</td>
           <td>{{need.description}}</td>
           <td>{{need.originalAmount}}</td>
           <td class="text-center">
@@ -93,7 +100,7 @@
   <!-- Upon click of radio button, call the findLocalCharities function and pass in the selected value -->
 
   <br>
-  <hr>
+
  
 
   <!-- table to pull charities based on location -->
@@ -105,12 +112,10 @@
     <table class="table table-hover table-bordered" id="dataTable" style="width:100%">
       <thead>
         <tr>
-          <!-- <th>Charity ID</th> -->
           <th>Charity Name</th>
-          <th>Charity Type</th>
-          <!-- <th>EIN</th> -->
-          <th>Need Category</th>
-          <th>Need by Date</th>
+          <th class="optional" >Charity Type</th>
+          <th class="optional">Need Category</th>
+          <th class="optional">Need by Date</th>
           <th>Description</th>
           <th>Original Amount</th>
           <th>Give</th>
@@ -121,12 +126,10 @@
       <tbody>
         <!-- loop over each charity in the array and display the attributes in a table -->
         <tr *ngFor="let charity of charities">
-          <!-- <td>{{charity.users[0].id}}</td> -->
           <td>{{charity.users[0].charityName}}</td>
-          <td>{{charity.users[0].charityType}}</td>
-          <!-- <td>{{charity.users[0].ein}}</td> -->
-          <td>{{charity.type}}</td>
-          <td>{{charity.dateNeeded}}</td>
+          <td class="optional">{{charity.users[0].charityType}}</td>
+          <td class="optional"> {{charity.type}}</td>
+          <td class="optional">{{charity.dateNeeded}}</td>
           <td>{{charity.description}}</td>
           <td>{{charity.originalAmount}}</td>
           <td class="text-center">
@@ -144,9 +147,12 @@
       </tbody>
     </table>
   </div>
-<p> Following a charity allows them to send you text notifications when they add a need you may be able to fulfill.</p>
- <a class="btn btn-primary" role="button" href="#followedCharities" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">Click to See Followed Charities</a>
+
+<div style="display: inline; display: flex; justify-content: center;" tooltip="Following a charity allows them to send you text notifications when they add a need you may be able to fulfill."
+tooltipPlacement="top"> 
+  <a class="btn btn-primary" role="button" href="#followedCharities" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">Click to See Followed Charities</a>
   <!-- Table to display charities that user has selected to "Follow" -->
+ </div>
   <div class="collapse" id="followedCharities">
     <div class="well">
     <h2>
