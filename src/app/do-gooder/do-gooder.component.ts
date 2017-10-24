@@ -71,7 +71,7 @@ export class DoGooderComponent implements OnInit {
   }
 
   getUser() {
-    this.dataService.getCharityNeed("user/followedcharities", this.userId)
+    this.dataService.getNeed("user/followedcharities", this.userId)
 
       .subscribe(
       users => {

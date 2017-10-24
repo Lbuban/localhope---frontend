@@ -20,14 +20,14 @@ export class DataService {
             .catch(this.handleError);
     }
 
-    getCharityNeeds(userID): Observable<any[]> {
-        let apiUrl = `${this.baseUrl}charity/${userID}`;
-        return this.http.get(apiUrl)
-            .map(this.extractData)
-            .catch(this.handleError);
-    }
+    // getCharityNeeds(userID): Observable<any[]> {
+    //     let apiUrl = `${this.baseUrl}charity/${userID}`;
+    //     return this.http.get(apiUrl)
+    //         .map(this.extractData)
+    //         .catch(this.handleError);
+    // }
 
-    getCharityNeed(endpoint, userId): Observable<any[]> {
+    getNeed(endpoint, userId): Observable<any[]> {
         let apiUrl = `${this.baseUrl}${endpoint}/${userId}`;
         return this.http.get(apiUrl)
             .map(this.extractData)
