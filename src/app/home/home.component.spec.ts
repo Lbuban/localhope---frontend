@@ -84,6 +84,7 @@ describe('HomeComponent', () => {
       console.log(exists)
     });
   })
+  //This code below is here as an example of Arrange/At/Assert format:
 //   it('should decrement the counter number by 1', () => {
 //     //Arrange:
 //     const initialValue = component.counter;
