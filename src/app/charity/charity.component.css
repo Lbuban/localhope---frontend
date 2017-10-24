@@ -58,7 +58,9 @@ img {
   width: 85%;
 }
 
-
+#type {
+  color: black;
+}
 #body {
   margin-right: 30px;
   margin-left: 30px;

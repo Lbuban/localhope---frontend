@@ -11,6 +11,10 @@ h3 {
     text-align: center;
 }
 
+a {
+    color: #05668D;
+}
+
 .wrapper {
     width: 90%;
     margin: auto, 0;
@@ -39,7 +43,7 @@ h3 {
     background-color: #00A896;
     color: white;
     padding-left: 30px;
-    height: 450px;
+    height: 400px;
 }
 
 #copyright {
@@ -47,7 +51,7 @@ h3 {
     background-color: #05668D;
     color: white;
     vertical-align: bottom;
-    height: 450px;
+    height: 400px;
     padding-bottom: 25px;
     padding-left: 20px;
     padding-right: 10px;
