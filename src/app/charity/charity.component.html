@@ -107,7 +107,9 @@
         <td id="notifyButton" class="text-center">
           <div style="display: inline;" tooltip="Sorry, your organization doesn't have any followers at this time" [tooltipDisabled]="need.hasFollowers"
             tooltipPlacement="top">
-            <button [disabled]="!need.hasFollowers" class="btn btn-primary glyphicon glyphicon-send" (click)="notifyFollowers( need.users[0].id , need.id)"></button>
+            <!-- <button [disabled]="!need.hasFollowers" class="btn btn-primary glyphicon glyphicon-send" (click)="notifyFollowers( need.users[0].id , need.id)"></button> -->
+            <button [disabled]="!need.hasFollowers" class="btn btn-primary glyphicon glyphicon-send" (click)="splitFollowers()" data-toggle="modal" data-target="#confirm"></button>
+
           </div>
         </td>
         <!-- ng-disabled="need.hasFollowers"  -->
@@ -117,6 +119,28 @@
       </tr>
     </tbody>
   </table>
+
+<!-- Notify Followers Pop-up Modal -->
+  <div class="modal fade" id="confirm">
+      <div *ngFor="let need of needs" 
+        class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title">Confirm</h3>
+           
+          </div>
+         
+          <p>Are you sure you want to text {{this.countFollower}} follower(s)? </p>
+          <div class="modal-body">
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" (click)="notifyFollowers( need.users[0].id , need.id)">Yes, I'm sure</button>
+                <button id="closeButton" type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
 
   <!-- Edit Modal -->
   <div class="modal fade" id="editNeedForm">
