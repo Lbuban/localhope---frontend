@@ -17,7 +17,7 @@
             <h1>Post Your Charity Needs</h1>
           </div>
       <div class="form-group">
-        <label for="type" class="mr-sm-2 col-sm-2 control-label">Donation Type</label>
+        <label for="type" class="mr-sm-2 col-sm-2 control-label">Type</label>
         <div class="col-sm-10">
           <select [(ngModel)]="model.type" name="type" class="custom-select mb-2 mr-sm-2 mb-sm-0" id="type" required>
             <option selected value="Money">Money</option>
@@ -30,15 +30,23 @@
         </div>
       </div>
 
-      <div class="form-group">
+    <div class="row form-group" id="unitField">
         <label for="originalAmount" class="col-sm-2 control-label">Amount</label>
-        <div class="col-sm-10">
-          <input [(ngModel)]="model.originalAmount" type="integer" class="form-control" id="originalAmount" name="originalAmount" placeholder="e.g. $50, 1 crib, 2 hours"
+        <div class="col-sm-4">
+          <input [(ngModel)]="model.originalAmount" type="integer" class="form-control" id="originalAmount" name="originalAmount" placeholder="Enter a number"
             required>
           <span *ngIf="formErrors.originalAmount" class="text-danger">
             {{ formErrors.originalAmount }}
         </span>
-        </div>
+      </div>
+          <label for="units" class="col-sm-2 control-label">Units</label>
+          <div class="col-sm-4">
+            <input [(ngModel)]="model.units" type="integer" class="form-control" id="units" name="units" placeholder="e.g. dollars, hours, cribs"
+              required>
+            <span *ngIf="formErrors.units" class="text-danger">
+              {{ formErrors.units}}
+          </span>
+          </div>
       </div>
 
       <div class="form-group">
@@ -84,10 +92,12 @@
     <thead>
       <tr>
         <th>Charity Name</th>
-        <th class="optional">Donation Type</th>
+       
         <th class="optional">Need by Date</th>
         <th>Description</th>
-        <th class="optional">Original Amount</th>
+        <th>Amount</th>
+        <th>Units</th>
+        <th class="optional">Type</th>
         <th class="optional">Need Met</th>
         <th class="optional">Being Followed</th>
         <th>Notify Followers</th>
@@ -97,10 +107,11 @@
     <tbody>
       <tr *ngFor="let need of needs">
         <td>{{need.users[0].charityName}}</td>
-        <td class="optional">{{need.type}}</td>
         <td class="optional">{{need.dateNeeded}}</td>
         <td>{{need.description}}</td>
-        <td class="optional">{{need.originalAmount}}</td>
+        <td >{{need.originalAmount}}</td>
+        <td >{{need.units}}</td>
+        <td class="optional">{{need.type}}</td>
         <td class="optional" *ngIf="need.needMet">yes</td>
         <td class="optional" *ngIf="!need.needMet">no</td>
         <td class="optional">{{need.hasFollowers}}</td>
@@ -122,15 +133,12 @@
 
 <!-- Notify Followers Pop-up Modal -->
   <div class="modal fade" id="confirm">
-      <div *ngFor="let need of needs" 
-        class="modal-dialog" role="document">
+        class="modal-dialog2" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <h3 class="modal-title">Confirm</h3>
-           
           </div>
-         
-          <p>Are you sure you want to text {{this.countFollower}} follower(s)? </p>
+          <p id="followerModal" >Are you sure you want to text {{this.countFollower}} follower(s)? </p>
           <div class="modal-body">
               <div class="modal-footer">
                 <button type="submit" class="btn btn-primary" (click)="notifyFollowers( need.users[0].id , need.id)">Yes, I'm sure</button>
@@ -138,7 +146,6 @@
               </div>
           </div>
         </div>
-      </div>
     </div>
 
 
@@ -176,6 +183,13 @@
                 <input class="form-control" name="originalAmount" [ngModel]="editNeed.originalAmount" required>
               </div>
             </div>
+
+            <div class="form-group">
+                <label for="units" class="col-sm-2 control-label">Units</label>
+                <div class="col-sm-10">
+                  <input class="form-control" name="units" [ngModel]="editNeed.units" required>
+                </div>
+              </div>
 
             <div class="form-group">
               <label for="description" class="col-sm-2 control-label">Description of Need</label>
