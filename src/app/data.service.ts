@@ -78,14 +78,14 @@ export class DataService {
             .map(this.extractData);
     }
 
-     postNotifyFollowers(endpoint: string, charityID: number, NeedID) : Observable<any> {
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
-        let apiUrl = `${this.baseUrl}${endpoint}/${charityID}`;
-        console.log(apiUrl)
-        return this.http.post(apiUrl, NeedID, options)
-            .map(this.extractData);
-    }
+    //  postNotifyFollowers(endpoint: string, charityID: number, NeedID) : Observable<any> {
+    //     let headers = new Headers({ 'Content-Type': 'application/json' });
+    //     let options = new RequestOptions({ headers: headers });
+    //     let apiUrl = `${this.baseUrl}${endpoint}/${charityID}`;
+    //     console.log(apiUrl)
+    //     return this.http.post(apiUrl, NeedID, options)
+    //         .map(this.extractData);
+    // }
     
     // addDecrementNeed(endpoint: string, userID, record): Observable<any> {
     //     let apiUrl = `${this.baseUrl}${endpoint}/${userID}`;
