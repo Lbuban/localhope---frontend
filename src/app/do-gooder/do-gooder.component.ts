@@ -157,7 +157,7 @@ export class DoGooderComponent implements OnInit {
       need => {
         this.successMessage = "Need added successfully";
         this.getNeeds();
-        this.closeModal();
+       
       },
       error => this.errorMessage = <any>error);
     this.need = '';
