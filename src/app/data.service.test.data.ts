@@ -79,3 +79,31 @@ export let getRecordsResults =
       ]
   }
 ];
+
+export let getUserResult = 
+[
+    {
+        "id": 4,
+        "username": "ChildHaven",
+        "password": "$2a$10$qe6DAdJde4gSozln3X8gTu6X6bEgDCrrJGtEQRH1lPk9D0CMYPO3W",
+        "firstName": "Jimmy",
+        "lastName": "John",
+        "streetAddress": "316 Broadway",
+        "city": "Seattle",
+        "state": "WA",
+        "zipCode": "98122",
+        "phone": "786-898-8627",
+        "email": "lyndsay.pollock@gmail.com",
+        "isCharity": "Charity",
+        "resetNumber": null,
+        "charityName": "ChildHaven",
+        "ein": "1232423443",
+        "charityUserRole": "NA",
+        "charityType": "NA",
+        "followers": "",
+        "enabled": true,
+        "accountNonExpired": true,
+        "accountNonLocked": true,
+        "credentialsNonExpired": true
+    }
+];
