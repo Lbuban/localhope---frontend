@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataService } from '../data.service';
-import { CharityService } from '../charity.service'
 import { NgForm } from '@angular/forms';
 
 
@@ -21,7 +20,7 @@ export class DoGooderComponent implements OnInit {
   userId = localStorage.getItem('userid');
 
   model = {
-    id:this.userId,
+    id: this.userId,
     latitude: this.lat,
     longitude: this.long,
     distance: ""
@@ -46,7 +45,6 @@ export class DoGooderComponent implements OnInit {
 
   constructor(
     private dataService: DataService,
-    private charityService: CharityService
   ) { }
 
   ngOnInit() {
@@ -93,12 +91,12 @@ export class DoGooderComponent implements OnInit {
     return this.getNeeds();
   };
 
-  
+
   findLocalCharities(distanceForm: NgForm) { //function to pull the charity list.
     // let distanceNumber = parseInt(distance)
     if (this.nearMe) {
       //requires url with endpoint/distance and payload with lat and long      
-      let latAndLong= this.model.latitude+this.model.longitude
+      let latAndLong = this.model.latitude + this.model.longitude
       console.log(JSON.stringify(latAndLong), parseInt(this.model.distance))
       this.dataService.postRecord("distancecurrent", parseInt(this.model.distance), this.model)
         .subscribe(
@@ -110,14 +108,14 @@ export class DoGooderComponent implements OnInit {
     else if (!this.nearMe) {
 
 
-    this.dataService.postRecord("distance", this.userId, parseInt(this.model.distance))
+      this.dataService.postRecord("distance", this.userId, parseInt(this.model.distance))
 
-      .subscribe(
-      charities => {
-        this.charities = charities;
-      },
-      error => this.errorMessage = <any>error);
-  }
+        .subscribe(
+        charities => {
+          this.charities = charities;
+        },
+        error => this.errorMessage = <any>error);
+    }
   }
 
 
@@ -150,28 +148,28 @@ export class DoGooderComponent implements OnInit {
 
   decrementNeed(needId, decrement) { //function to save a need once one has been added.
     let decrementNumber = parseInt(decrement)
-    let payload= '{"userid":'+'"'+ this.userId +'" , "reduceBy":"'+ decrement+'"}'
+    let payload = '{"userid":' + '"' + this.userId + '" , "reduceBy":"' + decrement + '"}'
     this.dataService.postRecord("needreduce", needId, payload)
 
-      .subscribe( 
+      .subscribe(
       need => {
         this.successMessage = "Need added successfully";
         this.getNeeds();
-       
+
       },
       error => this.errorMessage = <any>error);
     this.need = '';
   }
 
   decreaseOne() {
-    if (this.counter >0){
-    this.counter--;
-  } 
+    if (this.counter > 0) {
+      this.counter--;
+    }
   }
 
 
   increaseOne() {
-    
+
     this.counter++;
 
   }

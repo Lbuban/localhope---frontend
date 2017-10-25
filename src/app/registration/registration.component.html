@@ -6,9 +6,9 @@
 
     <!-- User selects the role of their registration: -->
     <form id="color1" novalidate (ngSubmit)="registerUser(registrationForm)" #registrationForm="ngForm" class="form-horizontal color: control-label">
-   <div>
-     Please select an option
-     </div>
+      <div>
+        Please select an option
+      </div>
       <select [(ngModel)]="isCharity" (ngModelChange)="onChange($event)" name="isCharity">
         <option value="User">User</option>
         <option value="Charity">Charity</option>
@@ -152,14 +152,14 @@
               </span>
             </div>
           </div>
-          </div>
-          <!-- Charity Type dropdown: -->
-          <div *ngIf="this.userCheck===false">
-            <div class="form-group">
-              <label for="charityType" class="mr-sm-2 col-sm-2 control-label" for="inlineFormCustomSelectPref">Charity Type*</label>
-              <div class="col-sm-10">
-                <select [ngModel]="registration?.charityType" ngModel #charityType="ngModel" type="text" class="form-control" id="charityType"
-                  name="charityType" class="custom-select mb-2 mr-sm-2 mb-sm-0">
+        </div>
+        <!-- Charity Type dropdown: -->
+        <div *ngIf="this.userCheck===false">
+          <div class="form-group">
+            <label for="charityType" class="mr-sm-2 col-sm-2 control-label" for="inlineFormCustomSelectPref">Charity Type*</label>
+            <div class="col-sm-10">
+              <select [ngModel]="registration?.charityType" ngModel #charityType="ngModel" type="text" class="form-control" id="charityType"
+                name="charityType" class="custom-select mb-2 mr-sm-2 mb-sm-0">
                     <option selected>Select...</option>
                     <option value="Health">Health</option>
                     <option value="Education">Education</option>
@@ -168,35 +168,35 @@
                     <option value="Environment">Environment</option>
                     <option value="Other">Other</option>
                 </select>
-                <span *ngIf="" class="text-danger">
+              <span *ngIf="" class="text-danger">
                   <!-- {{ formErrors.charityType }} -->
               </span>
-              </div>
             </div>
           </div>
-          <!-- end of charity only form -->
-          <!-- div for users: additional registration fields specific to user role -->
-          <div *ngIf="this.userCheck===true">
-            <div class="form-group">
-              <label for="donationPreferences" class="mr-sm-2 col-sm-2 control-label" for="inlineFormCustomSelectPref">Donation Preference</label>
-              <div class="col-sm-10">
-                <select  ngModel #donationPreferences="ngModel" name="donationPreferences" class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelectPref">
+        </div>
+        <!-- end of charity only form -->
+        <!-- div for users: additional registration fields specific to user role -->
+        <div *ngIf="this.userCheck===true">
+          <div class="form-group">
+            <label for="donationPreferences" class="mr-sm-2 col-sm-2 control-label" for="inlineFormCustomSelectPref">Donation Preference</label>
+            <div class="col-sm-10">
+              <select ngModel #donationPreferences="ngModel" name="donationPreferences" class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelectPref">
                   <option selected>Select...</option>
                   <option value="Money">Money</option>
                   <option value="Time">Time</option>
                   <option value="Items">Items</option>
               </select>
-                <span *ngIf="" class="text-danger">
+              <span *ngIf="" class="text-danger">
                 </span>
-              </div>
             </div>
+          </div>
 
 
-            <div class="form-group">
-              <label for="charityPreference" class="mr-sm-2 col-sm-2 control-label" for="inlineFormCustomSelectPref">Charity Preference</label>
-              <div class="col-sm-10">
-                <select  ngModel #charityPreference="ngModel" type="text" class="form-control" id="charityPreference"
-                  name="charityPreference" placeholder="enter your role" class="custom-select mb-2 mr-sm-2 mb-sm-0">
+          <div class="form-group">
+            <label for="charityPreference" class="mr-sm-2 col-sm-2 control-label" for="inlineFormCustomSelectPref">Charity Preference</label>
+            <div class="col-sm-10">
+              <select ngModel #charityPreference="ngModel" type="text" class="form-control" id="charityPreference" name="charityPreference"
+                placeholder="enter your role" class="custom-select mb-2 mr-sm-2 mb-sm-0">
                     <option selected>Select...</option>
                     <option value="Health">Health</option>
                     <option value="Education">Education</option>
@@ -205,24 +205,23 @@
                     <option value="Environment">Environment</option>
                     <option value="Other">Other</option>
                 </select>
-                <span *ngIf="" class="text-danger">
+              <span *ngIf="" class="text-danger">
               </span>
-              </div>
             </div>
-            <!-- end of user-specific fields: -->
+          </div>
+          <!-- end of user-specific fields: -->
         </div>
         <!-- Registration Submit button disabled until all field validations are met: -->
         <div *ngIf="this.userCheck===false || this.userCheck===true">
-        <button [disabled]="!registrationForm.form.valid" class="btn btn-primary" 
-          type="submit">Submit</button>
-           <p> (*) Denotes a required field</p>
-        </div>  
+          <button [disabled]="!registrationForm.form.valid" class="btn btn-primary" type="submit">Submit</button>
+          <p> (*) Denotes a required field</p>
         </div>
-       
+      </div>
+
     </form>
-    </div>
-    <br>
-    <br>
-    <br>
-    <br>
   </div>
+  <br>
+  <br>
+  <br>
+  <br>
+</div>

@@ -20,7 +20,7 @@ export class NavigationComponent implements OnInit {
   badLogin;
 
 
-//ViewChild is used here so that we can "watch" the loginform for any changes made to the DOM. 
+  //ViewChild is used here so that we can "watch" the loginform for any changes made to the DOM. 
   @ViewChild('loginForm') currentForm: NgForm;
 
   constructor(private dataService: DataService, private router: Router) { }
@@ -43,45 +43,32 @@ export class NavigationComponent implements OnInit {
   loginUser(user: NgForm) { //function to login an existing user or charity.
     this.dataService.addRecord("sessions", user.value)
       .subscribe(
-        
+
       user => {
         this.successMessage = "login successful";
         this.welcome = user.firstName
         //use local storage to store the userid, username and type as user navigates throughout the site.
-          localStorage.setItem('userid', user.id);
-          localStorage.setItem('username', user.firstName);
-          localStorage.setItem('type', user.isCharity);
-          this.badLogin = false
-            if (user.isCharity == "User") {
-              this.router.navigateByUrl('/dogooder');
-            }
-             else if (user.isCharity == "Charity") {
-              this.router.navigateByUrl('/charity');
-            }
-            
+        localStorage.setItem('userid', user.id);
+        localStorage.setItem('username', user.firstName);
+        localStorage.setItem('type', user.isCharity);
+        this.badLogin = false
+        if (user.isCharity == "User") {
+          this.router.navigateByUrl('/dogooder');
+        }
+        else if (user.isCharity == "Charity") {
+          this.router.navigateByUrl('/charity');
+        }
+
       },
-      error => {this.errorMessage = <any>error
+      error => {
+        this.errorMessage = <any>error
         this.badLogin = true
       }
       );
     this.user = '';
     ;
-        
+
   }
-
-  // ngAfterViewChecked() {
-  //   this.formChanged();
-  // }
-
-  // formChanged() {
-  //   //if the form didn't change then do nothing
-  //   if (this.currentForm === this.loginForm) { return; }
-  //   //set the form to the current form for comparison
-  //   this.loginForm = this.currentForm;
-  //   //subscribe to form changes and send the changes to the onValueChanged method
-  //   this.loginForm.valueChanges
-  //     .subscribe(data => this.onValueChanged(data));
-  // }
 
   onChange() {
     if (this.isCharity == "User") {
@@ -90,21 +77,6 @@ export class NavigationComponent implements OnInit {
     else if (this.isCharity == "Charity") { this.userCheck = false };
   }
 
-  // onValueChanged(data?: any) {
-  //   let form = this.loginForm.form;
-  //   for (const field in this.formErrors) {
-  //     // clear previous error message (if any)
-  //     this.formErrors[field] = '';
-  //     const control = form.get(field);
-  //     if (control && control.dirty && !control.valid) {
-  //       const messages = this.validationMessages[field];
-  //       for (const key in control.errors) {
-  //         this.formErrors[field] += messages[key] + ' ';
-  //       }
-  //     }
-  //   }
-  // }
-
   logOut() { //function to log-out user
     localStorage.removeItem("username")
     localStorage.removeItem("type")
@@ -112,18 +84,18 @@ export class NavigationComponent implements OnInit {
     this.welcome = null;
     this.user = null;
   }
-//  function for sending username upon bad login
-  forgotPassword(userPassword){ //function to save a user once one has been added.
+  //  function for sending username upon bad login
+  forgotPassword(userPassword) { //function to save a user once one has been added.
     this.dataService.passwordReset("sendgrid/getpassword", userPassword)
-     .subscribe(
-        user => {
-          this.successMessage = "login successful";  
-        },
-        error => this.errorMessage = <any>error
+      .subscribe(
+      user => {
+        this.successMessage = "login successful";
+      },
+      error => this.errorMessage = <any>error
       );
     this.user = '';
-    ;      
-    }
+    ;
+  }
 
   formErrors = {
     'username': '',

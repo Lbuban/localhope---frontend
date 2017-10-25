@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { DataService } from '../data.service'
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -11,8 +11,8 @@ import {Router} from '@angular/router';
 })
 export class RegistrationComponent implements OnInit {
 
-@Output ()
-sendUser = new EventEmitter<any>();
+  @Output()
+  sendUser = new EventEmitter<any>();
 
   registrationForm: NgForm;
   successMessage: string;
@@ -21,100 +21,95 @@ sendUser = new EventEmitter<any>();
   userCheck;
   user;
   welcome = localStorage.getItem('username');
-  
+
 
   @ViewChild('registrationForm') currentForm: NgForm;
 
- constructor(private dataService: DataService, private router: Router) { } 
-
-  // onSubmit() { //function to submit the data once the Submit button is clicked.
-  //   // console.log(this.sampleForm) //.value gets us the value of the form field. Data is potato.
-  //   console.log(this.model);
-  // }
+  constructor(private dataService: DataService, private router: Router) { }
 
   ngOnInit() {
-    
+
   }
 
 
-  registerUser(user: NgForm){ //function to save a user once one has been added.
+  registerUser(user: NgForm) { //function to save a user once one has been added.
     this.dataService.addRecord("registration", user.value)
-     .subscribe(
-        user => {
-          this.successMessage = "login successful";
-          this.welcome = user.firstName
-            if (user.isCharity=="User") {
-              localStorage.setItem('userid', user.id);
-              localStorage.setItem('username', user.firstName);
-              localStorage.setItem('type', user.isCharity);
-              this.router.navigateByUrl('/dogooder'); 
-              location.reload()
-             
-            }
-            else if (user.isCharity=="Charity") {
-              localStorage.setItem('userid', user.id);
-              localStorage.setItem('username', user.firstName);
-              localStorage.setItem('type', user.isCharity);
-                          
-              this.router.navigateByUrl('/charity');
-              location.reload()
-            }
-            
-        },
-        error => this.errorMessage = <any>error
-       
+      .subscribe(
+      user => {
+        this.successMessage = "login successful";
+        this.welcome = user.firstName
+        if (user.isCharity == "User") {
+          localStorage.setItem('userid', user.id);
+          localStorage.setItem('username', user.firstName);
+          localStorage.setItem('type', user.isCharity);
+          this.router.navigateByUrl('/dogooder');
+          location.reload()
+
+        }
+        else if (user.isCharity == "Charity") {
+          localStorage.setItem('userid', user.id);
+          localStorage.setItem('username', user.firstName);
+          localStorage.setItem('type', user.isCharity);
+
+          this.router.navigateByUrl('/charity');
+          location.reload()
+        }
+
+      },
+      error => this.errorMessage = <any>error
+
       );
 
     this.user = '';
     ;
-      
-            
-    }
 
 
-    
-    ngAfterViewChecked() {
-      this.formChanged();
-    }
-  
-    formChanged() {
-      //if the form didn't change then do nothing
-      if (this.currentForm === this.registrationForm) { return; }
-      //set the form to the current form for comparison
-      this.registrationForm = this.currentForm;
-      //subscribe to form changes and send the changes to the onValueChanged method
-      this.registrationForm.valueChanges
-        .subscribe(data => this.onValueChanged(data));
-     
-    }
-
-    onChange(){
- 
-  if (this.isCharity==="User") 
-    {
-     this.userCheck=true}
-  else if (this.isCharity==="Charity")  
-     {this.userCheck=false};
   }
-   
-    onValueChanged(data?: any) {
-      let form = this.registrationForm.form;
-  
-      for (const field in this.formErrors) {
-        // clear previous error message (if any)
-        this.formErrors[field] = '';
-        const control = form.get(field);
-  
-        if (control && control.dirty && !control.valid) {
-          const messages = this.validationMessages[field];
-          for (const key in control.errors) {
-            this.formErrors[field] += messages[key] + ' ';
-          }
+
+
+
+  ngAfterViewChecked() {
+    this.formChanged();
+  }
+
+  formChanged() {
+    //if the form didn't change then do nothing
+    if (this.currentForm === this.registrationForm) { return; }
+    //set the form to the current form for comparison
+    this.registrationForm = this.currentForm;
+    //subscribe to form changes and send the changes to the onValueChanged method
+    this.registrationForm.valueChanges
+      .subscribe(data => this.onValueChanged(data));
+
+  }
+
+  onChange() {
+
+    if (this.isCharity === "User") {
+      this.userCheck = true
+    }
+    else if (this.isCharity === "Charity")
+    { this.userCheck = false };
+  }
+
+  onValueChanged(data?: any) {
+    let form = this.registrationForm.form;
+
+    for (const field in this.formErrors) {
+      // clear previous error message (if any)
+      this.formErrors[field] = '';
+      const control = form.get(field);
+
+      if (control && control.dirty && !control.valid) {
+        const messages = this.validationMessages[field];
+        for (const key in control.errors) {
+          this.formErrors[field] += messages[key] + ' ';
         }
       }
     }
-  
-    //start out the errors as an emtpy string
+  }
+
+  //start out the errors as an emtpy string
 
   formErrors = {
     'username': '',
@@ -136,7 +131,7 @@ sendUser = new EventEmitter<any>();
     'username': {
       'required': 'A username is required',
       'minlength': 'Username must be a minimum of 2 characters long',
-      'pattern':  'Username cannot contain spaces',
+      'pattern': 'Username cannot contain spaces',
       'maxlength': 'Username cannot be more than 30 characters long'
     },
     'password': {

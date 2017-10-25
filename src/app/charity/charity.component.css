@@ -1,8 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Amatic+SC');
 @import url('https://fonts.googleapis.com/css?family=PT+Sans+Narrow');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
-
-
 #wrapper {
   display: flex;
   justify-content: center;
@@ -11,7 +9,7 @@
 .container {
   width: 75%;
   height: 400px;
-   border: solid; 
+  border: solid;
   background-image: url("../../assets/images/break.jpg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -31,8 +29,6 @@ table {
   display: flex;
   justify-content: center;
 }
-
-
 
 #tagline h1 {
   text-align: center;
@@ -62,6 +58,7 @@ table {
 .row input {
   width: 68%;
 }
+
 input {
   width: 700px;
   border-radius: 5px;
@@ -71,13 +68,10 @@ input {
   display: none !important;
 }
 
-
 td,
 th {
   text-align: center;
 }
-
-
 
 img {
   width: 85%;
@@ -86,6 +80,7 @@ img {
 #type {
   color: black;
 }
+
 #body {
   margin-right: 30px;
   margin-left: 30px;
@@ -97,14 +92,13 @@ img {
   box-shadow: 4px 4px 2px black;
   color: white;
   font-weight: bold;
-  padding:10px;
+  padding: 10px;
   margin: 5px;
   font-family: 'Open Sans', sans-serif;
   text-shadow: 1px 1px black;
   display: flex;
   justify-content: center;
 }
-
 
 #submitNeed {
   background-color: lightgray;
@@ -116,22 +110,18 @@ img {
 }
 
 @media screen and (max-width: 775px) {
-  th, td {
-     font-size: 10px;
-     
- }
-    .optional { 
-     display: none;  
- }
-
- .container {
-    height: 200px;  
+  th,
+  td {
+    font-size: 10px;
+  }
+  .optional {
+    display: none;
+  }
+  .container {
+    height: 200px;
     background-image: url("../../assets/images/break.jpg");
-    }
-
-    input {
-      width: 80%;
-      
-    }
-
+  }
+  input {
+    width: 80%;
+  }
 }

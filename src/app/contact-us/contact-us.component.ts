@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-contact-us',
@@ -9,7 +9,7 @@ import {Router} from '@angular/router';
 })
 export class ContactUsComponent implements OnInit {
 
-  
+
   constructor() { }
 
   ngOnInit() {

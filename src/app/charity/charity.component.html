@@ -1,21 +1,20 @@
-
-  <div id="wrapper">  
-    <div class="container">
+<div id="wrapper">
+  <div class="container">
     <!-- <img src="../../assets/images/break.jpg"> -->
-    </div>
   </div>
+</div>
 
 <!-- Charity Needs Form -->
 <div id="body">
-    <div id="tagline">
-        <h1>Engage. Excite. Empower.</h1>
-    </div>
+  <div id="tagline">
+    <h1>Engage. Excite. Empower.</h1>
+  </div>
   <div id="postNeeds">
-   
+
     <form class="form-horizontal" (ngSubmit)="saveNeed(sampleForm)" #sampleForm="ngForm">
-        <div id="postHeader">
-            <h1 id="post">Post Your Charity Needs</h1>
-          </div>
+      <div id="postHeader">
+        <h1 id="post">Post Your Charity Needs</h1>
+      </div>
       <div class="form-group">
         <label for="type" class="mr-sm-2 col-sm-2 control-label">Type</label>
         <div class="col-sm-10">
@@ -30,7 +29,7 @@
         </div>
       </div>
 
-    <div class="row form-group" id="unitField">
+      <div class="row form-group" id="unitField">
         <label for="originalAmount" class="col-sm-2 control-label">Amount</label>
         <div class="col-sm-4">
           <input [(ngModel)]="model.originalAmount" type="integer" class="form-control" id="originalAmount" name="originalAmount" placeholder="Enter a number"
@@ -38,15 +37,15 @@
           <span *ngIf="formErrors.originalAmount" class="text-danger">
             {{ formErrors.originalAmount }}
         </span>
-      </div>
-          <label for="units" class="col-sm-2 control-label">Units</label>
-          <div class="col-sm-4">
-            <input [(ngModel)]="model.units" type="integer" class="form-control" id="units" name="units" placeholder="e.g. dollars, hours, cribs"
-              required>
-            <span *ngIf="formErrors.units" class="text-danger">
+        </div>
+        <label for="units" class="col-sm-2 control-label">Units</label>
+        <div class="col-sm-4">
+          <input [(ngModel)]="model.units" type="integer" class="form-control" id="units" name="units" placeholder="e.g. dollars, hours, cribs"
+            required>
+          <span *ngIf="formErrors.units" class="text-danger">
               {{ formErrors.units}}
           </span>
-          </div>
+        </div>
       </div>
 
       <div class="form-group">
@@ -108,8 +107,8 @@
         <td>{{need.users[0].charityName}}</td>
         <td class="optional">{{need.dateNeeded}}</td>
         <td>{{need.description}}</td>
-        <td >{{need.originalAmount}}</td>
-        <td >{{need.units}}</td>
+        <td>{{need.originalAmount}}</td>
+        <td>{{need.units}}</td>
         <td class="optional">{{need.type}}</td>
         <td class="optional" *ngIf="need.needMet">yes</td>
         <td class="optional" *ngIf="!need.needMet">no</td>
@@ -118,7 +117,8 @@
           <div style="display: inline;" tooltip="Sorry, your organization doesn't have any followers at this time" [tooltipDisabled]="need.hasFollowers"
             tooltipPlacement="top">
             <!-- <button [disabled]="!need.hasFollowers" class="btn btn-primary glyphicon glyphicon-send" (click)="notifyFollowers( need.users[0].id , need.id)"></button> -->
-            <button [disabled]="!need.hasFollowers" class="btn btn-primary glyphicon glyphicon-send" (click)="splitFollowers(need.users[0].id , need.id)" data-toggle="modal" data-target="#confirm"></button>
+            <button [disabled]="!need.hasFollowers" class="btn btn-primary glyphicon glyphicon-send" (click)="splitFollowers(need.users[0].id , need.id)"
+              data-toggle="modal" data-target="#confirm"></button>
 
           </div>
         </td>
@@ -130,22 +130,22 @@
     </tbody>
   </table>
 
-<!-- Notify Followers Pop-up Modal -->
+  <!-- Notify Followers Pop-up Modal -->
   <div class="modal fade" id="confirm">
-        class="modal-dialog2" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h3 class="modal-title">Confirm</h3>
-          </div>
-          <p id="followerModal" >Are you sure you want to text {{this.countFollower}} follower(s)? </p>
-          <div class="modal-body">
-              <div class="modal-footer">
-                <button type="button"  class="btn btn-primary" (click)="notifyFollowers(splitUser, splitNeed)" data-dismiss="modal">Yes, I'm sure</button>
-                <button id="closeButton" type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-              </div>
-          </div>
+    class="modal-dialog2" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Confirm</h3>
+      </div>
+      <p id="followerModal">Are you sure you want to text {{this.countFollower}} follower(s)? </p>
+      <div class="modal-body">
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" (click)="notifyFollowers(splitUser, splitNeed)" data-dismiss="modal">Yes, I'm sure</button>
+          <button id="closeButton" type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
         </div>
+      </div>
     </div>
+  </div>
 
 
   <!-- Edit Modal -->
@@ -157,7 +157,7 @@
         </div>
 
         <div class="modal-body" *ngIf="editNeed">
-          <form id="editForm" class="form-horizontal"  #editForm="ngForm">
+          <form id="editForm" class="form-horizontal" #editForm="ngForm">
             <div class="form-group">
               <label for="type" class="mr-sm-2 col-sm-2 control-label">Donation Type</label>
               <div class="col-sm-10">
@@ -184,11 +184,11 @@
             </div>
 
             <div class="form-group">
-                <label for="units" class="col-sm-2 control-label">Units</label>
-                <div class="col-sm-10">
-                  <input class="form-control" name="units" [ngModel]="editNeed.units" required>
-                </div>
+              <label for="units" class="col-sm-2 control-label">Units</label>
+              <div class="col-sm-10">
+                <input class="form-control" name="units" [ngModel]="editNeed.units" required>
               </div>
+            </div>
 
             <div class="form-group">
               <label for="description" class="col-sm-2 control-label">Description of Need</label>

@@ -1,7 +1,6 @@
-
-<div id="wrapper">  
+<div id="wrapper">
   <div class="container">
-      <!-- <img src="../../assets/images/Good.jpg"> -->
+    <!-- <img src="../../assets/images/Good.jpg"> -->
   </div>
 </div>
 <div id="body">
@@ -9,16 +8,16 @@
     <h1>Find. Follow. Fulfill.</h1>
   </div>
   <!-- List of all participating charities with needs - can be filtered above using radio buttons-->
- <br>
- <div id="findOrgs" >
-  <h2>
-    Find organizations with needs near you.
-  </h2>
-  <p>Below is a list of organizations with immediate needs. Filter by those closest to you. </p>
- <div id="switchRow">
- <p>Use Current Location?</p>
-  <div id="switch"> 
-<label class="switch">
+  <br>
+  <div id="findOrgs">
+    <h2>
+      Find organizations with needs near you.
+    </h2>
+    <p>Below is a list of organizations with immediate needs. Filter by those closest to you. </p>
+    <div id="switchRow">
+      <p>Use Current Location?</p>
+      <div id="switch">
+        <label class="switch">
   
   
   <div>
@@ -27,33 +26,33 @@
   </div>
 
 </label>
-</div>
-</div>
-  <form id="distanceForm" novalidate (ngSubmit)="findLocalCharities(distanceForm)" #distanceForm="ngForm" class="form-horizontal control-label">
-    <label class="radio-inline">
+      </div>
+    </div>
+    <form id="distanceForm" novalidate (ngSubmit)="findLocalCharities(distanceForm)" #distanceForm="ngForm" class="form-horizontal control-label">
+      <label class="radio-inline">
         <input  type="radio" ngControl="distance" #distanceFive [(ngModel)]="model.distance" name="distance" id="distance2" [value]="5" >5 miles
       </label>
-    <label class="radio-inline">
+      <label class="radio-inline">
         <input  type="radio" ngControl="distance" #distanceTen  [(ngModel)]="model.distance" name="distance" id="distance2" [value]="10" >10 miles
       </label>
-    <label class="radio-inline">
+      <label class="radio-inline">
         <input  type="radio"  ngControl="distance" #distanceFifteen  [(ngModel)]="model.distance" name="distance" id="distance3" [value]="15">15 miles
       </label>
-    <label class="radio-inline">
+      <label class="radio-inline">
         <input   type="radio" ngControl="distance" #distanceTwenty  [(ngModel)]="model.distance" name="distance" id="distance4" [value]="20">20 miles
       </label>
-    <label class="radio-inline">
+      <label class="radio-inline">
         <input   type="radio" ngControl="distance" #distanceTwentyFive [(ngModel)]="model.distance" name="distance" id="distance5" [value]="25">25 miles
     </label>
-    <div class="divButtons">
-      <button type="submit" class="btn">Submit</button>
-      <button type="button"class="btn" (click)="resetNeeds(distanceFive, distanceTen, distanceFifteen, distanceTwenty, distanceTwentyFive)">Reset</button>
-    </div>
-  </form>
-  <br>
-  <!-- Reset/clear the radio buttons by calling the resetNeeds function. Added for better user experience -->
- </div>
-  
+      <div class="divButtons">
+        <button type="submit" class="btn">Submit</button>
+        <button type="button" class="btn" (click)="resetNeeds(distanceFive, distanceTen, distanceFifteen, distanceTwenty, distanceTwentyFive)">Reset</button>
+      </div>
+    </form>
+    <br>
+    <!-- Reset/clear the radio buttons by calling the resetNeeds function. Added for better user experience -->
+  </div>
+
   <br>
   <br>
   <div *ngIf="!needs">Loading...</div>
@@ -101,24 +100,24 @@
 
   <br>
 
- 
+
 
   <!-- table to pull charities based on location -->
   <!-- If charities exist based on location criteria, change the table to populate according to criteria. NgIf uses the "charities" function. -->
-   
 
-  
+
+
   <div *ngIf="charities">
     <h2>Charities Near You</h2>
     <table class="table table-hover table-bordered" id="charityTable" style="width:100%">
       <thead>
         <tr>
           <th>Charity Name</th>
-          <th class="optional" >Charity Type</th>
           <th class="optional">Need Category</th>
           <th class="optional">Need by Date</th>
           <th>Description</th>
           <th>Original Amount</th>
+          <th>Unit</th>
           <th>Give</th>
           <th>Follow</th>
         </tr>
@@ -128,14 +127,14 @@
         <!-- loop over each charity in the array and display the attributes in a table -->
         <tr *ngFor="let charity of charities">
           <td>{{charity.users[0].charityName}}</td>
-          <td class="optional">{{charity.users[0].charityType}}</td>
           <td class="optional"> {{charity.type}}</td>
           <td class="optional">{{charity.dateNeeded}}</td>
           <td>{{charity.description}}</td>
           <td>{{charity.originalAmount}}</td>
+          <td>{{charity.units}}
           <td class="text-center">
             <!-- upon click of the "Give" button, call the getRecordForEdit function and pass the selected need. Interpolate the need.id attribute, which dynamically stores the id for each user -->
-             <span data-toggle="modal" data-target="#giveForm">
+            <span data-toggle="modal" data-target="#giveForm">
                 <button attr.data-need-Id="{{charity?.id}}" (click)="getRecordForEdit(charity)" data-toggle="tooltip" data-placement="top" title="Tooltip on top"
                 id="give" #give class="btn btn-primary glyphicon glyphicon-gift"></button>
               </span>
@@ -149,41 +148,37 @@
     </table>
   </div>
 
-<div style="display: inline; display: flex; justify-content: center;" tooltip="Following a charity allows them to send you text notifications when they add a need you may be able to fulfill."
-tooltipPlacement="top"> 
-  <a class="btn btn-primary" role="button" href="#followedCharities" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">Click to See Followed Charities</a>
-  <!-- Table to display charities that user has selected to "Follow" -->
- </div>
+  <div style="display: inline; display: flex; justify-content: center;" tooltip="Following a charity allows them to send you text notifications when they add a need you may be able to fulfill."
+    tooltipPlacement="top">
+    <a class="btn btn-primary" role="button" href="#followedCharities" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">Click to See Followed Charities</a>
+    <!-- Table to display charities that user has selected to "Follow" -->
+  </div>
 
   <div class="collapse" id="followedCharities">
     <div class="well">
-    <h2>
-      Followed Organizations
-    </h2>
-    <table class="table table-hover table-striped table-bordered" style="width:100%">
-      <thead>
-        <tr>
-          <th>Charity ID</th>
-          <th>Charity Name</th>
-          <th>EIN</th>
-          <th>Unfollow</th>
+      <h2>
+        Followed Organizations
+      </h2>
+      <table class="table table-hover table-striped table-bordered" style="width:100%">
+        <thead>
+          <tr>
+            <th>Charity Name</th>
+            <th>Unfollow</th>
 
-        </tr>
-      </thead>
+          </tr>
+        </thead>
 
-      <tbody>
-        <!-- loop over each user and display the attributes in a table -->
-        <tr *ngFor="let user of users">
-          <td>{{user.id}}</td>
-          <td>{{user.charityName}}</td>
-          <td>{{user.ein}}</td>
-          <td class="text-center">
-            <!-- upon click of the "Unfollow" button, call the unfollowCharity function. Interpolate the user.id attribute, which dynamically stores it for each user-->
-            <button attr.data-Id="{{user.id}}" #unFollow (click)="unfollowCharity(unFollow.getAttribute('data-Id'))" class="btn btn-danger glyphicon glyphicon-remove"></button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+        <tbody>
+          <!-- loop over each user and display the attributes in a table -->
+          <tr *ngFor="let user of users">
+            <td>{{user.charityName}}</td>
+            <td class="text-center">
+              <!-- upon click of the "Unfollow" button, call the unfollowCharity function. Interpolate the user.id attribute, which dynamically stores it for each user-->
+              <button attr.data-Id="{{user.id}}" #unFollow (click)="unfollowCharity(unFollow.getAttribute('data-Id'))" class="btn btn-danger glyphicon glyphicon-remove"></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
   <!-- When user selects "Give" a Modal will pop up to allow user to enter a specified give amount -->
@@ -205,18 +200,17 @@ tooltipPlacement="top">
               <label for="originalAmount" class="col-sm-2 control-label">Give Amount</label>
               <div class="col-sm-10">
                 <!-- input field that pulls the remaining quantity for that need. User can then dynamically change the amount -->
-               <div id="counter">
-                <button type="button" (click)="increaseOne()">+</button>
-               <input [(value)]="counter" id="amount" class="form-control" name="originalAmount" #amount [ngModel]="counter"
-                  required>
-                <button type="button" (click)="decreaseOne()">-</button>
+                <div id="counter">
+                  <button type="button" (click)="increaseOne()">+</button>
+                  <input [(value)]="counter" id="amount" class="form-control" name="originalAmount" #amount [ngModel]="counter" required>
+                  <button type="button" (click)="decreaseOne()">-</button>
                 </div>
               </div>
             </div>
             <!-- Give button to associate the entered amount to that need, decrement upon click. -->
             <div class="modal-footer">
               <button type="button" value="{{giveNeed?.id}}" data-dismiss="modal" class="btn btn-primary" #decrement (click)="decrementNeed(decrement.value, amount.value)">Give</button>
-              <button  type="button" class="btn btn-secondary" (click)="closeModal()" data-dismiss="modal" >Cancel</button>
+              <button type="button" class="btn btn-secondary" (click)="closeModal()" data-dismiss="modal">Cancel</button>
             </div>
           </form>
         </div>

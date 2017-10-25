@@ -27,8 +27,8 @@ describe('HomeComponent', () => {
 
   function imageExists(url, callback) {
     var img = new Image();
-    img.onload = function() { callback(true);};
-    img.onerror = function() { callback(false); };
+    img.onload = function () { callback(true); };
+    img.onerror = function () { callback(false); };
     img.src = url;
 
   }
@@ -39,7 +39,7 @@ describe('HomeComponent', () => {
     //Assert that the text on screen is "Number: 1"
     expect(htmlElement.textContent).toEqual('LOCAL HOPE');
     // console.log("test #2 counter value is " + htmlElement.textContent)
- })
+  })
 
   it('should display the section titled, \'Donate Time\'', () => {
     debugElement = fixture.debugElement.query(By.css('#test2'));   //12:04 in the video
@@ -61,43 +61,43 @@ describe('HomeComponent', () => {
   })
 
 
-  it('should validate a valid image path for image1' ,() => {
+  it('should validate a valid image path for image1', () => {
     var imageUrl = document.getElementById("image1").getAttribute("src")
-    imageExists(imageUrl, function(exists) {
+    imageExists(imageUrl, function (exists) {
       expect(exists).toBeTruthy(true);
       console.log(exists)
     });
   })
 
-  it('should validate a valid image path for image2' ,() => {
+  it('should validate a valid image path for image2', () => {
     var imageUrl = document.getElementById("image2").getAttribute("src")
-    imageExists(imageUrl, function(exists) {
+    imageExists(imageUrl, function (exists) {
       expect(exists).toBeTruthy(true);
       console.log(exists)
     });
   })
 
-  it('should validate a valid image path for image3' ,() => {
+  it('should validate a valid image path for image3', () => {
     var imageUrl = document.getElementById("image3").getAttribute("src")
-    imageExists(imageUrl, function(exists) {
+    imageExists(imageUrl, function (exists) {
       expect(exists).toBeTruthy(true);
       console.log(exists)
     });
   })
   //This code below is here as an example of Arrange/At/Assert format:
-//   it('should decrement the counter number by 1', () => {
-//     //Arrange:
-//     const initialValue = component.counter;
+  //   it('should decrement the counter number by 1', () => {
+  //     //Arrange:
+  //     const initialValue = component.counter;
 
-//     //Act:
-//     component.decrement();
-//     fixture.detectChanges();
-//     const newValue = component.counter;
+  //     //Act:
+  //     component.decrement();
+  //     fixture.detectChanges();
+  //     const newValue = component.counter;
 
-//     //Assert:
-//     expect(newValue).toBeLessThan(initialValue);
-//     // console.log("test #3 counter value is " + newValue)
-//   })
+  //     //Assert:
+  //     expect(newValue).toBeLessThan(initialValue);
+  //     // console.log("test #3 counter value is " + newValue)
+  //   })
 
 
 });

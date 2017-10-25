@@ -8,9 +8,9 @@ describe('RegistrationComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RegistrationComponent ]
+      declarations: [RegistrationComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -38,7 +38,7 @@ describe('RegistrationComponent', () => {
 //     registerUser = _registerUser_;
 //     $window = _$window_;    //store the injected services into the variables created above
 // //sandbox = sinon.sandbox.create();   I don't think I need to use this
-    
+
 //   it('registers a new user', function() {
 //       expect(registerUser)
 //     })

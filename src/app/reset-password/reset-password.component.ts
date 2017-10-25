@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { CharityService } from '../charity.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { DataService } from '../data.service'
 
 @Component({
   selector: 'app-reset-password',
@@ -15,34 +15,35 @@ export class ResetPasswordComponent implements OnInit {
   errorMessage: string;
   user;
   resetForm;
-  badReset=false;
+  badReset = false;
 
   @ViewChild('resetForm') currentForm: NgForm;
 
   model: object = { //"model" is potato.
-  username: "",
-  resetNumber: "",
-  password: "",
-};
+    username: "",
+    resetNumber: "",
+    password: "",
+  };
 
-  constructor(private charityService: CharityService, private router: Router) { } 
+  constructor(private dataService: DataService, private router: Router) { }
 
   ngOnInit() {
   }
 
 
   resetPassword(user: NgForm) { //function to reset a password.
-    console.log(this.model)
-    this.charityService.addRecordOnReset("resetpassword", this.model)
+    this.dataService.editPassword("resetpassword", this.model)
       .subscribe(
       user => {
         this.successMessage = "reset successful";
         this.router.navigateByUrl('/home');
 
-        
+
       },
-      error => {this.errorMessage = <any>error
-      this.badReset=true}
+      error => {
+      this.errorMessage = <any>error
+        this.badReset = true
+      }
       );
     this.user = '';
     ;
@@ -51,7 +52,7 @@ export class ResetPasswordComponent implements OnInit {
     this.formChanged();
   }
 
-  
+
   formChanged() {
     //if the form didn't change then do nothing
     if (this.currentForm === this.resetForm) { return; }
@@ -60,10 +61,10 @@ export class ResetPasswordComponent implements OnInit {
     //subscribe to form changes and send the changes to the onValueChanged method
     this.resetForm.valueChanges
       .subscribe(data => this.onValueChanged(data));
-   
+
   }
 
- 
+
   onValueChanged(data?: any) {
     let form = this.resetForm.form;
 
@@ -80,7 +81,7 @@ export class ResetPasswordComponent implements OnInit {
       }
     }
   }
-    
+
 
   formErrors = {
     'verificationCode': '',

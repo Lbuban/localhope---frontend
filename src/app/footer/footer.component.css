@@ -1,16 +1,14 @@
 .social-links img {
-    height: 35px;
-    width: 35px;
-  
+  height: 35px;
+  width: 35px;
 }
 
-.navbar-default{
-    background-color: #ECECEC;
+.navbar-default {
+  background-color: #ECECEC;
 }
 
 @media screen and (max-width: 775px) {
-    #copyright {
-        display: none;
-
-    }    
+  #copyright {
+    display: none;
+  }
 }
