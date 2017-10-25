@@ -118,7 +118,7 @@
           <div style="display: inline;" tooltip="Sorry, your organization doesn't have any followers at this time" [tooltipDisabled]="need.hasFollowers"
             tooltipPlacement="top">
             <!-- <button [disabled]="!need.hasFollowers" class="btn btn-primary glyphicon glyphicon-send" (click)="notifyFollowers( need.users[0].id , need.id)"></button> -->
-            <button [disabled]="!need.hasFollowers" class="btn btn-primary glyphicon glyphicon-send" (click)="splitFollowers()" data-toggle="modal" data-target="#confirm"></button>
+            <button [disabled]="!need.hasFollowers" class="btn btn-primary glyphicon glyphicon-send" (click)="splitFollowers(need.users[0].id , need.id)" data-toggle="modal" data-target="#confirm"></button>
 
           </div>
         </td>
@@ -140,7 +140,7 @@
           <p id="followerModal" >Are you sure you want to text {{this.countFollower}} follower(s)? </p>
           <div class="modal-body">
               <div class="modal-footer">
-                <button type="button" data-dismiss="modal" class="btn btn-primary" (click)="notifyFollowers(need.users[0].id , need.id)">Yes, I'm sure</button>
+                <button type="button"  class="btn btn-primary" (click)="notifyFollowers(splitUser, splitNeed)" data-dismiss="modal">Yes, I'm sure</button>
                 <button id="closeButton" type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
               </div>
           </div>
