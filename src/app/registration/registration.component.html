@@ -6,7 +6,9 @@
 
     <!-- User selects the role of their registration: -->
     <form id="color1" novalidate (ngSubmit)="registerUser(registrationForm)" #registrationForm="ngForm" class="form-horizontal color: control-label">
-      Please select an option
+   <div>
+     Please select an option
+     </div>
       <select [(ngModel)]="isCharity" (ngModelChange)="onChange($event)" name="isCharity">
         <option value="User">User</option>
         <option value="Charity">Charity</option>

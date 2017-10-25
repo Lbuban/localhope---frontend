@@ -19,7 +19,7 @@
     "@angular/compiler": "^4.2.4",
     "@angular/compiler-cli": "^4.2.4",
     "@angular/core": "^4.2.4",
-    "@angular/forms": "^4.2.4",
+    "@angular/forms": "^4.4.6",
     "@angular/http": "^4.2.4",
     "@angular/platform-browser": "^4.2.4",
     "@angular/platform-browser-dynamic": "^4.2.4",
