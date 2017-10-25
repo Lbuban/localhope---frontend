@@ -67,7 +67,7 @@
           <th class="optional">Need Category</th>
           <th class="optional">Need by Date</th>
           <th>Description</th>
-          <th>Original Amount</th>
+          <th>Amount</th>
           <th>Give</th>
           <th>Follow</th>
         </tr>
@@ -107,6 +107,7 @@
   <!-- If charities exist based on location criteria, change the table to populate according to criteria. NgIf uses the "charities" function. -->
    
 
+  
   <div *ngIf="charities">
     <h2>Charities Near You</h2>
     <table class="table table-hover table-bordered" id="charityTable" style="width:100%">
@@ -153,6 +154,7 @@ tooltipPlacement="top">
   <a class="btn btn-primary" role="button" href="#followedCharities" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">Click to See Followed Charities</a>
   <!-- Table to display charities that user has selected to "Follow" -->
  </div>
+
   <div class="collapse" id="followedCharities">
     <div class="well">
     <h2>
