@@ -157,7 +157,7 @@
               <label for="charityType" class="mr-sm-2 col-sm-2 control-label" for="inlineFormCustomSelectPref">Charity Type*</label>
               <div class="col-sm-10">
                 <select [ngModel]="registration?.charityType" ngModel #charityType="ngModel" type="text" class="form-control" id="charityType"
-                  name="charityType" placeholder="enter your role" required maxlength="20" class="custom-select mb-2 mr-sm-2 mb-sm-0">
+                  name="charityType" class="custom-select mb-2 mr-sm-2 mb-sm-0">
                     <option selected>Select...</option>
                     <option value="Health">Health</option>
                     <option value="Education">Education</option>
@@ -185,8 +185,7 @@
                   <option value="Items">Items</option>
               </select>
                 <span *ngIf="" class="text-danger">
-                <!-- {{ formErrors.donationPreferences }} -->
-            </span>
+                </span>
               </div>
             </div>
 
@@ -194,9 +193,10 @@
             <div class="form-group">
               <label for="charityPreference" class="mr-sm-2 col-sm-2 control-label" for="inlineFormCustomSelectPref">Charity Preference</label>
               <div class="col-sm-10">
-                <select [ngModel]="registration?.charityPreference" ngModel #charityType="ngModel" type="text" class="form-control" id="charityPreference"
+                <select 
+                [ngModel]="registration?.charityPreference" ngModel #charityType="ngModel" type="text" class="form-control" id="charityPreference"
                   name="charityPreference" placeholder="enter your role" class="custom-select mb-2 mr-sm-2 mb-sm-0">
-                    <option value= "" selected>Select...</option>
+                    <option selected>Select...</option>
                     <option value="Health">Health</option>
                     <option value="Education">Education</option>
                     <option value="Animals">Animals</option>
@@ -205,7 +205,6 @@
                     <option value="Other">Other</option>
                 </select>
                 <span *ngIf="" class="text-danger">
-                  <!-- {{ formErrors.charityType }} -->
               </span>
               </div>
             </div>
