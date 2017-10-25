@@ -165,7 +165,7 @@ a {
     padding:0;
 }
 
-@media screen and (max-width:1200px) {
+@media screen and (max-width:1400px) {
     .description {
         margin-left: 25px;
     }
