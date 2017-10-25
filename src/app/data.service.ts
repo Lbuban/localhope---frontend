@@ -119,8 +119,19 @@ export class DataService {
     }
 
     private extractData(res: Response) {
-        let results = res.json();
-        return results || [];
+        
+        var results;
+        try{
+            results = res.json();
+        }catch(e){
+           if(res.status >= 200 && res.status <=300){
+               results = []
+           }else{
+            return Observable.throw(e);
+           }
+        }
+        
+        return results;
     }
 
     private handleError(error: Response | any) {

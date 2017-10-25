@@ -60,7 +60,9 @@ export class CharityComponent implements OnInit {
       .subscribe(
       need => {
         this.successMessage = "Need added successfully";
-
+        this.need = '';
+        this.getNeeds();
+        this.sampleForm.reset();
       },
       error => this.errorMessage = <any>error);
     this.need = '';
@@ -144,6 +146,7 @@ export class CharityComponent implements OnInit {
     this.dataService.deleteRecord("deleteneed", needId, JSON.stringify(this.userId))
       .subscribe(
       need => {
+        this.getNeeds();
       this.successMessage = "Need deleted successfully";
       },
       error => this.errorMessage = <any>error);
