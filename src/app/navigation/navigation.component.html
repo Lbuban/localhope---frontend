@@ -28,7 +28,7 @@
       <div id="notLoggedIn" *ngIf="!welcome">
         <form novalidate (ngSubmit)="loginUser(loginForm)" #loginForm="ngForm" class="form-horizontal" name="loginForm" class="navbar-form navbar-right">
           <div class="form-group">
-            <input [ngModel]="" ngModel #username="ngModel" type="text" class="form-control" id="username" name="username" placeholder="enter your Username"
+            <input [ngModel]="" ngModel #username="ngModel" type="text" class="form-control" id="username" name="username" placeholder="username"
               required minlength="2" maxlength="30">
           </div>
           <div class="form-group">

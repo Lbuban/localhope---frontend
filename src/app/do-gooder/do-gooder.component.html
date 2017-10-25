@@ -62,11 +62,11 @@
       <thead>
         <tr>
           <th>Charity Name</th>
-          <th class="optional">Charity Type</th>
           <th class="optional">Need Category</th>
           <th class="optional">Need by Date</th>
           <th>Description</th>
           <th>Amount</th>
+          <th>Units</th>
           <th>Give</th>
           <th>Follow</th>
         </tr>
@@ -76,11 +76,11 @@
         <!-- Loop over each need in the array and display the attributes in a table -->
         <tr *ngFor="let need of needs">
           <td>{{need.users[0].charityName}}</td>
-          <td class="optional">{{need.users[0].charityType}}</td>
           <td class="optional">{{need.type}}</td>
           <td class="optional">{{need.dateNeeded}}</td>
           <td>{{need.description}}</td>
           <td>{{need.originalAmount}}</td>
+          <td>{{need.units}}</td>
           <td class="text-center">
             <!-- upon click of the "Give" button, call the getRecordForEdit function and pass the selected need. Binding to the need.id attribute, which dynamically stores the id for each user -->
             <button attr.data-need-Id="{{need.id}}" (click)="getRecordForEdit(need)" data-toggle="modal" data-target="#giveForm" #give
