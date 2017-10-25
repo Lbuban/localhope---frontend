@@ -12,7 +12,7 @@ export class DataService {
 
     constructor(private http: Http) { }
 
-  //getting the data from the backend.
+    //getting the data from the backend.
     getRecords(endpoint: string): Observable<any[]> {
         let apiUrl = this.baseUrl+endpoint;
         return this.http.get(apiUrl)
