@@ -109,7 +109,7 @@
 
   <div *ngIf="charities">
     <h2>Charities Near You</h2>
-    <table class="table table-hover table-bordered" id="dataTable" style="width:100%">
+    <table class="table table-hover table-bordered" id="charityTable" style="width:100%">
       <thead>
         <tr>
           <th>Charity Name</th>
@@ -214,7 +214,7 @@ tooltipPlacement="top">
             <!-- Give button to associate the entered amount to that need, decrement upon click. -->
             <div class="modal-footer">
               <button type="button" value="{{giveNeed?.id}}" data-dismiss="modal" class="btn btn-primary" #decrement (click)="decrementNeed(decrement.value, amount.value)">Give</button>
-              <button id="closeButton" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button  type="button" class="btn btn-secondary" (click)="closeModal()" data-dismiss="modal" >Cancel</button>
             </div>
           </form>
         </div>
