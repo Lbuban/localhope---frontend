@@ -43,6 +43,7 @@ export class NavigationComponent implements OnInit {
   loginUser(user: NgForm) { //function to login an existing user or charity.
     this.dataService.addRecord("sessions", user.value)
       .subscribe(
+        
       user => {
         this.successMessage = "login successful";
         this.welcome = user.firstName
@@ -57,6 +58,7 @@ export class NavigationComponent implements OnInit {
              else if (user.isCharity == "Charity") {
               this.router.navigateByUrl('/charity');
             }
+            
       },
       error => {this.errorMessage = <any>error
         this.badLogin = true
@@ -64,22 +66,22 @@ export class NavigationComponent implements OnInit {
       );
     this.user = '';
     ;
-
+        
   }
 
-  ngAfterViewChecked() {
-    this.formChanged();
-  }
+  // ngAfterViewChecked() {
+  //   this.formChanged();
+  // }
 
-  formChanged() {
-    //if the form didn't change then do nothing
-    if (this.currentForm === this.loginForm) { return; }
-    //set the form to the current form for comparison
-    this.loginForm = this.currentForm;
-    //subscribe to form changes and send the changes to the onValueChanged method
-    this.loginForm.valueChanges
-      .subscribe(data => this.onValueChanged(data));
-  }
+  // formChanged() {
+  //   //if the form didn't change then do nothing
+  //   if (this.currentForm === this.loginForm) { return; }
+  //   //set the form to the current form for comparison
+  //   this.loginForm = this.currentForm;
+  //   //subscribe to form changes and send the changes to the onValueChanged method
+  //   this.loginForm.valueChanges
+  //     .subscribe(data => this.onValueChanged(data));
+  // }
 
   onChange() {
     if (this.isCharity == "User") {
@@ -88,20 +90,20 @@ export class NavigationComponent implements OnInit {
     else if (this.isCharity == "Charity") { this.userCheck = false };
   }
 
-  onValueChanged(data?: any) {
-    let form = this.loginForm.form;
-    for (const field in this.formErrors) {
-      // clear previous error message (if any)
-      this.formErrors[field] = '';
-      const control = form.get(field);
-      if (control && control.dirty && !control.valid) {
-        const messages = this.validationMessages[field];
-        for (const key in control.errors) {
-          this.formErrors[field] += messages[key] + ' ';
-        }
-      }
-    }
-  }
+  // onValueChanged(data?: any) {
+  //   let form = this.loginForm.form;
+  //   for (const field in this.formErrors) {
+  //     // clear previous error message (if any)
+  //     this.formErrors[field] = '';
+  //     const control = form.get(field);
+  //     if (control && control.dirty && !control.valid) {
+  //       const messages = this.validationMessages[field];
+  //       for (const key in control.errors) {
+  //         this.formErrors[field] += messages[key] + ' ';
+  //       }
+  //     }
+  //   }
+  // }
 
   logOut() { //function to log-out user
     localStorage.removeItem("username")

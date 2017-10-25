@@ -96,6 +96,23 @@ h2 {
     flex-direction: row;
     justify-content: flex-start;
 }
+/* #nearyou {
+    display: flex;
+    justify-content: center;
+}
+#follow {
+    display: flex;
+    justify-content: center;
+  } */
+
+  h2 {
+      display: flex;
+      justify-content: center;
+  }
+  #followedCharities {
+      padding-top: 15px;
+  }
+
 
  #switchRow {
     display: flex;

@@ -24,9 +24,12 @@ export class CharityComponent implements OnInit {
   userId = localStorage.getItem('userid');
   needs;
   editNeed: any;
-  needid: number;
+  needid;
+  splitNeed;
+  splitUser;
   charityid: number;
   followerArray;
+  userid;
   countFollower;
   
   
@@ -57,7 +60,9 @@ export class CharityComponent implements OnInit {
       .subscribe(
       need => {
         this.successMessage = "Need added successfully";
-
+        this.need = '';
+        this.getNeeds();
+        this.sampleForm.reset();
       },
       error => this.errorMessage = <any>error);
     this.need = '';
@@ -95,13 +100,13 @@ export class CharityComponent implements OnInit {
     this.formChanged();
   }
 
-  splitFollowers(){
-    console.log(this.needs[0].users.length)
+  splitFollowers(userid, needid){
+    this.splitUser=userid
+   this.splitNeed=needid
     if (this.needs.length){
       this.followerArray=this.needs[0].users[0].followers;
     let countArray=this.followerArray.split(" ")
-    this.countFollower=countArray.length-1;
-    console.log(this.countFollower)}
+    this.countFollower=countArray.length-1;}
      else if (!this.needs.length) {
       this.countFollower=0;
       alert(this.countFollower)
@@ -141,12 +146,12 @@ export class CharityComponent implements OnInit {
     this.dataService.deleteRecord("deleteneed", needId, JSON.stringify(this.userId))
       .subscribe(
       need => {
+        this.getNeeds();
       this.successMessage = "Need deleted successfully";
       },
       error => this.errorMessage = <any>error);
   }
-  notifyFollowers(charityID: number, needID: number) {
-
+  notifyFollowers(charityID, needID) {
     this.dataService.postRecord("message", charityID, needID)
       .subscribe(
       need => {
