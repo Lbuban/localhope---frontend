@@ -15,7 +15,7 @@ export class ResetPasswordComponent implements OnInit {
   errorMessage: string;
   user;
   resetForm;
-  
+  badReset=false;
 
   @ViewChild('resetForm') currentForm: NgForm;
 
@@ -38,9 +38,11 @@ export class ResetPasswordComponent implements OnInit {
       user => {
         this.successMessage = "reset successful";
         this.router.navigateByUrl('/home');
+
         
       },
-      error => this.errorMessage = <any>error
+      error => {this.errorMessage = <any>error
+      this.badReset=true}
       );
     this.user = '';
     ;
@@ -49,6 +51,7 @@ export class ResetPasswordComponent implements OnInit {
     this.formChanged();
   }
 
+  
   formChanged() {
     //if the form didn't change then do nothing
     if (this.currentForm === this.resetForm) { return; }

@@ -43,6 +43,7 @@ export class NavigationComponent implements OnInit {
   loginUser(user: NgForm) { //function to login an existing user or charity.
     this.dataService.addRecord("sessions", user.value)
       .subscribe(
+        
       user => {
         this.successMessage = "login successful";
         this.welcome = user.firstName
@@ -57,6 +58,7 @@ export class NavigationComponent implements OnInit {
              else if (user.isCharity == "Charity") {
               this.router.navigateByUrl('/charity');
             }
+            
       },
       error => {this.errorMessage = <any>error
         this.badLogin = true
@@ -64,7 +66,7 @@ export class NavigationComponent implements OnInit {
       );
     this.user = '';
     ;
-
+        
   }
 
   // ngAfterViewChecked() {
