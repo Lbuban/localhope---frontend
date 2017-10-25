@@ -5,6 +5,7 @@ import { NgForm } from '@angular/forms';
 
 
 
+
 @Component({
   selector: 'app-do-gooder',
   templateUrl: './do-gooder.component.html',
@@ -156,25 +157,26 @@ export class DoGooderComponent implements OnInit {
       need => {
         this.successMessage = "Need added successfully";
         this.getNeeds();
+        this.closeModal();
       },
       error => this.errorMessage = <any>error);
     this.need = '';
   }
 
   decreaseOne() {
-
+    if (this.counter >0){
     this.counter--;
+  } 
   }
 
 
   increaseOne() {
-
+    
     this.counter++;
 
   }
   closeModal() {
     this.counter = 0;
-    return setTimeout((document.getElementById("closeButton").click()), 500)
   }
 
   showPosition() {
