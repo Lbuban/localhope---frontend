@@ -40,6 +40,21 @@ table {
   max-height: 100%;
 }
 
+#confirm {
+  width: 400px;
+  max-width: 100%;
+  max-height: 100%;
+  margin-left: 550px;
+}
+
+#followerModal {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.row input {
+  width: 68%;
+}
 input {
   width: 700px;
   border-radius: 5px;
@@ -58,7 +73,9 @@ img {
   width: 85%;
 }
 
-
+#type {
+  color: black;
+}
 #body {
   margin-right: 30px;
   margin-left: 30px;

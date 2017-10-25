@@ -26,6 +26,9 @@ export class CharityComponent implements OnInit {
   editNeed: any;
   needid: number;
   charityid: number;
+  followerArray;
+  countFollower;
+  
   
 
 
@@ -92,6 +95,18 @@ export class CharityComponent implements OnInit {
     this.formChanged();
   }
 
+  splitFollowers(){
+    console.log(this.needs[0].users.length)
+    if (this.needs.length){
+      this.followerArray=this.needs[0].users[0].followers;
+    let countArray=this.followerArray.split(" ")
+    this.countFollower=countArray.length-1;
+    console.log(this.countFollower)}
+     else if (!this.needs.length) {
+      this.countFollower=0;
+      alert(this.countFollower)
+    }
+  }
 
   formChanged() {
     //if the form didn't change then do nothing
