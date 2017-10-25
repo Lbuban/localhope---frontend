@@ -4,7 +4,7 @@ import { MockBackend, MockConnection } from '@angular/http/testing';
 import { DataService } from './data.service';
 import { async, fakeAsync, tick } from '@angular/core/testing';
 import { Injectable, ReflectiveInjector } from '@angular/core';
-import { getRecordsResults, getUserResult, getRecords } from './data.service.test.data';
+import { getRecordsResults, getUserResult, getRecords, registerNewUser } from './data.service.test.data';
 let userId = 8;
 
 describe('DataService integration tests', () => {
@@ -150,6 +150,26 @@ it('getRecords() should return all user records', fakeAsync(() => {
   expect(result.length).toEqual(1, 'should contain 1 user record');
   expect(result[0].id).toEqual(4, ' this should be the first user record');
 }));
+
+
+//this test mocks the addRecord data set located in the data.service.test.data.ts file:
+it('addRecord() should add a new user record', fakeAsync(() => {
+  let result: any;
+  
+  this.dataService.addRecord("registration", registerNewUser)
+    .subscribe((record: String[]) => result = record);
+
+  this.lastConnection
+    .mockRespond(new Response(new ResponseOptions({
+      body: JSON.stringify({name: 'bob'}),
+    })));
+
+  tick();
+  expect(result).toBeTruthy();
+  expect(result.name).toEqual('bob', ' this should have returned the object named bob');
+}));
+
+
 //Commenting out the following spec because it doesn't return the error msg and returns actual data instead:
   // it('getRecords() while server is down--404 error', fakeAsync(() => {
   //   let result: String[];
@@ -180,3 +200,15 @@ it('getRecords() should return all user records', fakeAsync(() => {
 // const j = JSON.stringify(o);
 // // j => '{ "name": "bob", "age": 57, "height": 2.1 }'
 // const o2 = JSON.parse(j);
+
+// How to test a component: this will load the object "user" with the attribute( or Property?) "value" into memory, which can then be passed into the function:
+// {
+//   // This is the "form"
+//   const user = {
+//     value: {
+//       firstName: 'Curtis',
+//       lastName: 'Strange'
+//     }
+//   }
+//   comp.registerUser(user);
+// }
