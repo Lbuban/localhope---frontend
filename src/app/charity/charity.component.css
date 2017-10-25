@@ -27,6 +27,13 @@ table {
   justify-content: center;
 }
 
+#post {
+  display: flex;
+  justify-content: center;
+}
+
+
+
 #tagline h1 {
   text-align: center;
   font-size: 100px;
@@ -64,10 +71,16 @@ input {
   display: none !important;
 }
 
+th {
+  font: red;
+}
+
 td,
 th {
   text-align: center;
 }
+
+
 
 img {
   width: 85%;
@@ -94,7 +107,6 @@ img {
   display: flex;
   justify-content: center;
 }
-
 
 
 #submitNeed {
