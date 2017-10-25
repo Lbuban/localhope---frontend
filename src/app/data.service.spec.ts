@@ -4,7 +4,7 @@ import { MockBackend, MockConnection } from '@angular/http/testing';
 import { DataService } from './data.service';
 import { async, fakeAsync, tick } from '@angular/core/testing';
 import { Injectable, ReflectiveInjector } from '@angular/core';
-import { getRecordsResults, getUserResult } from './data.service.test.data';
+import { getRecordsResults, getUserResult, getRecords } from './data.service.test.data';
 let userId = 8;
 
 describe('DataService integration tests', () => {
@@ -15,12 +15,12 @@ describe('DataService integration tests', () => {
     });
   });
 
-  xit('should be created', inject([DataService], (service: DataService) => {
+  it('should be created', inject([DataService], (service: DataService) => {
     expect(service).toBeTruthy();
     // console.log(service)
   }));
 
-  xit('getRecords should return an array of charities with needs', async(inject([DataService], (service: DataService) => {
+  it('getRecords should return an array of charities with needs', async(inject([DataService], (service: DataService) => {
     service.getRecords("dogooder").subscribe(value => {
       expect(Array.isArray(value)).toBeTruthy();
       console.log(value)
@@ -28,7 +28,7 @@ describe('DataService integration tests', () => {
   })));
 
   //When user logs in, user is re-directed to dogooder page and user's followed charities are passed back. Those charities are only displayed when user clicks button/link.
-  xit('getNeed should return an array of charities the user follows', async(inject([DataService], (service: DataService) => {
+  it('getNeed should return an array of charities the user follows', async(inject([DataService], (service: DataService) => {
     // service.getCharityNeed("user/followedcharities", userId).subscribe(value => {  //replaced with getNeed ??
       service.getNeed("user/followedcharities", userId).subscribe(value => {
       expect(Array.isArray(value)).toBeTruthy();
@@ -86,7 +86,7 @@ describe('DataService unit tests', () => {
     expect(this.lastConnection).toBeDefined('no http service connection at all?');
     expect(this.lastConnection.request.url).toMatch(URL, 'url invalid');
   });
-    //validate the URL that HTTP.get will use to add a record. 
+    //validate the URL that HTTP.post will use to add a record. 
     it('addRecord() should query current service url', () => {
       this.dataService.addRecord();
       let URL = 'https://localhope-backend.herokuapp.com/';
@@ -105,18 +105,18 @@ describe('DataService unit tests', () => {
   //this test mocks the getRecordsResults data set located in the data.service.test.data.ts file:
   it('getRecords() should return 2 charity needs records', fakeAsync(() => {
     let result: any[];
-    this.dataService.getRecords("dogooder")
+    this.dataService.getRecords()
       .subscribe((records: String[]) => result = records);
 
     this.lastConnection
       .mockRespond(new Response(new ResponseOptions({
-        body: JSON.stringify(getRecordsResults),
+        body: JSON.stringify(getRecords),
       })));
 
     tick();
     expect(result.length).toEqual(2, 'should contain 2 records');
-    expect(result[0].id).toEqual(3, ' this should be the first charity needs record');
-    expect(result[1].id).toEqual(6, ' this should be the second charity needs record');
+    expect(result[0].id).toEqual(4, ' this should be the first user record');
+    expect(result[1].id).toEqual(9, ' this should be the second user record');
   }));
 
 //this test mocks the getUserResults data set located in the data.service.test.data.ts file:
@@ -134,6 +134,22 @@ describe('DataService unit tests', () => {
     expect(result.length).toEqual(1, 'should contain 1 user record');
     expect(result[0].id).toEqual(4, ' this should be the first user record');
   }));
+
+//this test mocks the getUserResults data set located in the data.service.test.data.ts file:
+it('getRecords() should return all user records', fakeAsync(() => {
+  let result: any[];
+  this.dataService.getNeed("user", 4)
+    .subscribe((records: String[]) => result = records);
+
+  this.lastConnection
+    .mockRespond(new Response(new ResponseOptions({
+      body: JSON.stringify(getUserResult),
+    })));
+
+  tick();
+  expect(result.length).toEqual(1, 'should contain 1 user record');
+  expect(result[0].id).toEqual(4, ' this should be the first user record');
+}));
 //Commenting out the following spec because it doesn't return the error msg and returns actual data instead:
   // it('getRecords() while server is down--404 error', fakeAsync(() => {
   //   let result: String[];

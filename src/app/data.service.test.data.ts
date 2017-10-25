@@ -107,3 +107,53 @@ export let getUserResult =
         "credentialsNonExpired": true
     }
 ];
+
+export let getRecords = 
+[
+    {
+        "id": 4,
+        "username": "ChildHaven",
+        "password": "$2a$10$qe6DAdJde4gSozln3X8gTu6X6bEgDCrrJGtEQRH1lPk9D0CMYPO3W",
+        "firstName": "Jimmy",
+        "lastName": "John",
+        "streetAddress": "316 Broadway",
+        "city": "Seattle",
+        "state": "WA",
+        "zipCode": "98122",
+        "phone": "786-898-8627",
+        "email": "lyndsay.pollock@gmail.com",
+        "isCharity": "Charity",
+        "resetNumber": null,
+        "charityName": "ChildHaven",
+        "ein": "1232423443",
+        "charityUserRole": "NA",
+        "charityType": "NA",
+        "followers": " jourdan Lyndsay",
+        "enabled": true,
+        "accountNonExpired": true,
+        "accountNonLocked": true,
+        "credentialsNonExpired": true
+    },
+    {
+        "id": 9,
+        "username": "tbuban",
+        "password": "$2a$10$fZexel1y/Awl81jKue8Qiul9INiwq7N2tNem8AzYyfdEi5EtdVPfS",
+        "firstName": "Tim",
+        "lastName": "Buban",
+        "streetAddress": "3515 SW Webster St.",
+        "city": "Seattle",
+        "state": "WA",
+        "zipCode": "98126",
+        "phone": "206-790-7278",
+        "email": "lyndsay.pollock@gmail.com",
+        "isCharity": "User",
+        "resetNumber": "53031",
+        "charityPreference": "Education",
+        "followedCharities": " 342343w423 01-0333288",
+        "donationPreferences": null,
+        "enabled": true,
+        "accountNonExpired": true,
+        "accountNonLocked": true,
+        "credentialsNonExpired": true
+    }
+]
